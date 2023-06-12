@@ -2,7 +2,7 @@ export const Login = () => {
   return (
     <>
       {" "}
-      <h1>this is login page</h1>
+      <h1 className="text-2xl">this is login page</h1>
     </>
   );
 };

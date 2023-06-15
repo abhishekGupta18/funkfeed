@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Slider from "../../Component/Slider/Slider";
 import { useAuthContext } from "../../Context/AuthContext";
@@ -7,14 +8,15 @@ import Logo from "../../Asset/final_logo.png";
 import { useState } from "react";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const { userLogin } = useAuthContext();
 
   const [userLoginData, setUserLoginData] = useState({
-    userName: "",
+    username: "",
     password: "",
   });
   const guestUserData = {
-    userName: "@abhi",
+    username: "@abhi",
     password: "abhi@123",
   };
   const userLoginHandler = (event) => {
@@ -45,7 +47,7 @@ export const Login = () => {
             required
             type="text"
             placeholder="username"
-            value={userLoginData.userName}
+            value={userLoginData.username}
             onChange={(e) => {
               setUserLoginData({ ...userLoginData, userName: e.target.value });
             }}

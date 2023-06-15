@@ -9,7 +9,7 @@ export const SignUp = () => {
   const [userSignUpData, setUserSignUpData] = useState({
     firstName: "",
     lastName: "",
-    userName: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -67,9 +67,9 @@ export const SignUp = () => {
           required
           type="text"
           placeholder="user name"
-          value={userSignUpData?.userName}
+          value={userSignUpData?.username}
           onChange={(e) => {
-            setUserSignUpData({ ...userSignUpData, userName: e.target.value });
+            setUserSignUpData({ ...userSignUpData, username: e.target.value });
           }}
           className="w-[20rem] outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
         />

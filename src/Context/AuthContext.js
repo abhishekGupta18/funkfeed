@@ -1,17 +1,15 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-import { authReducer } from "../Reducer/AuthReducer";
 import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const localStorageItem = JSON.parse(localStorage.getItem("data"));
   const navigate = useNavigate();
-  const [authState, authDispatch] = useReducer(authReducer, {
-    userInfo: {},
-    token: localStorageItem?.token || null,
-  });
+
+  const [userInfo, setUserInfo] = useState(localStorageItem?.user);
+  const [token, setToken] = useState(localStorageItem?.token || null);
 
   const userSignUp = async (signUpData) => {
     try {
@@ -21,13 +19,14 @@ export const AuthContextProvider = ({ children }) => {
         data: signUpData,
       });
       if (status === 201) {
-        authDispatch({ type: "user_info", payload: data.createdUser });
-        authDispatch({ typee: "user_token", payload: data.encodedToken });
+        setToken(data?.encodedToken);
+        setUserInfo(data?.createdUser);
         localStorage.setItem(
           "data",
           JSON.stringify({ user: data?.createdUser, token: data?.encodedToken })
         );
-        navigate("/home");
+
+        navigate("/");
       }
     } catch (e) {
       console.error(e);
@@ -42,28 +41,31 @@ export const AuthContextProvider = ({ children }) => {
         data: loginData,
       });
       if (status === 200) {
-        authDispatch({ type: "user_info", payload: data.foundUser });
-        authDispatch({ typee: "user_token", payload: data.encodedToken });
+        setToken(data?.encodedToken);
+        setUserInfo(data?.foundUser);
         localStorage.setItem(
           "data",
-          JSON.stringify({ user: data?.createdUser, token: data?.encodedToken })
+          JSON.stringify({ user: data?.foundUser, token: data?.encodedToken })
         );
-        navigate("/home");
+
+        navigate("/");
       }
     } catch (e) {
       console.error(e);
     }
   };
 
-  useEffect(() => {
-    if (localStorageItem) {
-      authDispatch({ type: "user_info", payload: localStorageItem?.user });
-      authDispatch({ type: "user_token", payload: localStorageItem?.token });
-    }
-  }, []);
+  const userLogout = () => {
+    setToken(null);
+    setUserInfo(null);
+    localStorage.removeItem("data");
+    navigate("/login");
+  };
 
   return (
-    <AuthContext.Provider value={{ userSignUp, userLogin }}>
+    <AuthContext.Provider
+      value={{ userInfo, token, userSignUp, userLogin, userLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );

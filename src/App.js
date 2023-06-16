@@ -9,6 +9,7 @@ import { Explore } from "./Pages/Explore/Explore";
 import { UserProfile } from "./Pages/Userprofile/UserProfile";
 import { BookMarks } from "./Pages/Bookmarks/Bookmarks";
 import { RequireAuth } from "./Component/RequireAuth";
+import { SideBar } from "./Component/SideBar";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/sideBar" element={<SideBar />} />
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />

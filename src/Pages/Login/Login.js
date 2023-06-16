@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import Slider from "../../Component/Slider/Slider";
+import Slider from "../../Component/Slider";
 import { useAuthContext } from "../../Context/AuthContext";
 
 import Logo from "../../Asset/final_logo.png";
@@ -24,7 +24,7 @@ export const Login = () => {
     userLogin(userLoginData);
   };
   return (
-    <div className="flex flex-row h-screen items-center justify-center">
+    <div className="flex flex-row h-screen items-center justify-center bg-light-primary-color">
       <div className="w-[40%] rounded-[0.5rem] overflow-hidden ">
         <Slider />
       </div>
@@ -75,6 +75,7 @@ export const Login = () => {
         </button>
         <button
           type="submit"
+          title="guest login"
           onClick={() => setUserLoginData(guestUserData)}
           className=" text-[black] border-solid border-[1px] border-[black] px-[1rem] py-[0.5rem] font-bold rounded-[0.5rem] hover:bg-primary-color hover:text-[#ffff]"
         >

@@ -10,6 +10,7 @@ import { UserProfile } from "./Pages/Userprofile/UserProfile";
 import { BookMarks } from "./Pages/Bookmarks/Bookmarks";
 import { RequireAuth } from "./Component/RequireAuth";
 import { SideBar } from "./Component/SideBar";
+import { Navbar } from "./Component/Navbar";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/sideBar" element={<SideBar />} />
+        <Route path="/navbar" element={<Navbar />} />
+
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />

@@ -69,6 +69,7 @@ export const Login = () => {
         </label>
         <button
           type="submit"
+          title="login"
           className="text-[black] mt-[0.5rem] border-solid border-[1px] border-[black] px-[1.5rem] py-[0.5rem] font-bold rounded-[0.5rem] hover:bg-primary-color hover:text-[#ffff]"
         >
           Login

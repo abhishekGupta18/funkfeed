@@ -29,7 +29,7 @@ export const SideBar = () => {
       >
         <AddCircleOutlineIcon />
       </div>
-      <button className="w-[90%]  rounded-[0.5rem] font-bold py-2  text-base bg-light-primary-color hover:bg-[#ef4444] hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
+      <button className="w-[90%]  rounded-[0.5rem] font-bold py-2  text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
         Logout
       </button>
     </div>

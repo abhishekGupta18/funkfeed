@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 import Slider from "../../Component/Slider";
 import { useAuthContext } from "../../Context/AuthContext";
@@ -8,7 +7,6 @@ import Logo from "../../Asset/final_logo.png";
 import { useState } from "react";
 
 export const Login = () => {
-  const navigate = useNavigate();
   const { userLogin } = useAuthContext();
 
   const [userLoginData, setUserLoginData] = useState({

@@ -5,7 +5,7 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 
 export const PostCard = () => {
   return (
-    <article className="w-[35rem] flex flex-col justify-center rounded-[0.5rem]  gap-4 border border-black border-solid m-auto p-4 ">
+    <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 ">
       <div className="flex justify-between items-center">
         <div className="flex gap-4 items-center">
           <img

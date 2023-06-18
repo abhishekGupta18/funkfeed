@@ -3,7 +3,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SearchIcon from "@mui/icons-material/Search";
 export const Navbar = () => {
   return (
-    <div className="flex justify-between items-center py-4 px-7 bg-[#bae6fd] ">
+    <div className=" flex  justify-between items-center py-4 px-7 bg-[#bae6fd] opacity-8 ">
       <div>
         <img src={Logo} alt="logo" width={160} height={80} />
       </div>

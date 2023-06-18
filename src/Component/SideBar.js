@@ -5,21 +5,30 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 export const SideBar = () => {
   return (
-    <div className=" w-[18rem]   border-solid border border-black py-4  flex flex-col gap-5 rounded-[0.5rem] mx-auto items-center ">
-      <div className="flex justify-center gap-[1rem] cursor-pointer  py-2  w-[80%] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-[0.5rem] hover:bg-light-primary-color ">
+    <div className=" w-[18rem]    py-4  flex flex-col gap-5  mx-auto items-center ">
+      <div className="flex justify-center gap-[1rem] cursor-pointer  py-2  w-[80%]  shadow-md rounded-[0.5rem] hover:bg-light-primary-color ">
         <HomeIcon />
         <p className="font-bold">Home</p>
       </div>
 
-      <div className="flex gap-[1rem] justify-center cursor-pointer py-2  w-[80%] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-[0.5rem] hover:bg-light-primary-color ">
+      <div
+        className="flex gap-[1rem] justify-center cursor-pointer py-2  w-[80%] shadow-md
+       rounded-[0.5rem] hover:bg-light-primary-color "
+      >
         <ExploreIcon />
         <p className="font-bold">Explore</p>
       </div>
-      <div className="flex gap-[1rem] justify-center cursor-pointer pl-5  py-2 w-[80%] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-[0.5rem] hover:bg-light-primary-color ">
+      <div
+        className="flex gap-[1rem] justify-center cursor-pointer pl-5  py-2 w-[80%] shadow-md
+       rounded-[0.5rem] hover:bg-light-primary-color "
+      >
         <BookmarksIcon />
         <p className="font-bold">Bookmarks</p>
       </div>
-      <div className="flex gap-[1rem] justify-center cursor-pointer py-2 w-[80%] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-[0.5rem] hover:bg-light-primary-color">
+      <div
+        className="flex gap-[1rem] justify-center cursor-pointer py-2 w-[80%] shadow-md
+       rounded-[0.5rem] hover:bg-light-primary-color"
+      >
         <ManageAccountsIcon />
         <p className="font-bold">Profile</p>
       </div>

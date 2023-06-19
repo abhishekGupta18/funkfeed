@@ -20,11 +20,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
 
-        <Route path="/sideBar" element={<SideBar />} />
-        <Route path="/navbar" element={<Navbar />} />
-        <Route path="/post" element={<PostCard />} />
-        <Route path="/users" element={<SuggestedUserCard />} />
-
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />

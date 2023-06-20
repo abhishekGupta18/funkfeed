@@ -2,7 +2,14 @@ import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { PostCard } from "../../Component/PostContainer";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
+
+import { usePostContext } from "../../Context/PostContext";
+import { useAuthContext } from "../../Context/AuthContext";
+import { useUserContext } from "../../Context/userContext";
 export const Explore = () => {
+  const { postState } = usePostContext();
+  const { usersState } = useUserContext();
+  const { userInfo } = useAuthContext();
   return (
     <div className="bg-light-primary-color min-h-screen  ">
       <div className="fixed w-full">
@@ -23,11 +30,13 @@ export const Explore = () => {
           <strong>
             <p>Users you might know</p>
           </strong>
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
+          <ul className="flex flex-col gap-4">
+            {usersState
+              ?.filter((user) => user?.username != userInfo?.username)
+              .map((users) => (
+                <SuggestedUserCard user={users} />
+              ))}
+          </ul>
         </div>
       </div>
     </div>

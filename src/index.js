@@ -8,6 +8,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { AuthContextProvider } from "./Context/AuthContext";
+import { UserContextProvider } from "./Context/userContext";
+import { PostContextProvider } from "./Context/PostContext";
 
 makeServer();
 
@@ -16,7 +18,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthContextProvider>
-        <App />
+        <UserContextProvider>
+          <PostContextProvider>
+            <App />
+          </PostContextProvider>
+        </UserContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>

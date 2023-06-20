@@ -2,7 +2,12 @@ import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { PostCard } from "../../Component/PostContainer";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
+
+import { useAuthContext } from "../../Context/AuthContext";
+import { useUserContext } from "../../Context/userContext";
 export const Home = () => {
+  const { usersState } = useUserContext();
+  const { userInfo } = useAuthContext();
   return (
     <div className="bg-light-primary-color min-h-screen  ">
       <div className="fixed w-full">
@@ -23,11 +28,13 @@ export const Home = () => {
           <strong>
             <p>Users you might know</p>
           </strong>
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
+          <ul className="flex flex-col gap-4">
+            {usersState
+              ?.filter((user) => user?.username != userInfo?.username)
+              .map((users) => (
+                <SuggestedUserCard user={users} />
+              ))}
+          </ul>
         </div>
       </div>
     </div>

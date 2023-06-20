@@ -14,7 +14,7 @@ export const Login = () => {
     password: "",
   });
   const guestUserData = {
-    username: "@abhi",
+    username: "abhi",
     password: "abhi@123",
   };
   const userLoginHandler = (event) => {

@@ -4,9 +4,10 @@ import { PostCard } from "../../Component/PostContainer";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
 
 import { useAuthContext } from "../../Context/AuthContext";
-
+import { useUserContext } from "../../Context/userContext";
 export const UserProfile = () => {
-  const { userLogout } = useAuthContext();
+  const { userLogout, userInfo } = useAuthContext();
+  const { usersState } = useUserContext();
   return (
     <div className="bg-light-primary-color min-h-screen  ">
       <div className="fixed w-full">
@@ -68,11 +69,13 @@ export const UserProfile = () => {
           <strong>
             <p>Users you might know</p>
           </strong>
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
-          <SuggestedUserCard />
+          <ul className="flex flex-col gap-4 justify-center">
+            {usersState
+              ?.filter((user) => user?.username != userInfo?.username)
+              .map((users) => (
+                <SuggestedUserCard user={users} />
+              ))}
+          </ul>
         </div>
       </div>
     </div>

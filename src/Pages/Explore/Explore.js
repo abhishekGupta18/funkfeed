@@ -10,6 +10,7 @@ export const Explore = () => {
   const { postState } = usePostContext();
   const { usersState } = useUserContext();
   const { userInfo } = useAuthContext();
+
   return (
     <div className="bg-light-primary-color min-h-screen  ">
       <div className="fixed w-full">
@@ -20,11 +21,9 @@ export const Explore = () => {
           <SideBar />
         </div>
         <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
+          {postState?.allPost?.map((post) => (
+            <PostCard post={post} />
+          ))}
         </div>
         <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
           <strong>

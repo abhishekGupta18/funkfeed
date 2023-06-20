@@ -3,31 +3,35 @@ import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 
-export const PostCard = () => {
+import { useUserContext } from "../Context/userContext";
+export const PostCard = ({ post }) => {
+  const { usersState } = useUserContext();
+  const findUser = usersState?.find(
+    (user) => user?.username === post?.username
+  );
+
   return (
     <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 ">
       <div className="flex justify-between items-center">
         <div className="flex gap-4 items-center">
           <img
-            src="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
+            src={findUser?.profileImg}
             alt=""
             className="rounded-[50%] w-[40px] h-[40px] object-cover "
           />
           <div>
-            <p>@adarshBalika</p>
+            <p>@{post?.username}</p>
             <p>a year ago</p>
           </div>
         </div>
         <MoreVertIcon />
       </div>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium
-        obcaecati asperiores magnam repellendus sunt doloremque blanditiis
-      </p>
+      <p>{post?.content}</p>
       <div>
         <img
-          src="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
-          alt="post"
+          src={post?.mediaURL}
+          alt={post?.mediaAlt}
+          className=" object-cover "
         />
       </div>
 

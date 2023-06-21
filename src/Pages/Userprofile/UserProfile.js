@@ -1,3 +1,7 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { PostCard } from "../../Component/PostContainer";
@@ -5,9 +9,36 @@ import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
 
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
+import { usePostContext } from "../../Context/PostContext";
+
 export const UserProfile = () => {
+  const [userData, setUserData] = useState({});
+
   const { userLogout, userInfo } = useAuthContext();
   const { usersState } = useUserContext();
+  const { postState, getUserPost } = usePostContext();
+  const { username } = useParams();
+
+  const getUserData = async () => {
+    try {
+      const { data, status } = await axios({
+        method: "get",
+        url: `/api/users/${username}`,
+      });
+
+      if (status === 200 || status === 201) {
+        setUserData(data?.user);
+        getUserPost(username);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, [username, postState, usersState]);
+
   return (
     <div className="bg-light-primary-color min-h-screen  ">
       <div className="fixed w-full">
@@ -23,15 +54,17 @@ export const UserProfile = () => {
               <div className="flex items-center gap-4 ">
                 <img
                   title="user profile"
-                  src="https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
+                  src={userData?.profileImg}
                   alt="user-profile"
                   className="rounded-[50%] w-[60px] h-[60px] object-cover "
                 />
                 <div>
                   <strong>
-                    <p>Adarsh Balika</p>
+                    <p>
+                      {userData?.firstName} {userData?.lastName}
+                    </p>
                   </strong>
-                  <p>@adarshBalika</p>
+                  <p>@{userData?.username}</p>
                 </div>
               </div>
               <div className="flex  items-center gap-4">
@@ -47,8 +80,8 @@ export const UserProfile = () => {
               </div>
             </div>
             <div className=" w-[40rem] flex flex-col gap-2 p-4 justify-center ">
-              <p>never wanted perfect just real</p>
-              <p>https://supersole.netlify.app/</p>
+              <p>{userData?.bio}</p>
+
               <div className="flex justify-around">
                 <p className="font-medium">5 posts</p>
                 <p className="font-medium">2 followers</p>
@@ -58,11 +91,9 @@ export const UserProfile = () => {
           </div>
 
           <div className="  flex flex-col gap-4 ">
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {postState?.userPost?.map((post) => (
+              <PostCard post={post} />
+            ))}
           </div>
         </div>
         <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">

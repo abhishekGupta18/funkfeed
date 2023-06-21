@@ -21,6 +21,7 @@ export const UserContextProvider = ({ children }) => {
       console.error(e);
     }
   };
+
   useEffect(() => {
     getAllUsers();
   }, []);

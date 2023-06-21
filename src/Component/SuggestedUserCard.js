@@ -1,11 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 export const SuggestedUserCard = ({ user }) => {
+  const navigate = useNavigate();
   return (
     <div className=" w-[18rem]  m-auto rounded-[0.5rem] py-1 px-2 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
       <div className="flex items-center justify-between">
         <img
-          className="rounded-[50%] w-[40px] h-[40px] object-cover "
+          className="rounded-[50%] w-[40px] h-[40px] object-cover cursor-pointer "
           src={user?.profileImg}
           alt=""
+          onClick={() => navigate(`/userProfile/${user?.username}`)}
         />
         <strong>
           <p>@{user?.username}</p>

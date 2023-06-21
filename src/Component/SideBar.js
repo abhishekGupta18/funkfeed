@@ -8,7 +8,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 import { useAuthContext } from "../Context/AuthContext";
 export const SideBar = () => {
-  const { userLogout } = useAuthContext();
+  const { userLogout, userInfo } = useAuthContext();
   const navigate = useNavigate();
   return (
     <div className=" w-[18rem]    py-4  flex flex-col gap-5  mx-auto items-center ">
@@ -39,7 +39,7 @@ export const SideBar = () => {
       <div
         className="flex gap-[1rem] justify-center cursor-pointer py-2 w-[80%] shadow-md
        rounded-[0.5rem] hover:bg-light-primary-color"
-        onClick={() => navigate("/userProfile")}
+        onClick={() => navigate(`/userProfile/${userInfo?.username}`)}
       >
         <ManageAccountsIcon />
         <p className="font-bold">Profile</p>

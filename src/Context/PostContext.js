@@ -27,14 +27,28 @@ export const PostContextProvider = ({ children }) => {
     }
   };
 
+  const getUserPost = async (username) => {
+    try {
+      const { status, data } = await axios({
+        method: "get",
+        url: `/api/posts/user/${username}`,
+      });
+      if (status === 200 || status === 201) {
+        postDispatch({ type: "get_user_post", payload: data?.posts });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     if (token) {
       getAllPost();
     }
   });
-  console.log(postState?.allPost);
+
   return (
-    <PostContext.Provider value={{ postState }}>
+    <PostContext.Provider value={{ postState, getUserPost }}>
       {children}
     </PostContext.Provider>
   );

@@ -15,7 +15,8 @@ export const UserProfile = () => {
   const [userData, setUserData] = useState({});
 
   const { userLogout, userInfo } = useAuthContext();
-  const { usersState } = useUserContext();
+  const { usersState, filteredUsers, followUsers, unFollowUsers } =
+    useUserContext();
   const { postState, getUserPost } = usePostContext();
   const { username } = useParams();
 
@@ -26,7 +27,7 @@ export const UserProfile = () => {
         url: `/api/users/${username}`,
       });
 
-      if (status === 200 || status === 201) {
+      if (status === 200) {
         setUserData(data?.user);
         getUserPost(username);
       }
@@ -67,25 +68,53 @@ export const UserProfile = () => {
                   <p>@{userData?.username}</p>
                 </div>
               </div>
-              <div className="flex  items-center gap-4">
-                <button className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
-                  Edit Profile
-                </button>
-                <button
-                  className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
-                  onClick={() => userLogout()}
-                >
-                  Logout
-                </button>
-              </div>
+              {userInfo?.username === userData?.username ? (
+                <div className="flex  items-center gap-4 mr-4">
+                  <button className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
+                    Edit Profile
+                  </button>
+                  <button
+                    className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                    onClick={() => userLogout()}
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <div className=" mr-4">
+                  {userInfo?.following
+                    ?.map((user) => user.username)
+                    .includes(userData?.username) ? (
+                    <button
+                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                      onClick={() => unFollowUsers(userData._id)}
+                    >
+                      Unfollow
+                    </button>
+                  ) : (
+                    <button
+                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                      onClick={() => followUsers(userData._id)}
+                    >
+                      Follow
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
             <div className=" w-[40rem] flex flex-col gap-2 p-4 justify-center ">
               <p>{userData?.bio}</p>
 
               <div className="flex justify-around">
-                <p className="font-medium">5 posts</p>
-                <p className="font-medium">2 followers</p>
-                <p className="font-medium">5 following</p>
+                <p className="font-medium">
+                  {postState?.userPost?.length} posts
+                </p>
+                <p className="font-medium">
+                  {userData?.followers?.length} followers
+                </p>
+                <p className="font-medium">
+                  {userData?.following?.length} following
+                </p>
               </div>
             </div>
           </div>
@@ -101,11 +130,9 @@ export const UserProfile = () => {
             <p>Users you might know</p>
           </strong>
           <ul className="flex flex-col gap-4 justify-center">
-            {usersState
-              ?.filter((user) => user?.username != userInfo?.username)
-              .map((users) => (
-                <SuggestedUserCard user={users} />
-              ))}
+            {filteredUsers.map((users) => (
+              <SuggestedUserCard user={users} />
+            ))}
           </ul>
         </div>
       </div>

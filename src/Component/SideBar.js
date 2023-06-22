@@ -17,7 +17,7 @@ export const SideBar = () => {
         onClick={() => navigate("/")}
       >
         <HomeIcon />
-        <p className="font-bold">Home</p>
+        <p className="font-bold">Feed</p>
       </div>
 
       <div

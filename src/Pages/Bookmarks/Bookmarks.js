@@ -6,7 +6,7 @@ import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
 export const BookMarks = () => {
-  const { usersState } = useUserContext();
+  const { usersState, filteredUsers } = useUserContext();
   const { userInfo } = useAuthContext();
   return (
     <div className="bg-light-primary-color min-h-screen  ">
@@ -29,11 +29,9 @@ export const BookMarks = () => {
             <p>Users you might know</p>
           </strong>
           <ul className="flex flex-col gap-4">
-            {usersState
-              ?.filter((user) => user?.username != userInfo?.username)
-              .map((users) => (
-                <SuggestedUserCard user={users} />
-              ))}
+            {filteredUsers.map((users) => (
+              <SuggestedUserCard user={users} />
+            ))}
           </ul>
         </div>
       </div>

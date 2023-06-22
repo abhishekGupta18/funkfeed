@@ -1,14 +1,21 @@
+import { useNavigate } from "react-router-dom";
+
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import ShareIcon from "@mui/icons-material/Share";
 
 import { useUserContext } from "../Context/userContext";
+
 export const PostCard = ({ post }) => {
   const { usersState } = useUserContext();
-  const findUser = usersState?.find(
+
+  const findUser = usersState?.allUsers?.find(
     (user) => user?.username === post?.username
   );
+
+  const navigate = useNavigate();
 
   return (
     <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 ">
@@ -17,11 +24,16 @@ export const PostCard = ({ post }) => {
           <img
             src={findUser?.profileImg}
             alt=""
-            className="rounded-[50%] w-[40px] h-[40px] object-cover "
+            className="rounded-[50%] w-[40px] h-[40px] object-cover cursor-pointer "
+            onClick={() => navigate(`/userProfile/${findUser?.username}`)}
           />
           <div>
-            <p>@{post?.username}</p>
-            <p>a year ago</p>
+            <p className="font-medium">@{post?.username}</p>
+            <p>{` ${new Date(post?.createdAt)
+              .toDateString()
+              .split(" ")
+              .slice(1, 4)
+              .join(" ")}`}</p>
           </div>
         </div>
         <MoreVertIcon />
@@ -39,6 +51,7 @@ export const PostCard = ({ post }) => {
         <FavoriteBorderOutlinedIcon />
         <ModeCommentOutlinedIcon />
         <BookmarkBorderOutlinedIcon />
+        <ShareIcon />
       </div>
     </article>
   );

@@ -47,7 +47,7 @@ export const Login = () => {
             placeholder="username"
             value={userLoginData.username}
             onChange={(e) => {
-              setUserLoginData({ ...userLoginData, userName: e.target.value });
+              setUserLoginData({ ...userLoginData, username: e.target.value });
             }}
             className=" outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color "
           />

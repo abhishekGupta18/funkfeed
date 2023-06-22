@@ -33,7 +33,7 @@ export const PostContextProvider = ({ children }) => {
         method: "get",
         url: `/api/posts/user/${username}`,
       });
-      if (status === 200 || status === 201) {
+      if (status === 200) {
         postDispatch({ type: "get_user_post", payload: data?.posts });
       }
     } catch (e) {

@@ -11,7 +11,8 @@ import { useUserContext } from "../Context/userContext";
 import { useAuthContext } from "../Context/AuthContext";
 
 export const PostCard = ({ post }) => {
-  const { usersState, addPostToBookmarks } = useUserContext();
+  const { usersState, addPostToBookmarks, removePostFromBookmarks } =
+    useUserContext();
   const { userInfo } = useAuthContext();
   const findUser = usersState?.allUsers?.find(
     (user) => user?.username === post?.username
@@ -52,11 +53,15 @@ export const PostCard = ({ post }) => {
       <div className="flex gap-4 items-center">
         <FavoriteBorderOutlinedIcon />
         <ModeCommentOutlinedIcon />
-        {
+        {userInfo?.bookmarks?.some((item) => item?.id?.includes(post?.id)) ? (
+          <div onClick={() => removePostFromBookmarks(post?._id)}>
+            <BookmarkOutlinedIcon />
+          </div>
+        ) : (
           <div onClick={() => addPostToBookmarks(post?._id)}>
             <BookmarkBorderOutlinedIcon />
           </div>
-        }
+        )}
         <ShareIcon />
       </div>
     </article>

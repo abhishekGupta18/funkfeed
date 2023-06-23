@@ -85,11 +85,27 @@ export const UserContextProvider = ({ children }) => {
         url: `/api/users/bookmark/${postId}`,
         headers: { authorization: token },
       });
-      console.log(data, status);
-      if (status === 200 || status === 201) {
+      if (status === 200) {
         usersDispatch({ type: "get_all_bookmarks", payload: data?.bookmarks });
         setUserInfo({ ...userInfo, bookmarks: data?.bookmarks });
       }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const removePostFromBookmarks = async (postId) => {
+    try {
+      const { data, status } = await axios({
+        method: "post",
+        url: `/api/users/remove-bookmark/${postId}`,
+        headers: { authorization: token },
+      });
+      if (status === 200) {
+        usersDispatch({ type: "get_all_bookmarks", payload: data?.bookmarks });
+        setUserInfo({ ...userInfo, bookmarks: data?.bookmarks });
+      }
+      console.log(data, status);
     } catch (e) {
       console.error(e);
     }
@@ -117,6 +133,7 @@ export const UserContextProvider = ({ children }) => {
         unFollowUsers,
         filteredUsers,
         addPostToBookmarks,
+        removePostFromBookmarks,
       }}
     >
       {children}

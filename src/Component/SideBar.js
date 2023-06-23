@@ -9,13 +9,12 @@ import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import { Modal } from "@mui/material";
 import { useAuthContext } from "../Context/AuthContext";
-import { useState } from "react";
 
+import { usePostContext } from "../Context/PostContext";
 export const SideBar = () => {
   const { userLogout, userInfo } = useAuthContext();
-  const [openPostModal, setOpenPostModal] = useState(false);
-  const openModal = () => setOpenPostModal(true);
-  const closeModal = () => setOpenPostModal(false);
+  const { openNewPostModal, closeNewPostModal, openPostModal } =
+    usePostContext();
   const style = {
     position: "absolute",
     top: "50%",
@@ -65,7 +64,7 @@ export const SideBar = () => {
       <div
         title="add post"
         className=" mb-[5rem] mt-[2rem] cursor-pointer addPost "
-        onClick={() => openModal()}
+        onClick={() => openNewPostModal()}
       >
         <AddCircleOutlineIcon />
       </div>
@@ -78,7 +77,7 @@ export const SideBar = () => {
 
       <Modal
         open={openPostModal}
-        onClose={closeModal}
+        onClose={closeNewPostModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -97,7 +96,7 @@ export const SideBar = () => {
               <div className="flex gap-4">
                 <button
                   className="border-solid border-primary-color border px-2 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
-                  onClick={() => closeModal()}
+                  onClick={() => closeNewPostModal()}
                 >
                   Cancel
                 </button>

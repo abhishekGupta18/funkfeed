@@ -1,11 +1,5 @@
 import axios from "axios";
-import {
-  useContext,
-  createContext,
-  useReducer,
-  useEffect,
-  useState,
-} from "react";
+import { useContext, createContext, useReducer, useEffect } from "react";
 
 import { useAuthContext } from "./AuthContext";
 import { usersReducer } from "../Reducer/usersReducer";

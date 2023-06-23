@@ -19,6 +19,9 @@ export const PostContextProvider = ({ children }) => {
     allPost: [],
     userPost: [],
   });
+  const [openPostModal, setOpenPostModal] = useState(false);
+  const openNewPostModal = () => setOpenPostModal(true);
+  const closeNewPostModal = () => setOpenPostModal(false);
 
   const getAllPost = async () => {
     try {
@@ -56,7 +59,15 @@ export const PostContextProvider = ({ children }) => {
 
   return (
     <PostContext.Provider
-      value={{ postState, getUserPost, addPostModal, setAddPostModal }}
+      value={{
+        postState,
+        getUserPost,
+        addPostModal,
+        setAddPostModal,
+        openNewPostModal,
+        closeNewPostModal,
+        openPostModal,
+      }}
     >
       {children}
     </PostContext.Provider>

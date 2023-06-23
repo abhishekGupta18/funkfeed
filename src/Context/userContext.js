@@ -61,14 +61,35 @@ export const UserContextProvider = ({ children }) => {
     }
   };
 
+  //Book marks functions
+
   const getAllBookmarks = async () => {
     try {
       const { data, status } = await axios({
         method: "get",
         url: "/api/users/bookmark",
-        headers: token,
+        headers: { authorization: token },
+      });
+      if (status === 200) {
+        usersDispatch({ type: "get_all_bookmarks", payload: data?.bookmarks });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const addPostToBookmarks = async (postId) => {
+    try {
+      const { data, status } = await axios({
+        method: "post",
+        url: `/api/users/bookmark/${postId}`,
+        headers: { authorization: token },
       });
       console.log(data, status);
+      if (status === 200 || status === 201) {
+        usersDispatch({ type: "get_all_bookmarks", payload: data?.bookmarks });
+        setUserInfo({ ...userInfo, bookmarks: data?.bookmarks });
+      }
     } catch (e) {
       console.error(e);
     }
@@ -90,7 +111,13 @@ export const UserContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ usersState, followUsers, unFollowUsers, filteredUsers }}
+      value={{
+        usersState,
+        followUsers,
+        unFollowUsers,
+        filteredUsers,
+        addPostToBookmarks,
+      }}
     >
       {children}
     </UserContext.Provider>

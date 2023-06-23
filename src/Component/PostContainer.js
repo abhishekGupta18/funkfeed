@@ -4,13 +4,15 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 
 import { useUserContext } from "../Context/userContext";
+import { useAuthContext } from "../Context/AuthContext";
 
 export const PostCard = ({ post }) => {
-  const { usersState } = useUserContext();
-
+  const { usersState, addPostToBookmarks } = useUserContext();
+  const { userInfo } = useAuthContext();
   const findUser = usersState?.allUsers?.find(
     (user) => user?.username === post?.username
   );
@@ -47,10 +49,14 @@ export const PostCard = ({ post }) => {
         />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <FavoriteBorderOutlinedIcon />
         <ModeCommentOutlinedIcon />
-        <BookmarkBorderOutlinedIcon />
+        {
+          <div onClick={() => addPostToBookmarks(post?._id)}>
+            <BookmarkBorderOutlinedIcon />
+          </div>
+        }
         <ShareIcon />
       </div>
     </article>

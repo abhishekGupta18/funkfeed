@@ -17,7 +17,7 @@ export const Home = () => {
 
   const userFollowing = userInfo?.following?.map(({ username }) => username);
   const followedUserPost = postState?.allPost?.filter((post) =>
-    userFollowing.includes(post.username)
+    userFollowing.includes(post?.username)
   );
 
   let userFeed = [];

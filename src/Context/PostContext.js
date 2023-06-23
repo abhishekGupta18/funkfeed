@@ -1,5 +1,11 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 import { useAuthContext } from "./AuthContext";
 import { postReducer } from "../Reducer/postReducer";
@@ -7,6 +13,7 @@ import { postReducer } from "../Reducer/postReducer";
 export const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
+  const [addPostModal, setAddPostModal] = useState(false);
   const { token } = useAuthContext();
   const [postState, postDispatch] = useReducer(postReducer, {
     allPost: [],
@@ -48,7 +55,9 @@ export const PostContextProvider = ({ children }) => {
   });
 
   return (
-    <PostContext.Provider value={{ postState, getUserPost }}>
+    <PostContext.Provider
+      value={{ postState, getUserPost, addPostModal, setAddPostModal }}
+    >
       {children}
     </PostContext.Provider>
   );

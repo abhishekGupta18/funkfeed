@@ -67,8 +67,22 @@ export const UserContextProvider = ({ children }) => {
     }
   };
 
+  const getAllBookmarks = async () => {
+    try {
+      const { data, status } = await axios({
+        method: "get",
+        url: "/api/users/bookmark",
+        headers: token,
+      });
+      console.log(data, status);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     getAllUsers();
+    getAllBookmarks();
   }, []);
 
   const filteredUsers = usersState?.allUsers

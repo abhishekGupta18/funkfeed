@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
@@ -7,6 +8,8 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import ShareIcon from "@mui/icons-material/Share";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useUserContext } from "../Context/userContext";
 import { useAuthContext } from "../Context/AuthContext";
@@ -17,6 +20,9 @@ export const PostCard = ({ post }) => {
     useUserContext();
   const { likePost, dislikePost, postState } = usePostContext();
   const { userInfo } = useAuthContext();
+
+  const [editDeleteBtn, setEditDeleteBtn] = useState(false);
+
   const findUser = usersState?.allUsers?.find(
     (user) => user?.username === post?.username
   );
@@ -24,7 +30,7 @@ export const PostCard = ({ post }) => {
   const navigate = useNavigate();
 
   return (
-    <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 ">
+    <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 relative">
       <div className="flex justify-between items-center">
         <div className="flex gap-4 items-center">
           <img
@@ -42,7 +48,28 @@ export const PostCard = ({ post }) => {
               .join(" ")}`}</p>
           </div>
         </div>
-        <MoreVertIcon />
+        {post?.username === userInfo?.username && (
+          <div
+            className="cursor-pointer"
+            title="edit | delete"
+            onClick={() => setEditDeleteBtn(!editDeleteBtn)}
+          >
+            <MoreVertIcon />
+          </div>
+        )}
+
+        {editDeleteBtn && (
+          <div className="  flex flex-col gap-2 justify-center  rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] absolute left-[80%] top-[5%] bg-white  ">
+            <div className="flex justify-between hover:bg-light-primary-color rounded-t-[0.5rem]  px-2 py-1">
+              <button>Edit</button>
+              <EditIcon />
+            </div>
+            <div className="flex justify-between gap-1  hover:bg-light-primary-color rounded-b-[0.5rem] px-2 py-1 ">
+              <button>Delete</button>
+              <DeleteIcon />
+            </div>
+          </div>
+        )}
       </div>
       <p>{post?.content}</p>
       <div>
@@ -53,6 +80,11 @@ export const PostCard = ({ post }) => {
         />
       </div>
 
+      <div className="flex gap-4 items-center">
+        <p>{post?.likes?.likeCount} Likes</p>
+        <p>{post?.comments?.length} Comments</p>
+      </div>
+      <hr />
       <div className="flex gap-4 items-center">
         {post?.likes?.likedBy?.find(
           (item) => item?.username === userInfo?.username
@@ -97,6 +129,7 @@ export const PostCard = ({ post }) => {
           <ShareIcon /> Share
         </div>
       </div>
+      <hr />
     </article>
   );
 };

@@ -22,7 +22,7 @@ export const PostContextProvider = ({ children }) => {
   const [openPostModal, setOpenPostModal] = useState(false);
   const openNewPostModal = () => setOpenPostModal(true);
   const closeNewPostModal = () => setOpenPostModal(false);
-
+  console.log(postState?.allPost);
   const getAllPost = async () => {
     try {
       const { status, data } = await axios({
@@ -51,6 +51,38 @@ export const PostContextProvider = ({ children }) => {
     }
   };
 
+  const likePost = async (postId) => {
+    try {
+      const { status, data } = await axios({
+        method: "post",
+        url: `/api/posts/like/${postId}`,
+        headers: { authorization: token },
+      });
+      console.log(data, status);
+      if (status === 201) {
+        postDispatch({ type: "get_all_post", payload: data.posts });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const dislikePost = async (postId) => {
+    try {
+      const { status, data } = await axios({
+        method: "post",
+        url: `/api/posts/dislike/${postId}`,
+        headers: { authorization: token },
+      });
+      console.log(data, status);
+      if (status === 201) {
+        postDispatch({ type: "get_all_post", payload: data.posts });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     if (token) {
       getAllPost();
@@ -67,6 +99,8 @@ export const PostContextProvider = ({ children }) => {
         openNewPostModal,
         closeNewPostModal,
         openPostModal,
+        likePost,
+        dislikePost,
       }}
     >
       {children}

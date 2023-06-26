@@ -12,7 +12,6 @@ export const UserContextProvider = ({ children }) => {
     user: {},
   });
   const { token, userInfo, setUserInfo } = useAuthContext();
-
   const getAllUsers = async () => {
     try {
       const { status, data } = await axios({
@@ -105,7 +104,6 @@ export const UserContextProvider = ({ children }) => {
         usersDispatch({ type: "get_all_bookmarks", payload: data?.bookmarks });
         setUserInfo({ ...userInfo, bookmarks: data?.bookmarks });
       }
-      console.log(data, status);
     } catch (e) {
       console.error(e);
     }

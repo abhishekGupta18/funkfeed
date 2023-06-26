@@ -114,7 +114,7 @@ export const PostCard = ({ post }) => {
         <div title="comment" className="cursor-pointer flex items-center gap-2">
           <ModeCommentOutlinedIcon /> Comment
         </div>
-        {userInfo?.bookmarks?.some((item) => item?.id?.includes(post?.id)) ? (
+        {userInfo?.bookmarks?.some((item) => item?._id?.includes(post?._id)) ? (
           <div
             title="remove from bookmark"
             className="cursor-pointer flex items-center gap-2"

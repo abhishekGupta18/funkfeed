@@ -5,11 +5,14 @@ import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
 
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
-
+import { usePostContext } from "../../Context/PostContext";
 export const BookMarks = () => {
   const { filteredUsers } = useUserContext();
   const { userInfo } = useAuthContext();
+  const { postState } = usePostContext();
 
+  const userBookmarks = userInfo?.bookmarks?.map(({ _id }) => _id);
+  console.log(userBookmarks);
   return (
     <div className="bg-light-primary-color min-h-screen ">
       <div className="fixed w-full">
@@ -20,9 +23,11 @@ export const BookMarks = () => {
           <SideBar />
         </div>
         <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
-          {userInfo?.bookmarks?.map((post) => (
-            <PostCard post={post} />
-          ))}
+          {postState?.allPost
+            ?.filter((post) => userBookmarks?.includes(post?._id))
+            .map((post) => (
+              <PostCard post={post} />
+            ))}
         </div>
         <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
           <strong>

@@ -1,5 +1,5 @@
+import { v4 as uuid } from "uuid";
 import { useNavigate } from "react-router-dom";
-
 import HomeIcon from "@mui/icons-material/Home";
 import ExploreIcon from "@mui/icons-material/Explore";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
@@ -11,10 +11,16 @@ import { Modal } from "@mui/material";
 import { useAuthContext } from "../Context/AuthContext";
 
 import { usePostContext } from "../Context/PostContext";
+import { useState } from "react";
 export const SideBar = () => {
+  const [newPostDetails, setNewPostDetails] = useState({
+    _id: uuid(),
+    content: "",
+  });
   const { userLogout, userInfo } = useAuthContext();
-  const { openNewPostModal, closeNewPostModal, openPostModal } =
+  const { openNewPostModal, closeNewPostModal, openPostModal, addNewPost } =
     usePostContext();
+  const navigate = useNavigate();
   const style = {
     position: "absolute",
     top: "50%",
@@ -25,7 +31,12 @@ export const SideBar = () => {
     boxShadow: 24,
     p: 4,
   };
-  const navigate = useNavigate();
+
+  const addPostHandler = (e) => {
+    e.preventDefault();
+    addNewPost(newPostDetails);
+    closeNewPostModal();
+  };
 
   return (
     <div className=" w-[18rem] py-4  flex flex-col gap-5  mx-auto items-center ">
@@ -82,17 +93,35 @@ export const SideBar = () => {
         aria-describedby="modal-modal-description"
       >
         <div style={{ ...style }}>
-          <div className="bg-white p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 h-[15rem] w-[25rem] ">
+          <form
+            onSubmit={(e) => {
+              addPostHandler(e);
+            }}
+            className="bg-white p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 h-[15rem] w-[25rem] "
+          >
             <input
               type="text"
               placeholder="What is happening?!"
               className="p-2 border-none outline-none"
+              value={newPostDetails?.content}
+              onChange={(e) =>
+                setNewPostDetails({
+                  ...newPostDetails,
+                  content: e.target.value,
+                })
+              }
             />
 
             <div className="flex justify-between items-center">
-              <div className="flex gap-4 ">
-                <EmojiEmotionsOutlinedIcon />
-                <AddPhotoAlternateOutlinedIcon />
+              <div className="flex gap-4  items-center">
+                <label>
+                  <EmojiEmotionsOutlinedIcon />
+                </label>
+
+                <label>
+                  <input type="file" accept="image/*" className="hidden" />
+                  <AddPhotoAlternateOutlinedIcon />
+                </label>
               </div>
               <div className="flex gap-4">
                 <button
@@ -101,12 +130,15 @@ export const SideBar = () => {
                 >
                   Cancel
                 </button>
-                <button className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white ">
+                <button
+                  type="submit"
+                  className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white "
+                >
                   Add
                 </button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </Modal>
     </div>

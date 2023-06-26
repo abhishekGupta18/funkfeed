@@ -98,12 +98,15 @@ export const PostContextProvider = ({ children }) => {
     }
   };
 
-  const addNewPost = async () => {
+  const addNewPost = async (postDetails) => {
     try {
       const { status, data } = await axios({
         method: "post",
         url: "/api/posts",
+        data: { postData: postDetails },
+        headers: { authorization: token },
       });
+      console.log(status, data);
     } catch (e) {
       console.error(e);
     }
@@ -128,6 +131,7 @@ export const PostContextProvider = ({ children }) => {
         likePost,
         dislikePost,
         deletePost,
+        addNewPost,
       }}
     >
       {children}

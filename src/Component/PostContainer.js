@@ -82,7 +82,7 @@ export const PostCard = ({ post }) => {
         <img
           src={post?.mediaURL}
           alt={post?.mediaAlt}
-          className=" object-cover"
+          className=" object-cover mx-auto "
         />
       </div>
 

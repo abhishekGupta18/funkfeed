@@ -1,5 +1,7 @@
 import { v4 as uuid } from "uuid";
 import { useNavigate } from "react-router-dom";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 import HomeIcon from "@mui/icons-material/Home";
 import ExploreIcon from "@mui/icons-material/Explore";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
@@ -16,7 +18,10 @@ export const SideBar = () => {
   const [newPostDetails, setNewPostDetails] = useState({
     _id: uuid(),
     content: "",
+    mediaURL: "",
   });
+  const [image, setImage] = useState(null);
+  const [showEmoji, setShowEmoji] = useState(false);
   const { userLogout, userInfo } = useAuthContext();
   const { openNewPostModal, closeNewPostModal, openPostModal, addNewPost } =
     usePostContext();
@@ -36,6 +41,8 @@ export const SideBar = () => {
     e.preventDefault();
     addNewPost(newPostDetails);
     closeNewPostModal();
+    setNewPostDetails({ ...newPostDetails, content: "", mediaURL: "" });
+    setImage(null);
   };
 
   return (
@@ -97,36 +104,83 @@ export const SideBar = () => {
             onSubmit={(e) => {
               addPostHandler(e);
             }}
-            className="bg-white p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 h-[15rem] w-[25rem] "
+            className="bg-white p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] w-[25rem] "
           >
-            <input
+            <textarea
               type="text"
+              rows={4}
               placeholder="What is happening?!"
               className="p-2 border-none outline-none"
               value={newPostDetails?.content}
-              onChange={(e) =>
+              onChange={(e) => {
                 setNewPostDetails({
                   ...newPostDetails,
                   content: e.target.value,
-                })
-              }
-            />
-
+                });
+              }}
+            ></textarea>
+            {image && (
+              <img
+                src={URL.createObjectURL(image)}
+                alt=""
+                className="mx-auto max-h-[10rem]"
+              />
+            )}
             <div className="flex justify-between items-center">
-              <div className="flex gap-4  items-center">
-                <label>
+              <div className="flex gap-4  items-center ">
+                <label onClick={() => setShowEmoji(!showEmoji)}>
+                  {showEmoji && (
+                    <div className="absolute right-[28rem] bottom-[1px] ">
+                      {" "}
+                      <Picker
+                        data={data}
+                        maxFrequentRows={0}
+                        previewPosition="none"
+                        emojiButtonSize={28}
+                        emojiSize={20}
+                        onEmojiSelect={(emoji) => {
+                          setNewPostDetails({
+                            ...newPostDetails,
+                            content: newPostDetails.content + emoji.native,
+                          });
+                        }}
+                      />{" "}
+                    </div>
+                  )}
                   <EmojiEmotionsOutlinedIcon />
                 </label>
 
-                <label>
-                  <input type="file" accept="image/*" className="hidden" />
+                <label className="cursor-pointer">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    value={newPostDetails?.media}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      setNewPostDetails({
+                        ...newPostDetails,
+                        mediaURL: URL.createObjectURL(e.target.files[0]),
+                        // converting image to url
+                      });
+                    }}
+                  />
                   <AddPhotoAlternateOutlinedIcon />
                 </label>
               </div>
               <div className="flex gap-4">
                 <button
                   className="border-solid border-primary-color border px-2 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
-                  onClick={() => closeNewPostModal()}
+                  onClick={() => {
+                    closeNewPostModal();
+                    setNewPostDetails({
+                      ...newPostDetails,
+                      content: "",
+                      mediaURL: "",
+                    });
+                    setImage(null);
+                    setShowEmoji(false);
+                  }}
                 >
                   Cancel
                 </button>

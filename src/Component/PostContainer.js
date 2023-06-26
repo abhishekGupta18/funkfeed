@@ -18,7 +18,7 @@ import { usePostContext } from "../Context/PostContext";
 export const PostCard = ({ post }) => {
   const { usersState, addPostToBookmarks, removePostFromBookmarks } =
     useUserContext();
-  const { likePost, dislikePost, postState } = usePostContext();
+  const { likePost, dislikePost, postState, deletePost } = usePostContext();
   const { userInfo } = useAuthContext();
 
   const [editDeleteBtn, setEditDeleteBtn] = useState(false);
@@ -30,7 +30,7 @@ export const PostCard = ({ post }) => {
   const navigate = useNavigate();
 
   return (
-    <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 relative">
+    <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 relative ">
       <div className="flex justify-between items-center">
         <div className="flex gap-4 items-center">
           <img
@@ -64,7 +64,13 @@ export const PostCard = ({ post }) => {
               <button>Edit</button>
               <EditIcon />
             </div>
-            <div className="flex justify-between gap-1  hover:bg-light-primary-color rounded-b-[0.5rem] px-2 py-1 ">
+            <div
+              className="flex justify-between gap-1  hover:bg-light-primary-color rounded-b-[0.5rem] px-2 py-1"
+              onClick={(e) => {
+                deletePost(post?._id);
+                setEditDeleteBtn(false);
+              }}
+            >
               <button>Delete</button>
               <DeleteIcon />
             </div>

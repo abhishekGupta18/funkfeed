@@ -88,6 +88,7 @@ export const SideBar = () => {
               placeholder="What is happening?!"
               className="p-2 border-none outline-none"
             />
+
             <div className="flex justify-between items-center">
               <div className="flex gap-4 ">
                 <EmojiEmotionsOutlinedIcon />

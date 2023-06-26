@@ -22,7 +22,6 @@ export const PostContextProvider = ({ children }) => {
   const [openPostModal, setOpenPostModal] = useState(false);
   const openNewPostModal = () => setOpenPostModal(true);
   const closeNewPostModal = () => setOpenPostModal(false);
-  console.log(postState?.allPost);
   const getAllPost = async () => {
     try {
       const { status, data } = await axios({
@@ -58,7 +57,7 @@ export const PostContextProvider = ({ children }) => {
         url: `/api/posts/like/${postId}`,
         headers: { authorization: token },
       });
-      console.log(data, status);
+
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
       }
@@ -74,10 +73,37 @@ export const PostContextProvider = ({ children }) => {
         url: `/api/posts/dislike/${postId}`,
         headers: { authorization: token },
       });
-      console.log(data, status);
+
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
       }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const deletePost = async (postId) => {
+    try {
+      const { status, data } = await axios({
+        method: "delete",
+        url: `/api/posts/${postId}`,
+        headers: { authorization: token },
+      });
+      console.log(data);
+      if (status === 201) {
+        postDispatch({ type: "get_all_post", payload: data.posts });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const addNewPost = async () => {
+    try {
+      const { status, data } = await axios({
+        method: "post",
+        url: "/api/posts",
+      });
     } catch (e) {
       console.error(e);
     }
@@ -101,6 +127,7 @@ export const PostContextProvider = ({ children }) => {
         openPostModal,
         likePost,
         dislikePost,
+        deletePost,
       }}
     >
       {children}

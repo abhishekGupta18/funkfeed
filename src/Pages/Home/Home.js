@@ -50,7 +50,7 @@ export const Home = () => {
         </div>
         <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
           <div
-            className="bg-white flex items-center gap-8 p-4 rounded-[0.5rem] cursor-pointer"
+            className=" w-[40rem] bg-white flex items-center gap-8 p-4 rounded-[0.5rem] cursor-pointer"
             onClick={() => {
               openNewPostModal();
             }}

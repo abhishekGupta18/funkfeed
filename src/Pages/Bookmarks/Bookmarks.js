@@ -5,9 +5,11 @@ import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
 
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
+
 export const BookMarks = () => {
-  const { usersState, filteredUsers } = useUserContext();
+  const { filteredUsers } = useUserContext();
   const { userInfo } = useAuthContext();
+
   return (
     <div className="bg-light-primary-color min-h-screen ">
       <div className="fixed w-full">

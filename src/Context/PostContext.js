@@ -19,9 +19,11 @@ export const PostContextProvider = ({ children }) => {
     allPost: [],
     userPost: [],
   });
+  console.log(postState?.allPost);
   const [openPostModal, setOpenPostModal] = useState(false);
   const openNewPostModal = () => setOpenPostModal(true);
   const closeNewPostModal = () => setOpenPostModal(false);
+
   const getAllPost = async () => {
     try {
       const { status, data } = await axios({
@@ -106,7 +108,26 @@ export const PostContextProvider = ({ children }) => {
         data: { postData: postDetails },
         headers: { authorization: token },
       });
-      console.log(status, data);
+      if (status === 201) {
+        postDispatch({ type: "get_all_post", payload: data.posts });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const editPost = async (postId, prevPostDetails) => {
+    try {
+      const { status, data } = await axios({
+        method: "post",
+        url: `/api/posts/edit/${postId}`,
+        data: { postData: prevPostDetails },
+        headers: { authorization: token },
+      });
+      console.log(status);
+      if (status === 201) {
+        postDispatch({ type: "get_all_post", payload: data.posts });
+      }
     } catch (e) {
       console.error(e);
     }
@@ -116,7 +137,7 @@ export const PostContextProvider = ({ children }) => {
     if (token) {
       getAllPost();
     }
-  });
+  }, [token]);
 
   return (
     <PostContext.Provider
@@ -132,6 +153,7 @@ export const PostContextProvider = ({ children }) => {
         dislikePost,
         deletePost,
         addNewPost,
+        editPost,
       }}
     >
       {children}

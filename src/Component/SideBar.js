@@ -130,7 +130,7 @@ export const SideBar = () => {
               <div className="flex gap-4  items-center ">
                 <label onClick={() => setShowEmoji(!showEmoji)}>
                   {showEmoji && (
-                    <div className="absolute right-[28rem] bottom-[1px] ">
+                    <div className="absolute right-[28rem] bottom-[1px]">
                       {" "}
                       <Picker
                         data={data}
@@ -188,7 +188,7 @@ export const SideBar = () => {
                   type="submit"
                   className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white "
                 >
-                  Add
+                  Post
                 </button>
               </div>
             </div>

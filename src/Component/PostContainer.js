@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -10,24 +11,52 @@ import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
+import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+
+import { Modal } from "@mui/material";
 
 import { useUserContext } from "../Context/userContext";
 import { useAuthContext } from "../Context/AuthContext";
 import { usePostContext } from "../Context/PostContext";
 
 export const PostCard = ({ post }) => {
+  const [prevPostDetails, setPrevPostDetails] = useState(post);
+  const [editDeleteBtn, setEditDeleteBtn] = useState(false);
+  const [editPostModal, setEditPostModal] = useState(false);
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [newImage, setNewImage] = useState(null);
   const { usersState, addPostToBookmarks, removePostFromBookmarks } =
     useUserContext();
-  const { likePost, dislikePost, postState, deletePost } = usePostContext();
+  const { likePost, dislikePost, postState, deletePost, editPost } =
+    usePostContext();
   const { userInfo } = useAuthContext();
-
-  const [editDeleteBtn, setEditDeleteBtn] = useState(false);
 
   const findUser = usersState?.allUsers?.find(
     (user) => user?.username === post?.username
   );
 
   const navigate = useNavigate();
+
+  const openEditPostModal = () => setEditPostModal(true);
+  const closeEditPostModal = () => setEditPostModal(false);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    editPost(prevPostDetails?._id, prevPostDetails);
+    closeEditPostModal();
+  };
 
   return (
     <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 relative ">
@@ -60,7 +89,13 @@ export const PostCard = ({ post }) => {
 
         {editDeleteBtn && (
           <div className="  flex flex-col gap-2 justify-center  rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] absolute left-[80%] top-[5%] bg-white  ">
-            <div className="flex justify-between hover:bg-light-primary-color rounded-t-[0.5rem]  px-2 py-1">
+            <div
+              className="flex justify-between hover:bg-light-primary-color rounded-t-[0.5rem]  px-2 py-1"
+              onClick={() => {
+                openEditPostModal();
+                setEditDeleteBtn(false);
+              }}
+            >
               <button>Edit</button>
               <EditIcon />
             </div>
@@ -136,6 +171,113 @@ export const PostCard = ({ post }) => {
         </div>
       </div>
       <hr />
+
+      <Modal
+        open={editPostModal}
+        onClose={closeEditPostModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div style={{ ...style }}>
+          <form
+            className="bg-white p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
+            onSubmit={(e) => submitHandler(e)}
+          >
+            <textarea
+              className="p-2 border-none outline-none"
+              rows={6}
+              value={prevPostDetails?.content}
+              onChange={(e) =>
+                setPrevPostDetails({
+                  ...prevPostDetails,
+                  content: e.target.value,
+                })
+              }
+            ></textarea>
+            {prevPostDetails?.mediaURL?.length > 0 && (
+              <div className="relative">
+                <img
+                  src={prevPostDetails?.mediaURL}
+                  className="mx-auto max-h-[10rem]"
+                />
+                <div
+                  className="absolute left-[90%] bottom-[90%]"
+                  onClick={() =>
+                    setPrevPostDetails({
+                      ...prevPostDetails,
+                      mediaURL: null,
+                      mediaAlt: null,
+                    })
+                  }
+                >
+                  <CancelOutlinedIcon />
+                </div>
+              </div>
+            )}
+            <div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <label
+                    className="cursor-pointer"
+                    onClick={() => setShowEmoji(!showEmoji)}
+                  >
+                    {showEmoji && (
+                      <div className="absolute right-[28rem] bottom-[1px]">
+                        {" "}
+                        <Picker
+                          data={data}
+                          maxFrequentRows={0}
+                          previewPosition="none"
+                          emojiButtonSize={28}
+                          emojiSize={20}
+                          onEmojiSelect={(emoji) => {
+                            setPrevPostDetails({
+                              ...prevPostDetails,
+                              content: prevPostDetails.content + emoji.native,
+                            });
+                          }}
+                        />{" "}
+                      </div>
+                    )}
+                    <EmojiEmotionsOutlinedIcon />
+                  </label>
+                  <label className="cursor-pointer">
+                    <input
+                      className="hidden"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        setNewImage(e.target.files[0]);
+                        setPrevPostDetails({
+                          ...prevPostDetails,
+                          mediaURL: URL.createObjectURL(e.target.files[0]),
+                        });
+                      }}
+                    />
+                    <AddPhotoAlternateOutlinedIcon />
+                  </label>
+                </div>
+                <div className="flex items-center gap-4">
+                  <button
+                    className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white "
+                    onClick={() => {
+                      closeEditPostModal();
+                    }}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white "
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </Modal>
     </article>
   );
 };

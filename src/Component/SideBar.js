@@ -16,7 +16,6 @@ import { usePostContext } from "../Context/PostContext";
 import { useState } from "react";
 export const SideBar = () => {
   const [newPostDetails, setNewPostDetails] = useState({
-    _id: uuid(),
     content: "",
     mediaURL: "",
   });
@@ -129,27 +128,29 @@ export const SideBar = () => {
             <div className="flex justify-between items-center">
               <div className="flex gap-4  items-center ">
                 <label onClick={() => setShowEmoji(!showEmoji)}>
-                  {showEmoji && (
-                    <div className="absolute right-[28rem] bottom-[1px]">
-                      {" "}
-                      <Picker
-                        data={data}
-                        maxFrequentRows={0}
-                        previewPosition="none"
-                        emojiButtonSize={28}
-                        emojiSize={20}
-                        onEmojiSelect={(emoji) => {
-                          setNewPostDetails({
-                            ...newPostDetails,
-                            content: newPostDetails.content + emoji.native,
-                          });
-                        }}
-                      />{" "}
-                    </div>
-                  )}
                   <EmojiEmotionsOutlinedIcon />
                 </label>
-
+                {showEmoji && (
+                  <div
+                    className="absolute right-[28rem] bottom-[1px]"
+                    onClick={() => setShowEmoji(true)}
+                  >
+                    {" "}
+                    <Picker
+                      data={data}
+                      maxFrequentRows={0}
+                      previewPosition="none"
+                      emojiButtonSize={28}
+                      emojiSize={20}
+                      onEmojiSelect={(emoji) => {
+                        setNewPostDetails({
+                          ...newPostDetails,
+                          content: newPostDetails.content + emoji.native,
+                        });
+                      }}
+                    />{" "}
+                  </div>
+                )}
                 <label className="cursor-pointer">
                   <input
                     type="file"

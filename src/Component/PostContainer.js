@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
+
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -117,7 +119,7 @@ export const PostCard = ({ post }) => {
         <img
           src={post?.mediaURL}
           alt={post?.mediaAlt}
-          className=" object-cover mx-auto "
+          className=" object-cover mx-auto w-full max-h-[35rem]"
         />
       </div>
 
@@ -146,7 +148,11 @@ export const PostCard = ({ post }) => {
             <FavoriteBorderOutlinedIcon /> Like
           </div>
         )}
-        <div title="comment" className="cursor-pointer flex items-center gap-2">
+        <div
+          title="comment"
+          className="cursor-pointer flex items-center gap-2"
+          onClick={() => navigate(`/post/${post._id}`)}
+        >
           <ModeCommentOutlinedIcon /> Comment
         </div>
         {userInfo?.bookmarks?.some((item) => item?._id?.includes(post?._id)) ? (

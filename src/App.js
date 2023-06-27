@@ -8,11 +8,9 @@ import { Home } from "./Pages/Home/Home";
 import { Explore } from "./Pages/Explore/Explore";
 import { UserProfile } from "./Pages/Userprofile/UserProfile";
 import { BookMarks } from "./Pages/Bookmarks/Bookmarks";
+import { PostDetails } from "./Pages/PostDetails/PostDetails";
 import { RequireAuth } from "./Component/RequireAuth";
-import { SideBar } from "./Component/SideBar";
-import { Navbar } from "./Component/Navbar";
-import { PostCard } from "./Component/PostContainer";
-import { SuggestedUserCard } from "./Component/SuggestedUserCard";
+
 function App() {
   return (
     <div className="App">
@@ -21,6 +19,7 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
 
         <Route element={<RequireAuth />}>
+          <Route path="/post/:postId" element={<PostDetails />} />
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/userProfile/:username" element={<UserProfile />} />

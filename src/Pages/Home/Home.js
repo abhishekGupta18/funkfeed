@@ -6,6 +6,9 @@ import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
 import { usePostContext } from "../../Context/PostContext";
+
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
 export const Home = () => {
   const { filteredUsers } = useUserContext();
   const { userInfo } = useAuthContext();
@@ -43,6 +46,16 @@ export const Home = () => {
         </div>
 
         <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
+          <div className="flex items-center justify-around  w-full ">
+            <label className="flex items-center  gap-2 border border-solid border-black rounded-[0.5rem]">
+              <button className="text-xl px-4 py-1">Latest</button>
+              <CalendarMonthOutlinedIcon />
+            </label>
+            <label className="flex items-center gap-2 border border-solid border-black rounded-[0.5rem]">
+              <button className="text-xl px-4 py-1">Trending</button>
+              <WhatshotOutlinedIcon />
+            </label>
+          </div>
           <strong>
             <p>Users you might know</p>
           </strong>

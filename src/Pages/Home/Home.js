@@ -36,6 +36,11 @@ export const Home = () => {
     ? userFeed?.sort((a, b) => b?.likes?.likeCount - a?.likes?.likeCount)
     : userFeed;
 
+  const latestPosts = latest
+    ? trendingPosts?.sort(
+        (a, b) => Date.parse(b?.createdAt) - Date.parse(a?.createdAt)
+      )
+    : trendingPosts;
   return (
     <div className="bg-light-primary-color min-h-screen  ">
       <div className="fixed w-full">
@@ -47,14 +52,20 @@ export const Home = () => {
         </div>
 
         <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
-          {trendingPosts?.map((post) => (
+          {latestPosts?.map((post) => (
             <PostCard post={post} />
           ))}
         </div>
 
         <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
           <div className="flex items-center justify-around  w-full ">
-            <label className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color">
+            <label
+              className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color"
+              onClick={() => {
+                setLatest(true);
+                setTrending(false);
+              }}
+            >
               <button className="text-xl px-4 py-1">Latest</button>
               <CalendarMonthOutlinedIcon />
             </label>
@@ -62,6 +73,7 @@ export const Home = () => {
               className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color"
               onClick={() => {
                 setTrending(true);
+                setLatest(false);
               }}
             >
               <button className="text-xl px-4 py-1">Trending</button>

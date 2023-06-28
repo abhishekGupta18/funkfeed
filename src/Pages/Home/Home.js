@@ -9,7 +9,10 @@ import { usePostContext } from "../../Context/PostContext";
 
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
+import { useState } from "react";
 export const Home = () => {
+  const [trending, setTrending] = useState(false);
+  const [latest, setLatest] = useState(false);
   const { filteredUsers } = useUserContext();
   const { userInfo } = useAuthContext();
   const { postState } = usePostContext();
@@ -29,6 +32,10 @@ export const Home = () => {
     ...followedUserPost,
   ];
 
+  const trendingPosts = trending
+    ? userFeed?.sort((a, b) => b?.likes?.likeCount - a?.likes?.likeCount)
+    : userFeed;
+
   return (
     <div className="bg-light-primary-color min-h-screen  ">
       <div className="fixed w-full">
@@ -40,18 +47,23 @@ export const Home = () => {
         </div>
 
         <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
-          {userFeed?.map((post) => (
+          {trendingPosts?.map((post) => (
             <PostCard post={post} />
           ))}
         </div>
 
-        <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
+        <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
           <div className="flex items-center justify-around  w-full ">
-            <label className="flex items-center  gap-2 border border-solid border-black rounded-[0.5rem]">
+            <label className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color">
               <button className="text-xl px-4 py-1">Latest</button>
               <CalendarMonthOutlinedIcon />
             </label>
-            <label className="flex items-center gap-2 border border-solid border-black rounded-[0.5rem]">
+            <label
+              className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color"
+              onClick={() => {
+                setTrending(true);
+              }}
+            >
               <button className="text-xl px-4 py-1">Trending</button>
               <WhatshotOutlinedIcon />
             </label>

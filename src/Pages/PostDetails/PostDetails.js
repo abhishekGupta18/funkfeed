@@ -32,7 +32,7 @@ export const PostDetails = () => {
               placeholder="add comment"
               className="w-full px-4 py-2 rounded-[0.5rem] border-none outline-none shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
             />
-            <button className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white ">
+            <button className="border-solid border-primary-color border bg-white px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white ">
               Comment
             </button>
           </div>

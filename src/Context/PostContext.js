@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import {
   createContext,
   useContext,
@@ -14,12 +15,14 @@ export const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
   const [addPostModal, setAddPostModal] = useState(false);
+  const [trending, setTrending] = useState(false);
+  const [latest, setLatest] = useState(false);
   const { token } = useAuthContext();
   const [postState, postDispatch] = useReducer(postReducer, {
     allPost: [],
     userPost: [],
   });
-  console.log(postState?.allPost);
+
   const [openPostModal, setOpenPostModal] = useState(false);
   const openNewPostModal = () => setOpenPostModal(true);
   const closeNewPostModal = () => setOpenPostModal(false);
@@ -62,6 +65,9 @@ export const PostContextProvider = ({ children }) => {
 
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
+        toast.error("you liked a post", {
+          className: "success-toast",
+        });
       }
     } catch (e) {
       console.error(e);
@@ -154,6 +160,10 @@ export const PostContextProvider = ({ children }) => {
         deletePost,
         addNewPost,
         editPost,
+        trending,
+        setTrending,
+        latest,
+        setLatest,
       }}
     >
       {children}

@@ -1,4 +1,6 @@
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -14,6 +16,7 @@ import { RequireAuth } from "./Component/RequireAuth";
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />

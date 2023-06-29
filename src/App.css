@@ -1,7 +1,6 @@
 .addPost svg {
   font-size: 3rem;
 }
-.search-icon {
-  margin-left: -2.5rem;
-  cursor: pointer;
+.success-toast {
+  background: darkblue;
 }

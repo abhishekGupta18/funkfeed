@@ -9,13 +9,12 @@ import { usePostContext } from "../../Context/PostContext";
 
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
-import { useState } from "react";
+
 export const Home = () => {
-  const [trending, setTrending] = useState(false);
-  const [latest, setLatest] = useState(false);
   const { filteredUsers } = useUserContext();
   const { userInfo } = useAuthContext();
-  const { postState } = usePostContext();
+  const { postState, trending, setTrending, latest, setLatest } =
+    usePostContext();
 
   const userFollowing = userInfo?.following?.map(({ username }) => username);
   const followedUserPost = postState?.allPost?.filter((post) =>

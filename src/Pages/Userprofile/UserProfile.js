@@ -70,10 +70,14 @@ export const UserProfile = () => {
               </div>
               {userInfo?.username === userData?.username ? (
                 <div className="flex  items-center gap-4 mr-4">
-                  <button className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
+                  <button
+                    title="edit profile"
+                    className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                  >
                     Edit Profile
                   </button>
                   <button
+                    title="logout"
                     className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
                     onClick={() => userLogout()}
                   >
@@ -93,7 +97,7 @@ export const UserProfile = () => {
                     </button>
                   ) : (
                     <button
-                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
                       onClick={() => followUsers(userData._id)}
                     >
                       Follow
@@ -104,7 +108,15 @@ export const UserProfile = () => {
             </div>
             <div className=" w-[40rem] flex flex-col gap-2 p-4 justify-center ">
               <p>{userData?.bio}</p>
-
+              <p>
+                {" "}
+                joined at -{" "}
+                {` ${new Date(userData?.createdAt)
+                  .toDateString()
+                  .split(" ")
+                  .slice(1, 4)
+                  .join(" ")}`}
+              </p>
               <div className="flex justify-around">
                 <p className="font-medium">
                   {postState?.userPost?.length} posts

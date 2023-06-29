@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import axios from "axios";
 const AuthContext = createContext();
@@ -18,12 +19,16 @@ export const AuthContextProvider = ({ children }) => {
         url: "/api/auth/signup",
         data: signUpData,
       });
+      console.log(data, status);
       if (status === 201) {
         setToken(data?.encodedToken);
         setUserInfo(data?.createdUser);
         localStorage.setItem(
           "data",
           JSON.stringify({ user: data?.createdUser, token: data?.encodedToken })
+        );
+        toast.success(
+          `Welcome  ${data?.createdUser?.firstName} ${data?.createdUser?.lastName}`
         );
 
         navigate("/");
@@ -47,7 +52,9 @@ export const AuthContextProvider = ({ children }) => {
           "data",
           JSON.stringify({ user: data?.foundUser, token: data?.encodedToken })
         );
-
+        toast.success(
+          `Welcome Back ${data?.foundUser?.firstName} ${data?.foundUser?.lastName}`
+        );
         navigate("/");
       }
     } catch (e) {
@@ -60,6 +67,7 @@ export const AuthContextProvider = ({ children }) => {
     setUserInfo(null);
     localStorage.removeItem("data");
     navigate("/login");
+    toast.info("Succesfully logout");
   };
 
   return (

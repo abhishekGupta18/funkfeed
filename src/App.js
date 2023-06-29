@@ -16,7 +16,18 @@ import { RequireAuth } from "./Component/RequireAuth";
 function App() {
   return (
     <div className="App">
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={1200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />

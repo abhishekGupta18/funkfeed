@@ -17,10 +17,6 @@ export const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const currentUser = usersState?.allUsers?.find(
-    (user) => user?.username === userInfo?.username
-  );
-
   const openSearchModal = () => setSearchModal(true);
   const closeSearchModal = () => setSearchModal(false);
   const style = {
@@ -40,7 +36,6 @@ export const Navbar = () => {
           item?.username?.toLowerCase().includes(searchUser?.toLowerCase())
         )
       : usersState?.allUsers;
-  console.log(searchByUsername, searchUser);
   return (
     <div className=" flex  justify-between items-center py-4 px-7 bg-[#bae6fd] opacity-8 ">
       <div>
@@ -69,10 +64,10 @@ export const Navbar = () => {
         <div className="cursor-pointer">
           <img
             title="user profile"
-            src={currentUser?.profileImg}
+            src={userInfo?.profileImg}
             alt="user-profile"
             className="rounded-[50%] w-[40px] h-[40px] object-cover "
-            onClick={() => navigate(`/userProfile/${currentUser?.username}`)}
+            onClick={() => navigate(`/userProfile/${userInfo?.username}`)}
           />
         </div>
       </div>
@@ -94,44 +89,51 @@ export const Navbar = () => {
             />
             <div>
               <ul className="flex flex-col gap-4">
-                {searchByUsername?.map((user) => (
-                  <li
-                    className="flex items-center justify-between shadow-[0_3px_10px_rgb(0,0,0,0.2)] px-2 py-1 rounded-[0.5rem]"
-                    onClick={() => navigate(`/userProfile/${user?.username}`)}
-                  >
-                    <div className="flex items-center gap-4  ">
-                      <img
-                        src={user?.profileImg}
-                        className="rounded-[50%] w-[40px] h-[40px] object-cover cursor-pointer"
-                      />
-                      <p className="font-bold">@{user?.username}</p>
-                    </div>
-                    {userInfo?.username ===
-                    user?.username ? null : userInfo?.following
-                        ?.map((user) => user.username)
-                        .includes(user?.username) ? (
-                      <button
-                        className=" rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
-                        onClick={(e) => {
-                          unFollowUsers(user?._id);
-                          e.stopPropagation();
-                        }}
-                      >
-                        Unfollow
-                      </button>
-                    ) : (
-                      <button
-                        className=" rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
-                        onClick={(e) => {
-                          followUsers(user?._id);
-                          e.stopPropagation();
-                        }}
-                      >
-                        Follow
-                      </button>
-                    )}
-                  </li>
-                ))}
+                {searchByUsername?.length === 0 ? (
+                  <p className=" mx-auto ">
+                    there is no such user with username{" "}
+                    <strong>{searchUser}</strong>
+                  </p>
+                ) : (
+                  searchByUsername?.map((user) => (
+                    <li
+                      className="flex items-center justify-between shadow-[0_3px_10px_rgb(0,0,0,0.2)] px-2 py-1 rounded-[0.5rem]"
+                      onClick={() => navigate(`/userProfile/${user?.username}`)}
+                    >
+                      <div className="flex items-center gap-4  ">
+                        <img
+                          src={user?.profileImg}
+                          className="rounded-[50%] w-[40px] h-[40px] object-cover cursor-pointer"
+                        />
+                        <p className="font-bold">@{user?.username}</p>
+                      </div>
+                      {userInfo?.username ===
+                      user?.username ? null : userInfo?.following
+                          ?.map((user) => user.username)
+                          .includes(user?.username) ? (
+                        <button
+                          className=" rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                          onClick={(e) => {
+                            unFollowUsers(user?._id);
+                            e.stopPropagation();
+                          }}
+                        >
+                          Unfollow
+                        </button>
+                      ) : (
+                        <button
+                          className=" rounded-[0.5rem] font-bold px-[1.6rem] py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                          onClick={(e) => {
+                            followUsers(user?._id);
+                            e.stopPropagation();
+                          }}
+                        >
+                          Follow
+                        </button>
+                      )}
+                    </li>
+                  ))
+                )}
               </ul>
             </div>
           </div>

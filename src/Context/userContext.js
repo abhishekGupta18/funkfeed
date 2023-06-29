@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext, createContext, useReducer, useEffect } from "react";
+import { toast } from "react-toastify";
 
 import { useAuthContext } from "./AuthContext";
 import { usersReducer } from "../Reducer/usersReducer";
@@ -37,6 +38,9 @@ export const UserContextProvider = ({ children }) => {
       if (status === 200) {
         usersDispatch({ type: "follow_user", payload: data?.user });
         setUserInfo(data?.user);
+        toast.success(
+          `Started following ${data?.followUser?.firstName} ${data?.followUser?.lastName} `
+        );
       }
     } catch (e) {
       console.error(e);
@@ -54,6 +58,9 @@ export const UserContextProvider = ({ children }) => {
       if (status === 200) {
         usersDispatch({ type: "unfollow_user", payload: data?.user });
         setUserInfo(data?.user);
+        toast.info(
+          `Unfollowed ${data?.followUser?.firstName} ${data?.followUser?.lastName} `
+        );
       }
     } catch (e) {
       console.error(e);
@@ -87,6 +94,7 @@ export const UserContextProvider = ({ children }) => {
       if (status === 200) {
         usersDispatch({ type: "get_all_bookmarks", payload: data?.bookmarks });
         setUserInfo({ ...userInfo, bookmarks: data?.bookmarks });
+        toast.success("Post added to bookmarks");
       }
     } catch (e) {
       console.error(e);
@@ -103,6 +111,7 @@ export const UserContextProvider = ({ children }) => {
       if (status === 200) {
         usersDispatch({ type: "get_all_bookmarks", payload: data?.bookmarks });
         setUserInfo({ ...userInfo, bookmarks: data?.bookmarks });
+        toast.warning("Post removed from bookmarks");
       }
     } catch (e) {
       console.error(e);

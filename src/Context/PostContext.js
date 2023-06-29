@@ -65,9 +65,7 @@ export const PostContextProvider = ({ children }) => {
 
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
-        toast.error("you liked a post", {
-          className: "success-toast",
-        });
+        toast.success("you liked a post");
       }
     } catch (e) {
       console.error(e);
@@ -100,6 +98,7 @@ export const PostContextProvider = ({ children }) => {
       console.log(data);
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
+        toast.info("Post deleted");
       }
     } catch (e) {
       console.error(e);
@@ -116,6 +115,7 @@ export const PostContextProvider = ({ children }) => {
       });
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
+        toast.success("New post added");
       }
     } catch (e) {
       console.error(e);
@@ -133,6 +133,7 @@ export const PostContextProvider = ({ children }) => {
       console.log(status);
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
+        toast.success("Post has been edited");
       }
     } catch (e) {
       console.error(e);

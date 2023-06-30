@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Modal } from "@mui/material";
+import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 
 import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
@@ -12,13 +14,26 @@ import { useUserContext } from "../../Context/userContext";
 import { usePostContext } from "../../Context/PostContext";
 
 export const UserProfile = () => {
+  const [editProfileModal, setUserProfileModal] = useState(false);
+  const [avatarModal, setAvatarModal] = useState(false);
   const [userData, setUserData] = useState({});
-
+  const [image, setImage] = useState("");
   const { userLogout, userInfo } = useAuthContext();
-  const { usersState, filteredUsers, followUsers, unFollowUsers } =
-    useUserContext();
+  const {
+    filteredUsers,
+    followUsers,
+    unFollowUsers,
+    editUserProfile,
+    avatars,
+  } = useUserContext();
   const { postState, getUserPost } = usePostContext();
   const { username } = useParams();
+
+  const openEditProfileModal = () => setUserProfileModal(true);
+  const closeEditProfileModal = () => setUserProfileModal(false);
+
+  const openAvatarModal = () => setAvatarModal(true);
+  const closeAvatareModal = () => setAvatarModal(false);
 
   const getUserData = async () => {
     try {
@@ -38,10 +53,26 @@ export const UserProfile = () => {
 
   useEffect(() => {
     getUserData();
-  }, [username, postState, usersState]);
+  }, [username]);
+
+  const editProfileHandler = (e) => {
+    e.preventDefault();
+    editUserProfile(userData);
+    closeEditProfileModal();
+  };
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
-    <div className="bg-light-primary-color min-h-screen  ">
+    <div className="bg-light-primary-color min-h-screen">
       <div className="fixed w-full">
         <Navbar />
       </div>
@@ -73,6 +104,9 @@ export const UserProfile = () => {
                   <button
                     title="edit profile"
                     className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                    onClick={() => {
+                      openEditProfileModal();
+                    }}
                   >
                     Edit Profile
                   </button>
@@ -148,6 +182,128 @@ export const UserProfile = () => {
           </ul>
         </div>
       </div>
+
+      <Modal
+        open={editProfileModal}
+        onClose={closeEditProfileModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div style={{ ...style }}>
+          <form
+            onSubmit={editProfileHandler}
+            className="bg-white p-8 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
+          >
+            <p className="text-2xl font-medium">Edit Profile</p>
+            <div className="relative">
+              <img
+                src={userData?.profileImg}
+                className="rounded-[50%] w-[50px] h-[50px] object-cover  opacity-[0.9] "
+              />
+              <div
+                className="absolute bottom-[35%] left-[4%] cursor-pointer"
+                onClick={() => {
+                  openAvatarModal();
+                }}
+              >
+                <AddAPhotoOutlinedIcon />
+              </div>
+            </div>
+            <div className="flex gap-8 items-center">
+              <p className="text-lg ">First Name - </p>
+              <input
+                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem]"
+                type="text"
+                value={userData?.firstName}
+                onChange={(e) => {
+                  setUserData({
+                    ...userData,
+                    firstName: e.target.value,
+                  });
+                }}
+              />
+            </div>
+            <div className="flex gap-8 items-center">
+              <p className="text-lg ">Last Name - </p>
+              <input
+                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem]"
+                type="text"
+                value={userData?.lastName}
+                onChange={(e) => {
+                  setUserData({
+                    ...userData,
+                    lastName: e.target.value,
+                  });
+                }}
+              />
+            </div>
+            <div className="flex flex-col gap-4">
+              <p className="text-lg">Bio - </p>
+              <textarea
+                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem]"
+                rows={4}
+                cols={40}
+                value={userData?.bio}
+                onChange={(e) => {
+                  setUserData({
+                    ...userData,
+                    bio: e.target.value,
+                  });
+                }}
+              ></textarea>
+            </div>
+            <div className="flex items-center gap-8">
+              <button
+                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                onClick={() => closeEditProfileModal()}
+              >
+                Cancel
+              </button>
+              <button
+                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                type="submit"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+
+      <Modal
+        open={avatarModal}
+        onClose={closeAvatareModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div style={{ ...style }}>
+          <div className="bg-white p-8 rounded-[0.5rem] flex flex-col justify-center items-center gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none ">
+            <ul className="flex items-center flex-wrap gap-4 justify-around">
+              {avatars?.map((item) => (
+                <img
+                  style={{
+                    border:
+                      image === item ? "2px solid rgba(29, 155, 240, 1)" : "",
+                  }}
+                  className="rounded-[50%] w-[85px] h-[85px] object-cover border border-solid border-black overflow-hidden cursor-pointer hover:opacity-[0.7] "
+                  src={item}
+                  alt="avatar"
+                  onClick={() => setImage(item)}
+                />
+              ))}
+            </ul>
+            <button
+              className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+              onClick={() => {
+                closeAvatareModal();
+                setUserData({ ...userData, profileImg: image });
+              }}
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

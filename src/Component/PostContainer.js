@@ -61,7 +61,7 @@ export const PostCard = ({ post }) => {
   };
 
   return (
-    <article className="w-[40rem] flex flex-col justify-center bg-white rounded-[0.5rem]  gap-4  m-auto p-4 relative ">
+    <article className="w-[40rem] flex flex-col justify-center bg-white-color rounded-[0.5rem]  gap-4  m-auto p-4 relative xl:w-[35rem]  smaller-mobile">
       <div className="flex justify-between items-center">
         <div className="flex gap-4 items-center">
           <img
@@ -90,7 +90,7 @@ export const PostCard = ({ post }) => {
         )}
 
         {editDeleteBtn && (
-          <div className="  flex flex-col gap-2 justify-center  rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] absolute left-[80%] top-[5%] bg-white  ">
+          <div className="  flex flex-col gap-2 justify-center  rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] absolute left-[80%] top-[5%] bg-white-color">
             <div
               className="flex justify-between hover:bg-light-primary-color rounded-t-[0.5rem]  px-2 py-1"
               onClick={() => {
@@ -172,7 +172,10 @@ export const PostCard = ({ post }) => {
             <BookmarkBorderOutlinedIcon /> Bookmark
           </div>
         )}
-        <div className="cursor-pointer flex items-center gap-2" title="share">
+        <div
+          className="cursor-pointer flex items-center gap-2 share-icon"
+          title="share"
+        >
           <ShareIcon /> Share
         </div>
       </div>
@@ -186,7 +189,7 @@ export const PostCard = ({ post }) => {
       >
         <div style={{ ...style }}>
           <form
-            className="bg-white p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
+            className="bg-white-color p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
             onSubmit={(e) => submitHandler(e)}
           >
             <textarea

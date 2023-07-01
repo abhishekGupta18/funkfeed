@@ -29,7 +29,7 @@ export const BookMarks = () => {
               <PostCard post={post} />
             ))}
         </div>
-        <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden ">
           <strong>
             <p>Users you might know</p>
           </strong>

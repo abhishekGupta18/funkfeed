@@ -45,13 +45,13 @@ export const SideBar = () => {
   };
 
   return (
-    <div className=" w-[18rem] py-4  flex flex-col gap-5  mx-auto items-center ">
+    <div className=" w-[18rem] py-4  flex flex-col gap-5 bg-white-color mx-auto items-center rounded-[0.5rem] mobile-view  xl:w-[15rem] sm:bg-white-color sm:h-[3rem] sm:flex-row sm:justify-center sm:mx-0 sm:rounded-0 sm:fixed sm:bottom-0 sm:z-30  ">
       <div
         className="flex justify-center gap-[1rem] cursor-pointer  py-2  w-[80%]  shadow-md rounded-[0.5rem] hover:bg-light-primary-color "
         onClick={() => navigate("/")}
       >
         <HomeIcon />
-        <p className="font-bold">Feed</p>
+        <p className="font-bold md:hidden">Feed</p>
       </div>
 
       <div
@@ -60,15 +60,15 @@ export const SideBar = () => {
         onClick={() => navigate("/explore")}
       >
         <ExploreIcon />
-        <p className="font-bold">Explore</p>
+        <p className="font-bold md:hidden">Explore</p>
       </div>
       <div
         className="flex gap-[1rem] justify-center cursor-pointer pl-5  py-2 w-[80%] shadow-md
-       rounded-[0.5rem] hover:bg-light-primary-color "
+       rounded-[0.5rem] hover:bg-light-primary-color md:pl-0 "
         onClick={() => navigate("/bookmarks")}
       >
         <BookmarksIcon />
-        <p className="font-bold">Bookmarks</p>
+        <p className="font-bold md:hidden">Bookmarks</p>
       </div>
       <div
         className="flex gap-[1rem] justify-center cursor-pointer py-2 w-[80%] shadow-md
@@ -76,17 +76,17 @@ export const SideBar = () => {
         onClick={() => navigate(`/userProfile/${userInfo?.username}`)}
       >
         <ManageAccountsIcon />
-        <p className="font-bold">Profile</p>
+        <p className="font-bold md:hidden">Profile</p>
       </div>
       <div
         title="add post"
-        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost "
+        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-2 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center"
         onClick={() => openNewPostModal()}
       >
         <AddCircleOutlineIcon />
       </div>
       <button
-        className="w-[90%]  rounded-[0.5rem] font-bold py-2  text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+        className="w-[90%]  rounded-[0.5rem] font-bold py-2  text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:hidden"
         onClick={() => userLogout()}
       >
         Logout
@@ -103,7 +103,7 @@ export const SideBar = () => {
             onSubmit={(e) => {
               addPostHandler(e);
             }}
-            className="bg-white p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] w-[25rem] "
+            className="bg-white-color p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] w-[25rem] "
           >
             <textarea
               type="text"

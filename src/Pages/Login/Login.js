@@ -23,13 +23,13 @@ export const Login = () => {
   };
   return (
     <div className="flex flex-row gap-[10%] h-screen items-center justify-center bg-light-primary-color p-8 ">
-      <div className="w-[40rem] rounded-[0.5rem] overflow-hidden md:hidden ">
+      <div className="w-[40rem] rounded-[0.5rem] overflow-hidden md:hidden">
         <Slider />
       </div>
 
       <form
         onSubmit={userLoginHandler}
-        className="   flex flex-col justify-start items-center gap-[1rem]  md:w-[100%] md:p-4"
+        className="   flex flex-col justify-start items-center gap-[1rem]  md:w-[22rem] md:p-4  md:rounded-[0.5rem]  md:shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
       >
         <img
           src={Logo}

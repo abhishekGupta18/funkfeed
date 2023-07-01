@@ -77,12 +77,12 @@ export const UserProfile = () => {
         <Navbar />
       </div>
       <div className="flex justify-around  pt-[6rem] ">
-        <div className="bg-white h-max shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-[0.5rem]">
+        <div className="bg-white-color h-max shadow-[0_3px_10px_rgb(0,0,0,0.2)]  rounded-[0.5rem] ">
           <SideBar />
         </div>
         <div className="flex flex-col gap-4 overflow-y-auto h-[86vh]  no-scroll">
-          <div className="bg-white rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-            <div className=" w-[40rem] flex justify-between p-4 items-center ">
+          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] xl:w-[35rem]">
+            <div className=" w-[40rem] flex justify-between p-4 items-center xl:w-[35rem] ">
               <div className="flex items-center gap-4 ">
                 <img
                   title="user profile"
@@ -100,10 +100,10 @@ export const UserProfile = () => {
                 </div>
               </div>
               {userInfo?.username === userData?.username ? (
-                <div className="flex  items-center gap-4 mr-4">
+                <div className="flex  items-center gap-4 mr-4 ">
                   <button
                     title="edit profile"
-                    className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                    className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
                     onClick={() => {
                       openEditProfileModal();
                     }}
@@ -112,7 +112,7 @@ export const UserProfile = () => {
                   </button>
                   <button
                     title="logout"
-                    className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                    className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
                     onClick={() => userLogout()}
                   >
                     Logout
@@ -124,14 +124,14 @@ export const UserProfile = () => {
                     ?.map((user) => user.username)
                     .includes(userData?.username) ? (
                     <button
-                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
                       onClick={() => unFollowUsers(userData._id)}
                     >
                       Unfollow
                     </button>
                   ) : (
                     <button
-                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
                       onClick={() => followUsers(userData._id)}
                     >
                       Follow
@@ -151,7 +151,7 @@ export const UserProfile = () => {
                   .slice(1, 4)
                   .join(" ")}`}
               </p>
-              <div className="flex justify-around">
+              <div className="flex items-center justify-around ">
                 <p className="font-medium">
                   {postState?.userPost?.length} posts
                 </p>
@@ -171,7 +171,7 @@ export const UserProfile = () => {
             ))}
           </div>
         </div>
-        <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  lg:hidden">
           <strong>
             <p>Users you might know</p>
           </strong>
@@ -192,7 +192,7 @@ export const UserProfile = () => {
         <div style={{ ...style }}>
           <form
             onSubmit={editProfileHandler}
-            className="bg-white p-8 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
+            className="bg-white-color p-8 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
           >
             <p className="text-2xl font-medium">Edit Profile</p>
             <div className="flex gap-4 items-center">
@@ -299,7 +299,7 @@ export const UserProfile = () => {
         aria-describedby="modal-modal-description"
       >
         <div style={{ ...style }}>
-          <div className="bg-white p-8 rounded-[0.5rem] flex flex-col justify-center items-center gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none ">
+          <div className="bg-white-color p-8 rounded-[0.5rem] flex flex-col justify-center items-center gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none ">
             <ul className="flex items-center flex-wrap gap-4 justify-around">
               {avatars?.map((item) => (
                 <img

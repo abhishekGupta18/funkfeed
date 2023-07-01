@@ -50,14 +50,14 @@ export const Home = () => {
           <SideBar />
         </div>
 
-        <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
+        <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll">
           {latestPosts?.map((post) => (
             <PostCard post={post} />
           ))}
         </div>
 
-        <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  ">
-          <div className="flex items-center justify-around  w-full ">
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] xl:w-[15rem] lg:hidden">
+          <div className="flex items-center justify-around gap-4 w-[80%] ">
             <label
               className=" flex items-center gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color"
               onClick={() => {
@@ -65,18 +65,22 @@ export const Home = () => {
                 setTrending(false);
               }}
             >
-              <button className="text-xl px-4 py-1">Latest</button>
-              <CalendarMonthOutlinedIcon />
+              <button className="text-xl px-4 py-1 ">Latest</button>
+              <div className="xl:hidden">
+                <CalendarMonthOutlinedIcon />
+              </div>
             </label>
             <label
-              className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color"
+              className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color "
               onClick={() => {
                 setTrending(true);
                 setLatest(false);
               }}
             >
-              <button className="text-xl px-4 py-1">Trending</button>
-              <WhatshotOutlinedIcon />
+              <button className="text-xl px-4 py-1 ">Trending</button>
+              <div className="xl:hidden">
+                <WhatshotOutlinedIcon />
+              </div>
             </label>
           </div>
           <strong>

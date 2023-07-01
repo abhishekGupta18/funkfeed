@@ -1,3 +1,30 @@
 .addPost svg {
   font-size: 3rem;
 }
+
+@media (max-width: 800px) {
+  .mobile-view {
+    width: 5rem;
+  }
+  .addPost svg {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 670px) {
+  .mobile-view {
+    width: 100%;
+  }
+  .addPost svg {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .smaller-mobile {
+    width: 90%;
+  }
+}
+@media (max-width: 470px) {
+  .share-icon {
+    display: none;
+  }
+}

@@ -50,10 +50,13 @@ export const Navbar = () => {
             title="search user"
             type="text"
             placeholder="Search User"
-            className="border border-black border-solid w-[20rem] px-4 py-1 rounded-[0.5rem] outline-none"
+            className="border border-black border-solid w-[20rem] px-4 py-1 rounded-[0.5rem] outline-none sm:hidden"
           />
         </div>
-        <div title="search user" className="search-icon ml-[-2.5rem] ">
+        <div
+          title="search user"
+          className="search-icon ml-[-2.5rem] sm:w-[2rem] sm:h-[2rem] sm:px-auto sm:flex sm:display-center sm:items-center sm:bg-white-color sm:rounded-[50%]"
+        >
           <SearchIcon />
         </div>
       </div>
@@ -79,7 +82,7 @@ export const Navbar = () => {
         aria-describedby="modal-modal-description"
       >
         <div style={{ ...style }}>
-          <div className="w-[25rem] bg-white rounded-[0.5rem] p-4  flex flex-col gap-4 ">
+          <div className="w-[25rem] bg-white-color rounded-[0.5rem] p-4  flex flex-col gap-4 ">
             <input
               value={searchUser}
               type="text"

@@ -27,7 +27,7 @@ export const SignUp = () => {
   };
   return (
     <div className="bg-light-primary-color p-[2rem] flex  ">
-      <div className="w-[25rem]  mx-auto px-16  rounded-[0.5rem] gap-[0.5rem]  border-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:w-[20rem] md:px-4 ">
+      <div className="w-[25rem]  mx-auto px-16  rounded-[0.5rem] gap-[0.5rem]  shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:w-[20rem] md:px-4 ">
         {" "}
         <form
           onSubmit={handleUserSignUp}

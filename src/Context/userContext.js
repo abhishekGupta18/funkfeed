@@ -51,6 +51,7 @@ export const UserContextProvider = ({ children }) => {
       if (status === 201) {
         usersDispatch({ type: "update_user_detail", payload: data?.user });
         setUserInfo(data?.user);
+        toast.success("Profile successfully updated");
       }
     } catch (e) {
       console.error(e);

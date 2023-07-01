@@ -195,18 +195,40 @@ export const UserProfile = () => {
             className="bg-white p-8 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
           >
             <p className="text-2xl font-medium">Edit Profile</p>
-            <div className="relative">
-              <img
-                src={userData?.profileImg}
-                className="rounded-[50%] w-[50px] h-[50px] object-cover  opacity-[0.9] "
-              />
-              <div
-                className="absolute bottom-[35%] left-[4%] cursor-pointer"
-                onClick={() => {
-                  openAvatarModal();
-                }}
-              >
-                <AddAPhotoOutlinedIcon />
+            <div className="flex gap-4 items-center">
+              <div title="Browse Image" className="relative">
+                <img
+                  src={userData?.profileImg}
+                  className="rounded-[50%] w-[50px] h-[50px] object-cover  opacity-[0.8]"
+                />
+                <label className="absolute bottom-[10%] left-[40%] cursor-pointer">
+                  <input
+                    className="hidden"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      setUserData({
+                        ...userData,
+                        profileImg: URL.createObjectURL(e.target.files[0]),
+                      });
+                    }}
+                  />
+                  <AddAPhotoOutlinedIcon />
+                </label>
+              </div>
+              <div title="Select from avatar" className="relative">
+                <img
+                  src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  className="rounded-[50%] w-[50px] h-[50px] object-cover  opacity-[0.8] "
+                />
+                <div
+                  className="absolute bottom-[10%] left-[40%] cursor-pointer"
+                  onClick={() => {
+                    openAvatarModal();
+                  }}
+                >
+                  <AddAPhotoOutlinedIcon />
+                </div>
               </div>
             </div>
             <div className="flex gap-8 items-center">
@@ -292,15 +314,23 @@ export const UserProfile = () => {
                 />
               ))}
             </ul>
-            <button
-              className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
-              onClick={() => {
-                closeAvatareModal();
-                setUserData({ ...userData, profileImg: image });
-              }}
-            >
-              Save
-            </button>
+            <div className="flex items-center gap-8">
+              <button
+                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                onClick={() => closeAvatareModal()}
+              >
+                Cancel
+              </button>
+              <button
+                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                onClick={() => {
+                  closeAvatareModal();
+                  setUserData({ ...userData, profileImg: image });
+                }}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
       </Modal>

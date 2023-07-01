@@ -22,14 +22,14 @@ export const Login = () => {
     userLogin(userLoginData);
   };
   return (
-    <div className="flex flex-row h-screen items-center justify-center bg-light-primary-color">
-      <div className="w-[40%] rounded-[0.5rem] overflow-hidden ">
+    <div className="flex flex-row gap-[10%] h-screen items-center justify-center bg-light-primary-color p-8 ">
+      <div className="w-[40rem] rounded-[0.5rem] overflow-hidden md:hidden ">
         <Slider />
       </div>
 
       <form
         onSubmit={userLoginHandler}
-        className=" w-[30%]  flex flex-col justify-start items-center gap-[1rem] "
+        className="   flex flex-col justify-start items-center gap-[1rem]  md:w-[100%] md:p-4"
       >
         <img
           src={Logo}
@@ -68,7 +68,7 @@ export const Login = () => {
         <button
           type="submit"
           title="login"
-          className="text-[black] mt-[0.5rem] border-solid border-[1px] border-[black] px-[1.5rem] py-[0.5rem] font-bold rounded-[0.5rem] hover:bg-primary-color hover:text-[#ffff]"
+          className="  text-[black] mt-[0.5rem] border-solid border-[1px] border-[black] px-[1.5rem] py-[0.5rem] font-bold rounded-[0.5rem] hover:bg-primary-color hover:text-[#ffff]"
         >
           Login
         </button>

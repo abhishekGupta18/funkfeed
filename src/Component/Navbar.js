@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../Asset/final_logo.png";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SearchIcon from "@mui/icons-material/Search";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import { Modal } from "@mui/material";
 
+import { useThemeContext } from "../Context/ThemeContext";
 import { useAuthContext } from "../Context/AuthContext";
 import { useUserContext } from "../Context/userContext";
 import { useState } from "react";
@@ -14,6 +16,7 @@ export const Navbar = () => {
   const { userInfo } = useAuthContext();
   const { usersState, followUsers, unFollowUsers } = useUserContext();
   const [searchUser, setSearchUser] = useState("");
+  const { isDarkMode, setIsDarkMode } = useThemeContext();
 
   const navigate = useNavigate();
 
@@ -37,8 +40,8 @@ export const Navbar = () => {
         )
       : usersState?.allUsers;
   return (
-    <div className=" flex  justify-between items-center py-4 px-7 bg-[#bae6fd] opacity-8 ">
-      <div>
+    <div className=" flex  justify-between items-center py-4 px-7 bg-[#bae6fd] opacity-8  dark:bg-[rgba(41,78,101,.8)] ">
+      <div className=" dark:bg-white-color ">
         <img src={Logo} alt="logo" width={160} height={80} />
       </div>
       <div
@@ -61,9 +64,21 @@ export const Navbar = () => {
         </div>
       </div>
       <div title="dark mode" className="flex items-center gap-8  ">
-        <div className="cursor-pointer">
-          <DarkModeIcon />
-        </div>
+        {isDarkMode ? (
+          <div
+            className="cursor-pointer light-mode"
+            onClick={() => setIsDarkMode(!isDarkMode)}
+          >
+            <LightModeIcon />
+          </div>
+        ) : (
+          <div
+            className="cursor-pointer"
+            onClick={() => setIsDarkMode(!isDarkMode)}
+          >
+            <DarkModeIcon />
+          </div>
+        )}
         <div className="cursor-pointer">
           <img
             title="user profile"

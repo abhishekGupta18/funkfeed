@@ -8,7 +8,7 @@ import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { PostCard } from "../../Component/PostContainer";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
-import loader from "../../Asset/loader.gif";
+import Loader from "../../Component/Loader";
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
 import { usePostContext } from "../../Context/PostContext";
@@ -81,9 +81,9 @@ export const UserProfile = () => {
         <div className="bg-white-color h-max shadow-[0_3px_10px_rgb(0,0,0,0.2)]  rounded-[0.5rem] ">
           <SideBar />
         </div>
-        <div className="flex flex-col gap-4 overflow-y-auto h-[86vh]  no-scroll">
-          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] xl:w-[35rem]">
-            <div className=" w-[40rem] flex justify-between p-4 items-center xl:w-[35rem] ">
+        <div className="flex flex-col gap-4 overflow-y-auto h-[86vh]  no-scroll xl:w-[35rem]  smaller-mobile">
+          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]   ">
+            <div className="  flex justify-between p-4 items-center">
               <div className="flex items-center gap-4 ">
                 <img
                   title="user profile"
@@ -101,7 +101,7 @@ export const UserProfile = () => {
                 </div>
               </div>
               {userInfo?.username === userData?.username ? (
-                <div className="flex  items-center gap-4 mr-4 ">
+                <div className="flex  items-center gap-4 mr-4 sm:gap-2 sm:mr-0">
                   <button
                     title="edit profile"
                     className=" rounded-[0.5rem] font-bold px-2 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
@@ -109,7 +109,7 @@ export const UserProfile = () => {
                       openEditProfileModal();
                     }}
                   >
-                    Edit Profile
+                    Edit
                   </button>
                   <button
                     title="logout"
@@ -141,17 +141,19 @@ export const UserProfile = () => {
                 </div>
               )}
             </div>
-            <div className=" w-[40rem] flex flex-col gap-2 p-4 justify-center ">
-              <p>{userData?.bio}</p>
-              <p>
-                {" "}
-                joined at -{" "}
-                {` ${new Date(userData?.createdAt)
-                  .toDateString()
-                  .split(" ")
-                  .slice(1, 4)
-                  .join(" ")}`}
-              </p>
+            <div className=" flex flex-col gap-2 p-4 justify-center ">
+              <div>
+                <p>{userData?.bio}</p>
+                <p>
+                  {" "}
+                  joined at -{" "}
+                  {` ${new Date(userData?.createdAt)
+                    .toDateString()
+                    .split(" ")
+                    .slice(1, 4)
+                    .join(" ")}`}
+                </p>
+              </div>
               <div className="flex items-center justify-around ">
                 <p className="font-medium">
                   {postState?.userPost?.length} posts
@@ -167,7 +169,9 @@ export const UserProfile = () => {
           </div>
 
           {postLoading ? (
-            <img src={loader} className="w-[10rem] h-[10rem] flex mx-auto" />
+            <div className="w-[40px] h-[40px]">
+              <Loader />
+            </div>
           ) : (
             <div className="  flex flex-col gap-4 ">
               {postState?.userPost?.length === 0 ? (
@@ -184,7 +188,9 @@ export const UserProfile = () => {
             <p>Users you might know</p>
           </strong>
           {userLoading ? (
-            <img src={loader} className="w-[5rem] h-[5rem] flex mx-auto" />
+            <div className="w-[40px] h-[40px]">
+              <Loader />
+            </div>
           ) : (
             <ul className="flex flex-col gap-4 justify-center">
               {filteredUsers.map((users) => (

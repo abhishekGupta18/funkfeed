@@ -2,7 +2,7 @@ import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { PostCard } from "../../Component/PostContainer";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
-import loader from "../../Asset/loader.gif";
+import Loader from "../../Component/Loader";
 import { usePostContext } from "../../Context/PostContext";
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
@@ -21,7 +21,9 @@ export const Explore = () => {
           <SideBar />
         </div>
         {postLoading ? (
-          <img src={loader} className="w-[10rem] h-[10rem]" />
+          <div className="w-[40px] h-[40px]">
+            <Loader />
+          </div>
         ) : (
           <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
             {postState?.allPost
@@ -36,7 +38,9 @@ export const Explore = () => {
             <p>Users you might know</p>
           </strong>
           {userLoading ? (
-            <img src={loader} className="w-[5rem] h-[5rem]" />
+            <div className="w-[40px] h-[40px]">
+              <Loader />
+            </div>
           ) : (
             <ul className="flex flex-col gap-4">
               {filteredUsers.map((users) => (

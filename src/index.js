@@ -10,6 +10,7 @@ import reportWebVitals from "./reportWebVitals";
 import { AuthContextProvider } from "./Context/AuthContext";
 import { UserContextProvider } from "./Context/userContext";
 import { PostContextProvider } from "./Context/PostContext";
+import { ThemeContextProvider } from "./Context/ThemeContext";
 
 makeServer();
 
@@ -17,13 +18,15 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthContextProvider>
-        <UserContextProvider>
-          <PostContextProvider>
-            <App />
-          </PostContextProvider>
-        </UserContextProvider>
-      </AuthContextProvider>
+      <ThemeContextProvider>
+        <AuthContextProvider>
+          <UserContextProvider>
+            <PostContextProvider>
+              <App />
+            </PostContextProvider>
+          </UserContextProvider>
+        </AuthContextProvider>
+      </ThemeContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

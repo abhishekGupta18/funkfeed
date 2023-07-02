@@ -2,7 +2,7 @@ import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { PostCard } from "../../Component/PostContainer";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
-import loader from "../../Asset/loader.gif";
+import Loader from "../../Component/Loader";
 
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
@@ -52,7 +52,9 @@ export const Home = () => {
         </div>
 
         {postLoading ? (
-          <img src={loader} className="w-[10rem] h-[10rem]" />
+          <div className="w-[100px] h-[100px]">
+            <Loader />
+          </div>
         ) : (
           <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll">
             {latestPosts?.length === 0 ? (
@@ -69,7 +71,7 @@ export const Home = () => {
         <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] xl:w-[15rem] lg:hidden">
           <div className="flex items-center justify-around gap-4 w-[80%] ">
             <label
-              className=" flex items-center gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color"
+              className=" flex items-center gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color hover:border-primary-color"
               onClick={() => {
                 setLatest(true);
                 setTrending(false);
@@ -81,7 +83,7 @@ export const Home = () => {
               </div>
             </label>
             <label
-              className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white hover:border-primary-color "
+              className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color hover:border-primary-color "
               onClick={() => {
                 setTrending(true);
                 setLatest(false);
@@ -97,7 +99,9 @@ export const Home = () => {
             <p>Users you might know</p>
           </strong>
           {userLoading ? (
-            <img src={loader} className="w-[5rem] h-[5rem]" />
+            <div className="w-[100px] h-[100px]">
+              <Loader />
+            </div>
           ) : (
             <ul className="flex flex-col gap-4">
               {filteredUsers?.map((user) => (

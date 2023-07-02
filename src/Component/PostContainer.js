@@ -61,7 +61,7 @@ export const PostCard = ({ post }) => {
   };
 
   return (
-    <article className="w-[40rem] flex flex-col justify-center bg-white-color rounded-[0.5rem]  gap-4  m-auto p-4 relative xl:w-[35rem]  smaller-mobile">
+    <article className="w-[40rem] flex flex-col justify-center bg-white-color rounded-[0.5rem]  gap-4  m-auto p-4 relative xl:w-[35rem]  smaller-mobile ">
       <div className="flex justify-between items-center">
         <div className="flex gap-4 items-center">
           <img

@@ -2,6 +2,9 @@
   font-size: 3rem;
 }
 
+.light-mode svg {
+  color: #ffff;
+}
 @media (max-width: 800px) {
   .mobile-view {
     width: 5rem;

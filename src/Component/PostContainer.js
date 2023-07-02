@@ -61,7 +61,7 @@ export const PostCard = ({ post }) => {
   };
 
   return (
-    <article className="w-[40rem] flex flex-col justify-center bg-white-color rounded-[0.5rem]  gap-4  m-auto p-4 relative xl:w-[35rem]  smaller-mobile ">
+    <article className="w-[40rem] flex flex-col justify-center bg-white-color rounded-[0.5rem]  gap-4  m-auto p-4 relative xl:w-[35rem]  smaller-mobile dark:bg-dark-primary ">
       <div className="flex justify-between items-center">
         <div className="flex gap-4 items-center">
           <img
@@ -71,8 +71,10 @@ export const PostCard = ({ post }) => {
             onClick={() => navigate(`/userProfile/${findUser?.username}`)}
           />
           <div>
-            <p className="font-medium">@{post?.username}</p>
-            <p>{` ${new Date(post?.createdAt)
+            <p className="font-medium dark:text-white-color">
+              @{post?.username}
+            </p>
+            <p className="dark:text-white-color">{` ${new Date(post?.createdAt)
               .toDateString()
               .split(" ")
               .slice(1, 4)
@@ -81,7 +83,7 @@ export const PostCard = ({ post }) => {
         </div>
         {post?.username === userInfo?.username && (
           <div
-            className="cursor-pointer"
+            className="cursor-pointer dark:text-white-color"
             title="edit | delete"
             onClick={() => setEditDeleteBtn(!editDeleteBtn)}
           >
@@ -90,9 +92,9 @@ export const PostCard = ({ post }) => {
         )}
 
         {editDeleteBtn && (
-          <div className="  flex flex-col gap-2 justify-center  rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] absolute left-[80%] top-[5%] bg-white-color">
+          <div className="  flex flex-col gap-2 justify-center  rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] absolute left-[80%] top-[5%] bg-white-color dark:bg-dark-secondary">
             <div
-              className="flex justify-between hover:bg-light-primary-color rounded-t-[0.5rem]  px-2 py-1"
+              className="flex justify-between hover:bg-light-primary-color rounded-t-[0.5rem]  px-2 py-1 dark:text-white-color dark:hover:text-black-color"
               onClick={() => {
                 openEditPostModal();
                 setEditDeleteBtn(false);
@@ -102,7 +104,7 @@ export const PostCard = ({ post }) => {
               <EditIcon />
             </div>
             <div
-              className="flex justify-between gap-1  hover:bg-light-primary-color rounded-b-[0.5rem] px-2 py-1"
+              className="flex justify-between gap-1  hover:bg-light-primary-color rounded-b-[0.5rem] px-2 py-1 dark:text-white-color dark:hover:text-black-color"
               onClick={(e) => {
                 deletePost(post?._id);
                 setEditDeleteBtn(false);
@@ -114,7 +116,7 @@ export const PostCard = ({ post }) => {
           </div>
         )}
       </div>
-      <p>{post?.content}</p>
+      <p className="dark:text-white-color">{post?.content}</p>
       <div>
         <img
           src={post?.mediaURL}
@@ -124,17 +126,19 @@ export const PostCard = ({ post }) => {
       </div>
 
       <div className="flex gap-4 items-center">
-        <p>{post?.likes?.likeCount} Likes</p>
-        <p>{post?.comments?.length} Comments</p>
+        <p className="dark:text-white-color">{post?.likes?.likeCount} Likes</p>
+        <p className="dark:text-white-color">
+          {post?.comments?.length} Comments
+        </p>
       </div>
       <hr />
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 items-center dark:text-white-color">
         {post?.likes?.likedBy?.find(
           (item) => item?.username === userInfo?.username
         ) ? (
           <div
             title="dislike post"
-            className=" flex items-center gap-2 cursor-pointer"
+            className=" flex items-center gap-2 cursor-pointer dark:text-white-color"
             onClick={() => dislikePost(post?._id)}
           >
             <FavoriteOutlinedIcon /> Liked
@@ -149,7 +153,7 @@ export const PostCard = ({ post }) => {
           </div>
         )}
         <div
-          title="comment"
+          title="comment dark:text-white-color"
           className="cursor-pointer flex items-center gap-2"
           onClick={() => navigate(`/post/${post._id}`)}
         >
@@ -173,7 +177,7 @@ export const PostCard = ({ post }) => {
           </div>
         )}
         <div
-          className="cursor-pointer flex items-center gap-2 share-icon"
+          className="cursor-pointer flex items-center gap-2 share-icon dark:text-white-color"
           title="share"
         >
           <ShareIcon /> Share
@@ -189,11 +193,11 @@ export const PostCard = ({ post }) => {
       >
         <div style={{ ...style }}>
           <form
-            className="bg-white-color p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
+            className="bg-white-color p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none dark:bg-dark-secondary"
             onSubmit={(e) => submitHandler(e)}
           >
             <textarea
-              className="p-2 border-none outline-none"
+              className="p-2 border-none outline-none rounded-[0.5rem] dark:bg-dark-primary dark:text-white-color"
               rows={6}
               value={prevPostDetails?.content}
               onChange={(e) =>
@@ -210,7 +214,7 @@ export const PostCard = ({ post }) => {
                   className="mx-auto max-h-[10rem]"
                 />
                 <div
-                  className="absolute left-[90%] bottom-[90%]"
+                  className="absolute left-[90%] bottom-[90%] dark:text-white-color"
                   onClick={() =>
                     setPrevPostDetails({
                       ...prevPostDetails,
@@ -227,7 +231,7 @@ export const PostCard = ({ post }) => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <label
-                    className="cursor-pointer"
+                    className="cursor-pointer dark:text-white-color"
                     onClick={() => setShowEmoji(!showEmoji)}
                   >
                     {showEmoji && (
@@ -250,7 +254,7 @@ export const PostCard = ({ post }) => {
                     )}
                     <EmojiEmotionsOutlinedIcon />
                   </label>
-                  <label className="cursor-pointer">
+                  <label className="cursor-pointer dark:text-white-color">
                     <input
                       className="hidden"
                       type="file"
@@ -268,7 +272,7 @@ export const PostCard = ({ post }) => {
                 </div>
                 <div className="flex items-center gap-4">
                   <button
-                    className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white "
+                    className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                     onClick={() => {
                       closeEditPostModal();
                     }}
@@ -277,7 +281,7 @@ export const PostCard = ({ post }) => {
                   </button>
                   <button
                     type="submit"
-                    className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white "
+                    className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                   >
                     Save Changes
                   </button>

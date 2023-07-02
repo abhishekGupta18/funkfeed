@@ -40,7 +40,7 @@ export const Navbar = () => {
         )
       : usersState?.allUsers;
   return (
-    <div className=" flex  justify-between items-center py-4 px-7 bg-[#bae6fd] opacity-8  dark:bg-[rgba(41,78,101,.8)] ">
+    <div className=" flex  justify-between items-center py-4 px-7 bg-[#bae6fd] opacity-8  dark:bg-dark-navbar ">
       <div className=" dark:bg-white-color ">
         <img src={Logo} alt="logo" width={160} height={80} />
       </div>

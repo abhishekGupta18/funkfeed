@@ -45,9 +45,9 @@ export const SideBar = () => {
   };
 
   return (
-    <div className=" w-[18rem] py-4  flex flex-col gap-5 bg-white-color mx-auto items-center rounded-[0.5rem] mobile-view  xl:w-[15rem] sm:bg-white-color sm:h-[3rem] sm:flex-row sm:justify-center sm:mx-0 sm:rounded-0 sm:fixed sm:bottom-0 sm:z-30  ">
+    <div className=" w-[18rem] py-4  flex flex-col gap-5 bg-white-color mx-auto items-center rounded-[0.5rem] mobile-view  xl:w-[15rem] sm:bg-white-color sm:h-[3rem] sm:flex-row sm:justify-center sm:mx-0 sm:rounded-0 sm:fixed sm:bottom-0 sm:z-30 dark:bg-dark-primary   ">
       <div
-        className="flex justify-center gap-[1rem] cursor-pointer  py-2  w-[80%]  shadow-md rounded-[0.5rem] hover:bg-light-primary-color "
+        className="flex justify-center gap-[1rem] cursor-pointer  py-2  w-[80%]  shadow-md rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
         onClick={() => navigate("/")}
       >
         <HomeIcon />
@@ -56,7 +56,7 @@ export const SideBar = () => {
 
       <div
         className="flex gap-[1rem] justify-center cursor-pointer py-2  w-[80%] shadow-md
-       rounded-[0.5rem] hover:bg-light-primary-color "
+       rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
         onClick={() => navigate("/explore")}
       >
         <ExploreIcon />
@@ -64,7 +64,7 @@ export const SideBar = () => {
       </div>
       <div
         className="flex gap-[1rem] justify-center cursor-pointer pl-5  py-2 w-[80%] shadow-md
-       rounded-[0.5rem] hover:bg-light-primary-color md:pl-0 "
+       rounded-[0.5rem] hover:bg-light-primary-color md:pl-0 dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
         onClick={() => navigate("/bookmarks")}
       >
         <BookmarksIcon />
@@ -72,7 +72,7 @@ export const SideBar = () => {
       </div>
       <div
         className="flex gap-[1rem] justify-center cursor-pointer py-2 w-[80%] shadow-md
-       rounded-[0.5rem] hover:bg-light-primary-color"
+       rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
         onClick={() => navigate(`/userProfile/${userInfo?.username}`)}
       >
         <ManageAccountsIcon />
@@ -80,7 +80,7 @@ export const SideBar = () => {
       </div>
       <div
         title="add post"
-        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-2 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center"
+        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-2 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center dark:border dark:border-white-color dark:border-solid"
         onClick={() => openNewPostModal()}
       >
         <AddCircleOutlineIcon />
@@ -103,13 +103,13 @@ export const SideBar = () => {
             onSubmit={(e) => {
               addPostHandler(e);
             }}
-            className="bg-white-color p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] w-[25rem] "
+            className="bg-white-color p-4 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] w-[25rem] dark:bg-dark-secondary"
           >
             <textarea
               type="text"
               rows={4}
               placeholder="What is happening?!"
-              className="p-2 border-none outline-none"
+              className="p-2 border-none outline-none rounded-[0.5rem] dark:bg-dark-primary dark:text-white-color"
               value={newPostDetails?.content}
               onChange={(e) => {
                 setNewPostDetails({
@@ -171,7 +171,7 @@ export const SideBar = () => {
               </div>
               <div className="flex gap-4">
                 <button
-                  className="border-solid border-primary-color border px-2 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                  className="border-solid border-primary-color border px-2 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                   onClick={() => {
                     closeNewPostModal();
                     setNewPostDetails({
@@ -187,7 +187,7 @@ export const SideBar = () => {
                 </button>
                 <button
                   type="submit"
-                  className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white "
+                  className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                 >
                   Post
                 </button>

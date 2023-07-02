@@ -12,7 +12,7 @@ export const Explore = () => {
   const { userInfo } = useAuthContext();
 
   return (
-    <div className="bg-light-primary-color min-h-screen  ">
+    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
       <div className="fixed w-full">
         <Navbar />
       </div>
@@ -33,9 +33,9 @@ export const Explore = () => {
               ))}
           </div>
         )}
-        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden ">
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden dark:bg-dark-primary">
           <strong>
-            <p>Users you might know</p>
+            <p className="dark:text-white-color">Users you might know</p>
           </strong>
           {userLoading ? (
             <div className="w-[40px] h-[40px]">

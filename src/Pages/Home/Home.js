@@ -42,7 +42,7 @@ export const Home = () => {
       )
     : trendingPosts;
   return (
-    <div className="bg-light-primary-color min-h-screen  ">
+    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
       <div className="fixed w-full">
         <Navbar />
       </div>
@@ -59,8 +59,10 @@ export const Home = () => {
           <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll">
             {latestPosts?.length === 0 ? (
               <div className="flex flex-col gap-2 items-center">
-                <p className="text-xl font-bold">No posts yet!</p>
-                <p>Start following users.</p>
+                <p className="text-xl font-bold dark:text-white-color">
+                  No posts yet!
+                </p>
+                <p className="dark:text-white-color">Start following users.</p>
               </div>
             ) : (
               latestPosts?.map((post) => <PostCard post={post} />)
@@ -68,10 +70,10 @@ export const Home = () => {
           </div>
         )}
 
-        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] xl:w-[15rem] lg:hidden">
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] xl:w-[15rem] lg:hidden dark:bg-dark-primary">
           <div className="flex items-center justify-around gap-4 w-[80%] ">
             <label
-              className=" flex items-center gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color hover:border-primary-color"
+              className=" flex items-center gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color hover:border-primary-color dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
               onClick={() => {
                 setLatest(true);
                 setTrending(false);
@@ -83,7 +85,7 @@ export const Home = () => {
               </div>
             </label>
             <label
-              className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color hover:border-primary-color "
+              className="flex items-center  gap-1 border border-solid bg-light-primary-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color hover:border-primary-color dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color "
               onClick={() => {
                 setTrending(true);
                 setLatest(false);
@@ -96,14 +98,14 @@ export const Home = () => {
             </label>
           </div>
           <strong>
-            <p>Users you might know</p>
+            <p className="dark:text-white-color">Users you might know</p>
           </strong>
           {userLoading ? (
             <div className="w-[100px] h-[100px]">
               <Loader />
             </div>
           ) : (
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-4  ">
               {filteredUsers?.map((user) => (
                 <SuggestedUserCard user={user} />
               ))}

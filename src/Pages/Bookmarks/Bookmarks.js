@@ -14,7 +14,7 @@ export const BookMarks = () => {
   const userBookmarks = userInfo?.bookmarks?.map(({ _id }) => _id);
 
   return (
-    <div className="bg-light-primary-color min-h-screen ">
+    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
       <div className="fixed w-full">
         <Navbar />
       </div>
@@ -29,7 +29,9 @@ export const BookMarks = () => {
         ) : (
           <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
             {userBookmarks?.length === 0 ? (
-              <p className="text-xl font-bold ">No Bookmarks Yet!</p>
+              <p className="text-xl font-bold dark:text-white-color">
+                No Bookmarks Yet!
+              </p>
             ) : (
               postState?.allPost
                 ?.filter((post) => userBookmarks?.includes(post?._id))
@@ -37,9 +39,9 @@ export const BookMarks = () => {
             )}
           </div>
         )}
-        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden ">
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden dark:bg-dark-primary">
           <strong>
-            <p>Users you might know</p>
+            <p className="dark:text-white-color">Users you might know</p>
           </strong>
           {userLoading ? (
             <div className="w-[40px] h-[40px]">

@@ -73,7 +73,7 @@ export const UserProfile = () => {
   };
 
   return (
-    <div className="bg-light-primary-color min-h-screen">
+    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary">
       <div className="fixed w-full">
         <Navbar />
       </div>
@@ -82,7 +82,7 @@ export const UserProfile = () => {
           <SideBar />
         </div>
         <div className="flex flex-col gap-4 overflow-y-auto h-[86vh]  no-scroll xl:w-[35rem]  smaller-mobile">
-          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]   ">
+          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-primary  ">
             <div className="  flex justify-between p-4 items-center">
               <div className="flex items-center gap-4 ">
                 <img
@@ -93,11 +93,11 @@ export const UserProfile = () => {
                 />
                 <div>
                   <strong>
-                    <p>
+                    <p className="dark:text-white-color">
                       {userData?.firstName} {userData?.lastName}
                     </p>
                   </strong>
-                  <p>@{userData?.username}</p>
+                  <p className="dark:text-white-color">@{userData?.username}</p>
                 </div>
               </div>
               {userInfo?.username === userData?.username ? (
@@ -143,8 +143,8 @@ export const UserProfile = () => {
             </div>
             <div className=" flex flex-col gap-2 p-4 justify-center ">
               <div>
-                <p>{userData?.bio}</p>
-                <p>
+                <p className="dark:text-white-color">{userData?.bio}</p>
+                <p className="dark:text-white-color">
                   {" "}
                   joined at -{" "}
                   {` ${new Date(userData?.createdAt)
@@ -155,13 +155,13 @@ export const UserProfile = () => {
                 </p>
               </div>
               <div className="flex items-center justify-around ">
-                <p className="font-medium">
+                <p className="font-medium dark:text-white-color">
                   {postState?.userPost?.length} posts
                 </p>
-                <p className="font-medium">
+                <p className="font-medium dark:text-white-color">
                   {userData?.followers?.length} followers
                 </p>
-                <p className="font-medium">
+                <p className="font-medium dark:text-white-color">
                   {userData?.following?.length} following
                 </p>
               </div>
@@ -175,7 +175,9 @@ export const UserProfile = () => {
           ) : (
             <div className="  flex flex-col gap-4 ">
               {postState?.userPost?.length === 0 ? (
-                <p className="text-xl font-bold text-center">No posts yet!</p>
+                <p className="text-xl font-bold text-center dark:text-white-color">
+                  No posts yet!
+                </p>
               ) : (
                 postState?.userPost?.map((post) => <PostCard post={post} />)
               )}
@@ -183,9 +185,9 @@ export const UserProfile = () => {
           )}
         </div>
 
-        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  lg:hidden">
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  lg:hidden dark:bg-dark-primary">
           <strong>
-            <p>Users you might know</p>
+            <p className="dark:text-white-color">Users you might know</p>
           </strong>
           {userLoading ? (
             <div className="w-[40px] h-[40px]">
@@ -210,9 +212,11 @@ export const UserProfile = () => {
         <div style={{ ...style }}>
           <form
             onSubmit={editProfileHandler}
-            className="bg-white-color p-8 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none "
+            className="bg-white-color p-8 rounded-[0.5rem] flex flex-col justify-between gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none dark:bg-dark-secondary"
           >
-            <p className="text-2xl font-medium">Edit Profile</p>
+            <p className="text-2xl font-medium dark:text-white-color">
+              Edit Profile
+            </p>
             <div className="flex gap-4 items-center">
               <div title="Browse Image" className="relative">
                 <img
@@ -221,7 +225,7 @@ export const UserProfile = () => {
                 />
                 <label className="absolute bottom-[10%] left-[40%] cursor-pointer">
                   <input
-                    className="hidden"
+                    className="hidden "
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
@@ -249,10 +253,10 @@ export const UserProfile = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-8 items-center">
-              <p className="text-lg ">First Name - </p>
+            <div className="flex gap-8 items-center ">
+              <p className="text-lg dark:text-white-color">First Name - </p>
               <input
-                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem]"
+                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem] dark:text-white-color dark:bg-dark-primary"
                 type="text"
                 value={userData?.firstName}
                 onChange={(e) => {
@@ -264,9 +268,9 @@ export const UserProfile = () => {
               />
             </div>
             <div className="flex gap-8 items-center">
-              <p className="text-lg ">Last Name - </p>
+              <p className="text-lg dark:text-white-color">Last Name - </p>
               <input
-                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem]"
+                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem] dark:text-white-color dark:bg-dark-primary"
                 type="text"
                 value={userData?.lastName}
                 onChange={(e) => {
@@ -278,9 +282,9 @@ export const UserProfile = () => {
               />
             </div>
             <div className="flex flex-col gap-4">
-              <p className="text-lg">Bio - </p>
+              <p className="text-lg dark:text-white-color">Bio - </p>
               <textarea
-                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem]"
+                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem] dark:text-white-color dark:bg-dark-primary "
                 rows={4}
                 cols={40}
                 value={userData?.bio}
@@ -294,13 +298,13 @@ export const UserProfile = () => {
             </div>
             <div className="flex items-center gap-8">
               <button
-                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                 onClick={() => closeEditProfileModal()}
               >
                 Cancel
               </button>
               <button
-                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                 type="submit"
               >
                 Save Changes
@@ -317,7 +321,7 @@ export const UserProfile = () => {
         aria-describedby="modal-modal-description"
       >
         <div style={{ ...style }}>
-          <div className="bg-white-color p-8 rounded-[0.5rem] flex flex-col justify-center items-center gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none ">
+          <div className="bg-white-color p-8 rounded-[0.5rem] flex flex-col justify-center items-center gap-4 min-h-[15rem] min-w-[25rem] outline-none border-none dark:bg-dark-secondary ">
             <ul className="flex items-center flex-wrap gap-4 justify-around">
               {avatars?.map((item) => (
                 <img
@@ -334,13 +338,13 @@ export const UserProfile = () => {
             </ul>
             <div className="flex items-center gap-8">
               <button
-                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                 onClick={() => closeAvatareModal()}
               >
                 Cancel
               </button>
               <button
-                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white"
+                className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                 onClick={() => {
                   closeAvatareModal();
                   setUserData({ ...userData, profileImg: image });

@@ -70,9 +70,10 @@ export const Navbar = () => {
           <SearchIcon />
         </div>
       </div>
-      <div title="dark mode" className="flex items-center gap-8  ">
+      <div className="flex items-center gap-8  ">
         {isDarkMode ? (
           <div
+            title="light mode"
             className="cursor-pointer light-mode"
             onClick={() => setIsDarkMode(!isDarkMode)}
           >
@@ -80,8 +81,11 @@ export const Navbar = () => {
           </div>
         ) : (
           <div
+            title="dark mode"
             className="cursor-pointer"
-            onClick={() => setIsDarkMode(!isDarkMode)}
+            onClick={() => {
+              setIsDarkMode(!isDarkMode);
+            }}
           >
             <DarkModeIcon />
           </div>

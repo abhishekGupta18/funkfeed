@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 
 import { useAuthContext } from "./AuthContext";
 import { usersReducer } from "../Reducer/usersReducer";
+import { useState } from "react";
 
 export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
+  const [userLoading, setUserLoading] = useState(false);
   const [usersState, usersDispatch] = useReducer(usersReducer, {
     allUsers: [],
     user: {},
@@ -28,12 +30,14 @@ export const UserContextProvider = ({ children }) => {
 
   const getAllUsers = async () => {
     try {
+      setUserLoading(true);
       const { status, data } = await axios({
         method: "get",
         url: "/api/users",
       });
       if (status === 200) {
         usersDispatch({ type: "get_users", payload: data?.users });
+        setUserLoading(false);
       }
     } catch (e) {
       console.error(e);
@@ -172,6 +176,7 @@ export const UserContextProvider = ({ children }) => {
         removePostFromBookmarks,
         editUserProfile,
         avatars,
+        userLoading,
       }}
     >
       {children}

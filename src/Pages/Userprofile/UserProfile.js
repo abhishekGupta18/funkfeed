@@ -8,7 +8,7 @@ import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { PostCard } from "../../Component/PostContainer";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
-
+import loader from "../../Asset/loader.gif";
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
 import { usePostContext } from "../../Context/PostContext";
@@ -25,8 +25,9 @@ export const UserProfile = () => {
     unFollowUsers,
     editUserProfile,
     avatars,
+    userLoading,
   } = useUserContext();
-  const { postState, getUserPost } = usePostContext();
+  const { postState, getUserPost, postLoading } = usePostContext();
   const { username } = useParams();
 
   const openEditProfileModal = () => setUserProfileModal(true);
@@ -165,21 +166,32 @@ export const UserProfile = () => {
             </div>
           </div>
 
-          <div className="  flex flex-col gap-4 ">
-            {postState?.userPost?.map((post) => (
-              <PostCard post={post} />
-            ))}
-          </div>
+          {postLoading ? (
+            <img src={loader} className="w-[10rem] h-[10rem] flex mx-auto" />
+          ) : (
+            <div className="  flex flex-col gap-4 ">
+              {postState?.userPost?.length === 0 ? (
+                <p className="text-xl font-bold text-center">No posts yet!</p>
+              ) : (
+                postState?.userPost?.map((post) => <PostCard post={post} />)
+              )}
+            </div>
+          )}
         </div>
+
         <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]  lg:hidden">
           <strong>
             <p>Users you might know</p>
           </strong>
-          <ul className="flex flex-col gap-4 justify-center">
-            {filteredUsers.map((users) => (
-              <SuggestedUserCard user={users} />
-            ))}
-          </ul>
+          {userLoading ? (
+            <img src={loader} className="w-[5rem] h-[5rem] flex mx-auto" />
+          ) : (
+            <ul className="flex flex-col gap-4 justify-center">
+              {filteredUsers.map((users) => (
+                <SuggestedUserCard user={users} />
+              ))}
+            </ul>
+          )}
         </div>
       </div>
 

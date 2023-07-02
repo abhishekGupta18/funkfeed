@@ -14,6 +14,7 @@ import { postReducer } from "../Reducer/postReducer";
 export const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
+  const [postLoading, setPostLoading] = useState(false);
   const [addPostModal, setAddPostModal] = useState(false);
   const [trending, setTrending] = useState(false);
   const [latest, setLatest] = useState(false);
@@ -29,12 +30,14 @@ export const PostContextProvider = ({ children }) => {
 
   const getAllPost = async () => {
     try {
+      setPostLoading(true);
       const { status, data } = await axios({
         method: "get",
         url: "/api/posts",
       });
       if (status === 200) {
         postDispatch({ type: "get_all_post", payload: data?.posts });
+        setPostLoading(false);
       }
     } catch (e) {
       console.error(e);
@@ -149,6 +152,7 @@ export const PostContextProvider = ({ children }) => {
   return (
     <PostContext.Provider
       value={{
+        postLoading,
         postState,
         getUserPost,
         addPostModal,

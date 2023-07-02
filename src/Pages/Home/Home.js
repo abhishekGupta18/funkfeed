@@ -2,6 +2,7 @@ import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { PostCard } from "../../Component/PostContainer";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
+import loader from "../../Asset/loader.gif";
 
 import { useAuthContext } from "../../Context/AuthContext";
 import { useUserContext } from "../../Context/userContext";
@@ -11,9 +12,9 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
 
 export const Home = () => {
-  const { filteredUsers } = useUserContext();
+  const { filteredUsers, userLoading } = useUserContext();
   const { userInfo } = useAuthContext();
-  const { postState, trending, setTrending, latest, setLatest } =
+  const { postState, trending, setTrending, latest, setLatest, postLoading } =
     usePostContext();
 
   const userFollowing = userInfo?.following?.map(({ username }) => username);
@@ -50,11 +51,20 @@ export const Home = () => {
           <SideBar />
         </div>
 
-        <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll">
-          {latestPosts?.map((post) => (
-            <PostCard post={post} />
-          ))}
-        </div>
+        {postLoading ? (
+          <img src={loader} className="w-[10rem] h-[10rem]" />
+        ) : (
+          <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll">
+            {latestPosts?.length === 0 ? (
+              <div className="flex flex-col gap-2 items-center">
+                <p className="text-xl font-bold">No posts yet!</p>
+                <p>Start following users.</p>
+              </div>
+            ) : (
+              latestPosts?.map((post) => <PostCard post={post} />)
+            )}
+          </div>
+        )}
 
         <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] xl:w-[15rem] lg:hidden">
           <div className="flex items-center justify-around gap-4 w-[80%] ">
@@ -86,11 +96,15 @@ export const Home = () => {
           <strong>
             <p>Users you might know</p>
           </strong>
-          <ul className="flex flex-col gap-4">
-            {filteredUsers?.map((user) => (
-              <SuggestedUserCard user={user} />
-            ))}
-          </ul>
+          {userLoading ? (
+            <img src={loader} className="w-[5rem] h-[5rem]" />
+          ) : (
+            <ul className="flex flex-col gap-4">
+              {filteredUsers?.map((user) => (
+                <SuggestedUserCard user={user} />
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>

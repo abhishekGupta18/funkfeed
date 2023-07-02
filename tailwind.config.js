@@ -9,6 +9,7 @@ module.exports = {
       md: { max: "800px" },
       lg: { max: "1050px" },
       xl: { max: "1300px" },
+      msm: { max: "450px" },
     },
     colors: {
       "primary-color": "rgba(29, 155, 240, 1)",

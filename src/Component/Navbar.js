@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../Asset/final_logo.png";
+import LogoDarkMode from "../Asset/dark mode logo.jpeg";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SearchIcon from "@mui/icons-material/Search";
 import LightModeIcon from "@mui/icons-material/LightMode";
@@ -41,9 +42,15 @@ export const Navbar = () => {
       : usersState?.allUsers;
   return (
     <div className=" flex  justify-between items-center py-4 px-7 bg-[#bae6fd] opacity-8  dark:bg-dark-navbar ">
-      <div className=" dark:bg-white-color ">
-        <img src={Logo} alt="logo" width={160} height={80} />
-      </div>
+      {isDarkMode ? (
+        <div className=" msm:w-[100px] ">
+          <img src={LogoDarkMode} alt="logo" width={160} height={80} />
+        </div>
+      ) : (
+        <div className=" dark:bg-white-color msm:w-[120px] ">
+          <img src={Logo} alt="logo" width={160} height={80} />
+        </div>
+      )}
       <div
         className="flex items-center cursor-pointer"
         onClick={() => openSearchModal()}
@@ -97,60 +104,65 @@ export const Navbar = () => {
         aria-describedby="modal-modal-description"
       >
         <div style={{ ...style }}>
-          <div className="w-[25rem] bg-white-color rounded-[0.5rem] p-4  flex flex-col gap-4 ">
+          <div className="w-[25rem] bg-white-color rounded-[0.5rem] p-4  flex flex-col gap-4 dark:bg-dark-secondary ">
             <input
               value={searchUser}
               type="text"
               placeholder="search user"
-              className="px-4 py-1 mx-auto w-[60%] rounded-[1rem] outline-none border border-solid border-primary-color"
+              className="px-4 py-1 mx-auto w-[60%] rounded-[1rem] outline-none border border-solid border-primary-color dark:bg-dark-primary dark:text-white-color dark:border-white-color"
               onChange={(e) => setSearchUser(e.target.value)}
             />
             <div>
               <ul className="flex flex-col gap-4">
                 {searchByUsername?.length === 0 ? (
-                  <p className=" mx-auto ">
+                  <p className=" mx-auto dark:text-white-color ">
                     there is no such user with username{" "}
                     <strong>{searchUser}</strong>
                   </p>
                 ) : (
-                  searchByUsername?.map((user) => (
-                    <li
-                      className="flex items-center justify-between shadow-[0_3px_10px_rgb(0,0,0,0.2)] px-2 py-1 rounded-[0.5rem]"
-                      onClick={() => navigate(`/userProfile/${user?.username}`)}
-                    >
-                      <div className="flex items-center gap-4  ">
-                        <img
-                          src={user?.profileImg}
-                          className="rounded-[50%] w-[40px] h-[40px] object-cover cursor-pointer"
-                        />
-                        <p className="font-bold">@{user?.username}</p>
-                      </div>
-                      {userInfo?.username ===
-                      user?.username ? null : userInfo?.following
+                  searchByUsername
+                    ?.filter((item) => item?.username !== userInfo?.username)
+                    .map((user) => (
+                      <li
+                        className="flex items-center justify-between shadow-[0_3px_10px_rgb(0,0,0,0.2)] px-2 py-1 rounded-[0.5rem] dark:border dark:border-solid border-white-color "
+                        onClick={() =>
+                          navigate(`/userProfile/${user?.username}`)
+                        }
+                      >
+                        <div className="flex items-center gap-4">
+                          <img
+                            src={user?.profileImg}
+                            className="rounded-[50%] w-[40px] h-[40px] object-cover cursor-pointer"
+                          />
+                          <p className="font-bold dark:text-white-color">
+                            @{user?.username}
+                          </p>
+                        </div>
+                        {userInfo?.following
                           ?.map((user) => user.username)
                           .includes(user?.username) ? (
-                        <button
-                          className=" rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
-                          onClick={(e) => {
-                            unFollowUsers(user?._id);
-                            e.stopPropagation();
-                          }}
-                        >
-                          Unfollow
-                        </button>
-                      ) : (
-                        <button
-                          className=" rounded-[0.5rem] font-bold px-[1.6rem] py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
-                          onClick={(e) => {
-                            followUsers(user?._id);
-                            e.stopPropagation();
-                          }}
-                        >
-                          Follow
-                        </button>
-                      )}
-                    </li>
-                  ))
+                          <button
+                            className=" rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
+                            onClick={(e) => {
+                              unFollowUsers(user?._id);
+                              e.stopPropagation();
+                            }}
+                          >
+                            Unfollow
+                          </button>
+                        ) : (
+                          <button
+                            className=" rounded-[0.5rem] font-bold px-[1.6rem] py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
+                            onClick={(e) => {
+                              followUsers(user?._id);
+                              e.stopPropagation();
+                            }}
+                          >
+                            Follow
+                          </button>
+                        )}
+                      </li>
+                    ))
                 )}
               </ul>
             </div>

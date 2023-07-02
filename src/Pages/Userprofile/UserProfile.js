@@ -125,14 +125,14 @@ export const UserProfile = () => {
                     ?.map((user) => user.username)
                     .includes(userData?.username) ? (
                     <button
-                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-[#ef4444] transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                       onClick={() => unFollowUsers(userData._id)}
                     >
                       Unfollow
                     </button>
                   ) : (
                     <button
-                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] "
+                      className="  rounded-[0.5rem] font-bold px-4 py-1 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                       onClick={() => followUsers(userData._id)}
                     >
                       Follow

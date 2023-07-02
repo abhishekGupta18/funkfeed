@@ -80,7 +80,7 @@ export const SideBar = () => {
       </div>
       <div
         title="add post"
-        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-2 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center dark:border dark:border-white-color dark:border-solid"
+        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-2 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center dark:border dark:border-white-color dark:border-solid dark:text-white-color "
         onClick={() => openNewPostModal()}
       >
         <AddCircleOutlineIcon />

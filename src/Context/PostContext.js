@@ -98,7 +98,6 @@ export const PostContextProvider = ({ children }) => {
         url: `/api/posts/${postId}`,
         headers: { authorization: token },
       });
-      console.log(data);
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
         toast.info("Post deleted");

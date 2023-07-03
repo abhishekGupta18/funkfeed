@@ -150,11 +150,12 @@ export const UserContextProvider = ({ children }) => {
       console.error(e);
     }
   };
+  console.log(usersState?.allUsers);
 
   useEffect(() => {
-    getAllUsers();
-    getAllBookmarks();
-  }, []);
+    token && getAllUsers();
+    token && getAllBookmarks();
+  }, [token]);
 
   const filteredUsers = usersState?.allUsers
     ?.filter((dbUser) => dbUser.username !== userInfo?.username)
@@ -169,6 +170,7 @@ export const UserContextProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         usersState,
+        usersDispatch,
         followUsers,
         unFollowUsers,
         filteredUsers,

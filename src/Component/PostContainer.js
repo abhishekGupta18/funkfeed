@@ -39,6 +39,9 @@ export const PostCard = ({ post }) => {
     (user) => user?.username === post?.username
   );
 
+  console.log(usersState?.allUsers);
+
+  console.log(findUser);
   const navigate = useNavigate();
 
   const openEditPostModal = () => setEditPostModal(true);
@@ -60,12 +63,12 @@ export const PostCard = ({ post }) => {
     closeEditPostModal();
   };
 
-  const handleShare = async (_id) => {
+  const handleShare = async (id) => {
     try {
       await navigator.share({
         title: "Funk Feed",
         text: "Check out this post",
-        url: `https://funkfeed.netlify.app/post/${_id}`,
+        url: `https://funkfeed.netlify.app/post/${id}`,
       });
     } catch (error) {
       console.error("Error sharing:", error);
@@ -83,7 +86,7 @@ export const PostCard = ({ post }) => {
           />
           <div>
             <p className="font-medium dark:text-white-color">
-              @{post?.username}
+              @{findUser?.username}
             </p>
             <p className="dark:text-white-color">{` ${new Date(post?.createdAt)
               .toDateString()

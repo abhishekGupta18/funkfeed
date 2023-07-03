@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { userSignUp } = useAuthContext();
   const [userSignUpData, setUserSignUpData] = useState({

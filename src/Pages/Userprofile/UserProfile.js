@@ -56,6 +56,10 @@ export const UserProfile = () => {
     getUserData();
   }, [username]);
 
+  const currentUserPost = postState?.allPost?.filter(
+    (item) => item?.username === username
+  );
+
   const editProfileHandler = (e) => {
     e.preventDefault();
     editUserProfile(userData);
@@ -82,14 +86,14 @@ export const UserProfile = () => {
           <SideBar />
         </div>
         <div className="flex flex-col gap-4 overflow-y-auto h-[86vh]  no-scroll xl:w-[35rem]  smaller-mobile">
-          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-primary  ">
+          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-full dark:bg-dark-primary  ">
             <div className="  flex justify-between p-4 items-center">
-              <div className="flex items-center gap-4 ">
+              <div className="flex items-center gap-4">
                 <img
                   title="user profile"
                   src={userData?.profileImg}
                   alt="user-profile"
-                  className="rounded-[50%] w-[60px] h-[60px] object-cover "
+                  className="rounded-[50%] w-[60px] h-[60px] object-cover"
                 />
                 <div>
                   <strong>
@@ -174,12 +178,12 @@ export const UserProfile = () => {
             </div>
           ) : (
             <div className="  flex flex-col gap-4 ">
-              {postState?.userPost?.length === 0 ? (
+              {currentUserPost?.length === 0 ? (
                 <p className="text-xl font-bold text-center dark:text-white-color">
                   No posts yet!
                 </p>
               ) : (
-                postState?.userPost?.map((post) => <PostCard post={post} />)
+                currentUserPost?.map((post) => <PostCard post={post} />)
               )}
             </div>
           )}

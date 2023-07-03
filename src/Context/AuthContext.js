@@ -19,7 +19,6 @@ export const AuthContextProvider = ({ children }) => {
         url: "/api/auth/signup",
         data: signUpData,
       });
-      console.log(data, status);
       if (status === 201) {
         setToken(data?.encodedToken);
         setUserInfo(data?.createdUser);

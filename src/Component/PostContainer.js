@@ -60,6 +60,17 @@ export const PostCard = ({ post }) => {
     closeEditPostModal();
   };
 
+  const handleShare = async (_id) => {
+    try {
+      await navigator.share({
+        title: "Funk Feed",
+        text: "Check out this post",
+        url: `https://funkfeed.netlify.app/post/${_id}`,
+      });
+    } catch (error) {
+      console.error("Error sharing:", error);
+    }
+  };
   return (
     <article className="w-[40rem] flex flex-col justify-center bg-white-color rounded-[0.5rem]  gap-4  m-auto p-4 relative xl:w-[35rem]  smaller-mobile dark:bg-dark-primary ">
       <div className="flex justify-between items-center">
@@ -179,6 +190,7 @@ export const PostCard = ({ post }) => {
         <div
           className="cursor-pointer flex items-center gap-2 share-icon dark:text-white-color"
           title="share"
+          onClick={() => handleShare(post?._id)}
         >
           <ShareIcon /> Share
         </div>

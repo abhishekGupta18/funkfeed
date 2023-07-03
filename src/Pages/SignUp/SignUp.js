@@ -1,10 +1,14 @@
 import { NavLink } from "react-router-dom";
-
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useAuthContext } from "../../Context/AuthContext";
 import Logo from "../../Asset/final_logo.png";
 import { useState } from "react";
 
 export const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
+
   const { userSignUp } = useAuthContext();
   const [userSignUpData, setUserSignUpData] = useState({
     firstName: "",
@@ -104,35 +108,71 @@ export const SignUp = () => {
           </label>
           <label className="flex flex-col items-start gap-[0.2rem] font-medium">
             Password{" "}
-            <input
-              required
-              type="password"
-              placeholder="password"
-              value={userSignUpData?.password}
-              onChange={(e) => {
-                setUserSignUpData({
-                  ...userSignUpData,
-                  password: e.target.value,
-                });
-              }}
-              className="outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
-            />
+            <div className="flex items-center ">
+              <input
+                required
+                type={showPassword ? "text" : "password"}
+                placeholder="password"
+                value={userSignUpData?.password}
+                onChange={(e) => {
+                  setUserSignUpData({
+                    ...userSignUpData,
+                    password: e.target.value,
+                  });
+                }}
+                className="outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
+              />
+              {showPassword ? (
+                <div
+                  className="ml-[-3rem]"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <VisibilityOffIcon />
+                </div>
+              ) : (
+                <div
+                  className="ml-[-2.5rem]"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {" "}
+                  <VisibilityIcon />
+                </div>
+              )}
+            </div>
           </label>
           <label className="flex flex-col items-start gap-[0.2rem] font-medium">
             Confirm Password{" "}
-            <input
-              required
-              type="password"
-              placeholder="confirm password"
-              value={userSignUpData?.confirmPassword}
-              onChange={(e) => {
-                setUserSignUpData({
-                  ...userSignUpData,
-                  confirmPassword: e.target.value,
-                });
-              }}
-              className="outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
-            />
+            <div className="flex items-center">
+              <input
+                required
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="confirm password"
+                value={userSignUpData?.confirmPassword}
+                onChange={(e) => {
+                  setUserSignUpData({
+                    ...userSignUpData,
+                    confirmPassword: e.target.value,
+                  });
+                }}
+                className="outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
+              />
+              {showConfirmPassword ? (
+                <button
+                  className="ml-[-3rem]"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  <VisibilityOffIcon />
+                </button>
+              ) : (
+                <div
+                  className="ml-[-2.5rem]"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {" "}
+                  <VisibilityIcon />
+                </div>
+              )}
+            </div>
           </label>
           <button
             type="submit"

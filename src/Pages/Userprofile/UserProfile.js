@@ -76,7 +76,6 @@ export const UserProfile = () => {
     boxShadow: 24,
     p: 4,
   };
-
   return (
     <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary">
       <div className="fixed w-full">

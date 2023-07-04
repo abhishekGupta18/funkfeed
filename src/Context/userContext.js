@@ -150,7 +150,6 @@ export const UserContextProvider = ({ children }) => {
       console.error(e);
     }
   };
-  console.log(usersState?.allUsers);
 
   useEffect(() => {
     token && getAllUsers();

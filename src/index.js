@@ -11,7 +11,7 @@ import { AuthContextProvider } from "./Context/AuthContext";
 import { UserContextProvider } from "./Context/userContext";
 import { PostContextProvider } from "./Context/PostContext";
 import { ThemeContextProvider } from "./Context/ThemeContext";
-
+import { CommentContextProvider } from "./Context/CommentsContext";
 makeServer();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,7 +22,9 @@ root.render(
         <AuthContextProvider>
           <UserContextProvider>
             <PostContextProvider>
-              <App />
+              <CommentContextProvider>
+                <App />
+              </CommentContextProvider>
             </PostContextProvider>
           </UserContextProvider>
         </AuthContextProvider>

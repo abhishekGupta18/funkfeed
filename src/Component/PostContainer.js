@@ -39,9 +39,6 @@ export const PostCard = ({ post }) => {
     (user) => user?.username === post?.username
   );
 
-  console.log(usersState?.allUsers);
-
-  console.log(findUser);
   const navigate = useNavigate();
 
   const openEditPostModal = () => setEditPostModal(true);

@@ -22,7 +22,17 @@ export const posts = [
     username: "abhi",
     createdAt: "2023-06-06T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "njsjkw82n_i83s_882j_ojiu38jsk9",
+        username: "anuj",
+        text: "friends forever🙌🤩.",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),
@@ -72,7 +82,17 @@ export const posts = [
     username: "abhi",
     createdAt: "2023-06-30T01:06:00+05:30",
     updatedAt: formatDate(),
-    comments: [],
+    comments: [
+      {
+        _id: "n_i83s_882j_ojiujsk9",
+        username: "vivek",
+        text: "Happiest Birthday Bhaiya 🙌.",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
   },
   {
     _id: uuid(),

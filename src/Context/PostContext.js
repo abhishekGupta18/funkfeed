@@ -152,6 +152,7 @@ export const PostContextProvider = ({ children }) => {
     <PostContext.Provider
       value={{
         postLoading,
+        postDispatch,
         postState,
         getUserPost,
         addPostModal,

@@ -45,7 +45,7 @@ export const SideBar = () => {
   };
 
   return (
-    <div className=" w-[18rem] py-4  flex flex-col gap-5 bg-white-color mx-auto items-center rounded-[0.5rem] mobile-view  xl:w-[15rem] sm:bg-white-color sm:h-[3rem] sm:flex-row sm:justify-center sm:mx-0 sm:rounded-0 sm:fixed sm:bottom-0 sm:z-30 dark:bg-dark-primary   ">
+    <div className=" w-[18rem] py-4  flex flex-col gap-5 bg-white-color mx-auto items-center rounded-[0.5rem] mobile-view  xl:w-[15rem] sm:bg-white-color sm:h-[3rem] sm:flex-row sm:justify-around sm:mx-0 sm:rounded-0 sm:fixed sm:bottom-0 sm:z-30 dark:bg-dark-primary   ">
       <div
         className="flex justify-center gap-[1rem] cursor-pointer  py-2  w-[80%]  shadow-md rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
         onClick={() => navigate("/")}
@@ -80,7 +80,7 @@ export const SideBar = () => {
       </div>
       <div
         title="add post"
-        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-2 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center dark:border dark:border-white-color dark:border-solid dark:text-white-color "
+        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-1 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center  dark:text-white-color sm:dark:border sm:dark:border-sold sm:dark:border-white-color sm:order-3"
         onClick={() => openNewPostModal()}
       >
         <AddCircleOutlineIcon />
@@ -127,7 +127,10 @@ export const SideBar = () => {
             )}
             <div className="flex justify-between items-center">
               <div className="flex gap-4  items-center ">
-                <label onClick={() => setShowEmoji(!showEmoji)}>
+                <label
+                  className="cursor-pointer dark:text-white-color"
+                  onClick={() => setShowEmoji(!showEmoji)}
+                >
                   <EmojiEmotionsOutlinedIcon />
                 </label>
                 {showEmoji && (
@@ -151,7 +154,7 @@ export const SideBar = () => {
                     />{" "}
                   </div>
                 )}
-                <label className="cursor-pointer">
+                <label className="cursor-pointer dark:text-white-color">
                   <input
                     type="file"
                     accept="image/*"

@@ -24,6 +24,7 @@
 @media (max-width: 600px) {
   .smaller-mobile {
     width: 90%;
+    margin: 0 auto;
   }
 }
 @media (max-width: 470px) {

@@ -86,7 +86,7 @@ export const UserProfile = () => {
           <SideBar />
         </div>
         <div className="flex flex-col gap-4 overflow-y-auto h-[86vh]  no-scroll xl:w-[35rem]  smaller-mobile">
-          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-full dark:bg-dark-primary  ">
+          <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-[40rem] dark:bg-dark-primary xl:w-[35rem]  smaller-mobile ">
             <div className="  flex justify-between p-4 items-center">
               <div className="flex items-center gap-4">
                 <img

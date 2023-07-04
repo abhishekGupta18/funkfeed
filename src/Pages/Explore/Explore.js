@@ -25,7 +25,7 @@ export const Explore = () => {
             <Loader />
           </div>
         ) : (
-          <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
+          <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll sm:mb-8 ">
             {postState?.allPost
               ?.filter((post) => post?.username !== userInfo?.username)
               .map((post) => (

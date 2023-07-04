@@ -56,7 +56,7 @@ export const Home = () => {
             <Loader />
           </div>
         ) : (
-          <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll">
+          <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll sm:mb-8">
             {latestPosts?.length === 0 ? (
               <div className="flex flex-col gap-2 items-center">
                 <p className="text-xl font-bold dark:text-white-color">

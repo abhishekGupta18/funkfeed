@@ -14,7 +14,7 @@ export const PostDetails = () => {
   const [postDetails, setPostDetails] = useState({});
   const [commentInput, setCommentInput] = useState("");
 
-  const { filteredUsers } = useUserContext();
+  const { usersState, filteredUsers } = useUserContext();
   const { postState } = usePostContext();
   const { addComment } = useCommentContext();
   const { postId } = useParams();
@@ -38,7 +38,7 @@ export const PostDetails = () => {
   }, [postState?.allPost]);
 
   return (
-    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary">
+    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
       <div className="fixed w-full">
         <Navbar />
       </div>
@@ -46,11 +46,11 @@ export const PostDetails = () => {
         <div className="bg-white h-max rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
           <SideBar />
         </div>
-        <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
+        <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll sm:mb-8">
           <div>
             <PostCard post={postDetails} />
           </div>
-          <div className="flex gap-4 items-center w-[40rem]">
+          <div className="flex gap-4 items-center w-[40rem] xl:w-[35rem]  smaller-mobile">
             <input
               value={commentInput}
               type="text"
@@ -59,7 +59,7 @@ export const PostDetails = () => {
               onChange={(e) => setCommentInput(e.target.value)}
             />
             <button
-              className="border-solid border-primary-color border bg-white px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white "
+              className=" rounded-[0.5rem] font-bold px-4 py-2 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color "
               onClick={() => {
                 addComment(postDetails?._id, commentInput);
                 setCommentInput("");
@@ -69,15 +69,42 @@ export const PostDetails = () => {
             </button>
           </div>
           <div>
-            <ul>
-              {postDetails?.comments?.map((item) => (
-                <li>
-                  <div>
-                    <p>{item?.username}</p>
-                    <p>{item?.text}</p>
+            <ul className="flex flex-col gap-2">
+              {postDetails?.comments?.map((comment) => {
+                const userComment = usersState?.allUsers?.find(
+                  (user) => user?.username === comment?.username
+                );
+                return (
+                  <div className="flex flex-col gap-2 w-full px-4 py-2 rounded-[0.5rem] border-none outline-none  bg-white-color dark:bg-dark-primary xl:w-[35rem]  smaller-mobile">
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={userComment?.profileImg}
+                        alt=""
+                        className="rounded-[50%] w-[35px] h-[35px] object-cover cursor-pointer"
+                      />
+                      <div>
+                        <strong className="dark:text-white-color">
+                          {" "}
+                          <p>@{comment?.username}</p>
+                        </strong>
+                        <p className="text-sm dark:text-white-color">
+                          {" "}
+                          {` ${new Date(comment?.createdAt)
+                            .toDateString()
+                            .split(" ")
+                            .slice(1, 4)
+                            .join(" ")}`}
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="font-medium ml-4 dark:text-white-color">
+                        {comment?.text}
+                      </p>
+                    </div>
                   </div>
-                </li>
-              ))}
+                );
+              })}
             </ul>
           </div>
         </div>

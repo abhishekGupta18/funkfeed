@@ -27,6 +27,7 @@ export const posts = [
         _id: "njsjkw82n_i83s_882j_ojiu38jsk9",
         username: "anuj",
         text: "friends forever🙌🤩.",
+        createdAt: "2023-06-06T01:06:00+05:30",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -87,6 +88,7 @@ export const posts = [
         _id: "n_i83s_882j_ojiujsk9",
         username: "vivek",
         text: "Happiest Birthday Bhaiya 🙌.",
+        createdAt: "2023-06-030T01:06:00+05:30",
         votes: {
           upvotedBy: [],
           downvotedBy: [],

@@ -27,7 +27,7 @@ export const BookMarks = () => {
             <Loader />
           </div>
         ) : (
-          <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll ">
+          <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll sm:mb-8 ">
             {userBookmarks?.length === 0 ? (
               <p className="text-xl font-bold dark:text-white-color">
                 No Bookmarks Yet!

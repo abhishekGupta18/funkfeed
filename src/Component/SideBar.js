@@ -45,7 +45,7 @@ export const SideBar = () => {
   };
 
   return (
-    <div className=" w-[18rem] py-4  flex flex-col gap-5 bg-white-color mx-auto items-center rounded-[0.5rem] mobile-view  xl:w-[15rem] sm:bg-white-color sm:h-[3rem] sm:flex-row sm:justify-around sm:mx-0 sm:rounded-0 sm:fixed sm:bottom-0 sm:z-30 dark:bg-dark-primary   ">
+    <div className=" w-[18rem] py-4  flex flex-col gap-5 bg-white-color mx-auto items-center rounded-[0.5rem] mobile-view  xl:w-[15rem] sm:bg-white-color sm:h-[3rem] sm:flex-row sm:justify-around sm:mx-0 sm:rounded-0 sm:fixed sm:bottom-0 sm:z-30 dark:bg-dark-primary">
       <div
         className="flex justify-center gap-[1rem] cursor-pointer  py-2  w-[80%]  shadow-md rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
         onClick={() => navigate("/")}

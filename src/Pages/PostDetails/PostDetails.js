@@ -1,6 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+
 import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
 import { SuggestedUserCard } from "../../Component/SuggestedUserCard";
@@ -8,15 +13,15 @@ import { PostCard } from "../../Component/PostContainer";
 import { useUserContext } from "../../Context/userContext";
 import { usePostContext } from "../../Context/PostContext";
 import { useCommentContext } from "../../Context/CommentsContext";
-import { useEffect } from "react";
-
+import { useAuthContext } from "../../Context/AuthContext";
 export const PostDetails = () => {
   const [postDetails, setPostDetails] = useState({});
   const [commentInput, setCommentInput] = useState("");
 
+  const { userInfo } = useAuthContext();
   const { usersState, filteredUsers } = useUserContext();
   const { postState } = usePostContext();
-  const { addComment } = useCommentContext();
+  const { addComment, deleteComment } = useCommentContext();
   const { postId } = useParams();
 
   const getPostDetails = async () => {
@@ -69,33 +74,54 @@ export const PostDetails = () => {
             </button>
           </div>
           <div>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2 sm:mb-8">
               {postDetails?.comments?.map((comment) => {
                 const userComment = usersState?.allUsers?.find(
                   (user) => user?.username === comment?.username
                 );
                 return (
                   <div className="flex flex-col gap-2 w-full px-4 py-2 rounded-[0.5rem] border-none outline-none  bg-white-color dark:bg-dark-primary xl:w-[35rem]  smaller-mobile">
-                    <div className="flex items-center gap-4">
-                      <img
-                        src={userComment?.profileImg}
-                        alt=""
-                        className="rounded-[50%] w-[35px] h-[35px] object-cover cursor-pointer"
-                      />
-                      <div>
-                        <strong className="dark:text-white-color">
-                          {" "}
-                          <p>@{comment?.username}</p>
-                        </strong>
-                        <p className="text-sm dark:text-white-color">
-                          {" "}
-                          {` ${new Date(comment?.createdAt)
-                            .toDateString()
-                            .split(" ")
-                            .slice(1, 4)
-                            .join(" ")}`}
-                        </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <img
+                          src={userComment?.profileImg}
+                          alt=""
+                          className="rounded-[50%] w-[35px] h-[35px] object-cover cursor-pointer"
+                        />
+                        <div>
+                          <strong className="dark:text-white-color">
+                            {" "}
+                            <p>@{comment?.username}</p>
+                          </strong>
+                          <p className="text-sm dark:text-white-color">
+                            {" "}
+                            {` ${new Date(comment?.createdAt)
+                              .toDateString()
+                              .split(" ")
+                              .slice(1, 4)
+                              .join(" ")}`}
+                          </p>
+                        </div>
                       </div>
+                      {comment?.username === userInfo?.username && (
+                        <div className="flex items-center gap-4">
+                          <label
+                            title="edit comment"
+                            className="cursor-pointer dark:text-white-color"
+                          >
+                            <ModeEditOutlineIcon />
+                          </label>
+                          <label
+                            title="delete comment"
+                            className="cursor-pointer dark:text-white-color"
+                            onClick={() =>
+                              deleteComment(postDetails?._id, comment?._id)
+                            }
+                          >
+                            <DeleteIcon />
+                          </label>
+                        </div>
+                      )}
                     </div>
                     <div>
                       <p className="font-medium ml-4 dark:text-white-color">

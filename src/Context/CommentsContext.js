@@ -29,8 +29,24 @@ export const CommentContextProvider = ({ children }) => {
     }
   };
 
+  const deleteComment = async (postId, commentId) => {
+    try {
+      const { data, status } = await axios({
+        method: "POST",
+        url: `/api/comments/delete/${postId}/${commentId}`,
+        headers: { authorization: token },
+      });
+      if (status === 201 || status === 200) {
+        postDispatch({ type: "get_all_post", payload: data?.posts });
+        toast.info("Comment removed!");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
-    <CommentContext.Provider value={{ addComment }}>
+    <CommentContext.Provider value={{ addComment, deleteComment }}>
       {children}
     </CommentContext.Provider>
   );

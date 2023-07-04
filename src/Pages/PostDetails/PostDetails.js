@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { Modal } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
@@ -17,11 +18,13 @@ import { useAuthContext } from "../../Context/AuthContext";
 export const PostDetails = () => {
   const [postDetails, setPostDetails] = useState({});
   const [commentInput, setCommentInput] = useState("");
+  const [editCommentModal, setEditCommentModal] = useState(false);
+  const [editCommentValue, setEditCommentValue] = useState("");
 
   const { userInfo } = useAuthContext();
   const { usersState, filteredUsers } = useUserContext();
   const { postState } = usePostContext();
-  const { addComment, deleteComment } = useCommentContext();
+  const { addComment, deleteComment, editComment } = useCommentContext();
   const { postId } = useParams();
 
   const getPostDetails = async () => {
@@ -41,6 +44,20 @@ export const PostDetails = () => {
   useEffect(() => {
     getPostDetails();
   }, [postState?.allPost]);
+
+  const openEditCommentModal = () => setEditCommentModal(true);
+  const closeEditCommentModal = () => setEditCommentModal(false);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
     <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
@@ -108,6 +125,10 @@ export const PostDetails = () => {
                           <label
                             title="edit comment"
                             className="cursor-pointer dark:text-white-color"
+                            onClick={() => {
+                              openEditCommentModal();
+                              setEditCommentValue(comment?.text);
+                            }}
                           >
                             <ModeEditOutlineIcon />
                           </label>
@@ -128,6 +149,46 @@ export const PostDetails = () => {
                         {comment?.text}
                       </p>
                     </div>
+                    <Modal
+                      open={editCommentModal}
+                      onClose={closeEditCommentModal}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                    >
+                      <div style={{ ...style }}>
+                        <div className="bg-white-color p-4 rounded-[0.5rem] flex flex-col justify-between gap-4  outline-none border-none dark:bg-dark-secondary">
+                          <input
+                            type="text"
+                            value={editCommentValue}
+                            onChange={(e) =>
+                              setEditCommentValue(e.target.value)
+                            }
+                            className="p-2 border-none outline-none rounded-[0.5rem] dark:bg-dark-primary dark:text-white-color"
+                          />
+                          <div className="flex items-center gap-4">
+                            <button
+                              className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white-color dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
+                              onClick={() => closeEditCommentModal()}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white-color dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
+                              onClick={() => {
+                                editComment(
+                                  postDetails?._id,
+                                  comment?._id,
+                                  editCommentValue
+                                );
+                                closeEditCommentModal();
+                              }}
+                            >
+                              Save Changes
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal>
                   </div>
                 );
               })}

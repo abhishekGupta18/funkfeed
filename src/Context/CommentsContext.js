@@ -36,7 +36,8 @@ export const CommentContextProvider = ({ children }) => {
         url: `/api/comments/delete/${postId}/${commentId}`,
         headers: { authorization: token },
       });
-      if (status === 201 || status === 200) {
+      console.log(status);
+      if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data?.posts });
         toast.info("Comment removed!");
       }
@@ -45,8 +46,24 @@ export const CommentContextProvider = ({ children }) => {
     }
   };
 
+  const editComment = async (postId, commentId, commentData) => {
+    try {
+      const { data, status } = await axios.post(
+        `/api/comments/edit/${postId}/${commentId}`,
+        { commentData },
+        { headers: { authorization: token } }
+      );
+      if (status === 201 || status === 200) {
+        postDispatch({ type: "get_all_post", payload: data?.posts });
+        toast.success("Comment edited!");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
-    <CommentContext.Provider value={{ addComment, deleteComment }}>
+    <CommentContext.Provider value={{ addComment, deleteComment, editComment }}>
       {children}
     </CommentContext.Provider>
   );

@@ -26,6 +26,7 @@ export const UserProfile = () => {
     editUserProfile,
     avatars,
     userLoading,
+    usersState,
   } = useUserContext();
   const { postState, getUserPost, postLoading } = usePostContext();
   const { username } = useParams();
@@ -54,7 +55,7 @@ export const UserProfile = () => {
 
   useEffect(() => {
     getUserData();
-  }, [username]);
+  }, [username, usersState]);
 
   const currentUserPost = postState?.allPost?.filter(
     (item) => item?.username === username
@@ -229,7 +230,7 @@ export const UserProfile = () => {
                 />
                 <label className="absolute bottom-[10%] left-[40%] cursor-pointer">
                   <input
-                    className="hidden "
+                    className="hidden"
                     type="file"
                     accept="image/*"
                     onChange={(e) => {

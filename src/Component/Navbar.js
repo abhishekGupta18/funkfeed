@@ -119,7 +119,7 @@ export const Navbar = () => {
                 onChange={(e) => setSearchUser(e.target.value)}
               />
               <div
-                className="mr-4 dark:text-white-color"
+                className="mr-4 dark:text-white-color cursor-pointer"
                 onClick={() => closeSearchModal()}
               >
                 <CancelOutlinedIcon />

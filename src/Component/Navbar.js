@@ -4,6 +4,7 @@ import Logo from "../Asset/final_logo.png";
 import LogoDarkMode from "../Asset/dark mode logo.jpeg";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SearchIcon from "@mui/icons-material/Search";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { Modal } from "@mui/material";
 
@@ -60,12 +61,12 @@ export const Navbar = () => {
             title="search user"
             type="text"
             placeholder="Search User"
-            className="border border-black border-solid w-[20rem] px-4 py-1 rounded-[0.5rem] outline-none sm:hidden"
+            className="border border-black border-solid w-[20rem] px-4 py-1 rounded-[0.5rem] outline-none sm:hidden dark:bg-dark-primary dark:text-white-color dark:border-white-color"
           />
         </div>
         <div
           title="search user"
-          className="search-icon ml-[-2.5rem] sm:w-[2rem] sm:h-[2rem] sm:px-auto sm:flex sm:display-center sm:items-center sm:bg-white-color sm:rounded-[50%]"
+          className="search-icon ml-[-2.5rem] sm:w-[2rem] sm:h-[2rem] sm:px-auto sm:flex sm:display-center sm:items-center sm:bg-white-color sm:rounded-[50%] dark:text-white-color dark:sm:bg-dark-primary dark:sm:text-white-color"
         >
           <SearchIcon />
         </div>
@@ -109,13 +110,21 @@ export const Navbar = () => {
       >
         <div style={{ ...style }}>
           <div className="w-[25rem] bg-white-color rounded-[0.5rem] p-4  flex flex-col gap-4 dark:bg-dark-secondary ">
-            <input
-              value={searchUser}
-              type="text"
-              placeholder="search user"
-              className="px-4 py-1 mx-auto w-[60%] rounded-[1rem] outline-none border border-solid border-primary-color dark:bg-dark-primary dark:text-white-color dark:border-white-color"
-              onChange={(e) => setSearchUser(e.target.value)}
-            />
+            <div className="flex items-center justify-center">
+              <input
+                value={searchUser}
+                type="text"
+                placeholder="search user"
+                className="px-4 py-1 mx-auto w-[60%] rounded-[1rem] outline-none border border-solid border-primary-color dark:bg-dark-primary dark:text-white-color dark:border-white-color"
+                onChange={(e) => setSearchUser(e.target.value)}
+              />
+              <div
+                className="mr-4 dark:text-white-color"
+                onClick={() => closeSearchModal()}
+              >
+                <CancelOutlinedIcon />
+              </div>
+            </div>
             <div>
               <ul className="flex flex-col gap-4">
                 {searchByUsername?.length === 0 ? (

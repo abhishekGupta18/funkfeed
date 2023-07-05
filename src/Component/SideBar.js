@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
@@ -44,40 +44,49 @@ export const SideBar = () => {
     setImage(null);
   };
 
+  const getstyles = ({ isActive }) => ({
+    color: isActive ? "black" : null,
+    backgroundColor: isActive ? "#dbeafe" : null,
+  });
+
   return (
     <div className=" w-[18rem] py-4  flex flex-col gap-5 bg-white-color mx-auto items-center rounded-[0.5rem] mobile-view  xl:w-[15rem] sm:bg-white-color sm:h-[3rem] sm:flex-row sm:justify-around sm:mx-0 sm:rounded-0 sm:fixed sm:bottom-0 sm:z-30 dark:bg-dark-primary">
-      <div
+      {" "}
+      <NavLink
+        style={getstyles}
+        to="/"
         className="flex justify-center gap-[1rem] cursor-pointer  py-2  w-[80%]  shadow-md rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
-        onClick={() => navigate("/")}
       >
         <HomeIcon />
         <p className="font-bold md:hidden">Feed</p>
-      </div>
-
-      <div
+      </NavLink>
+      <NavLink
+        style={getstyles}
+        to="/explore"
         className="flex gap-[1rem] justify-center cursor-pointer py-2  w-[80%] shadow-md
        rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
-        onClick={() => navigate("/explore")}
       >
         <ExploreIcon />
         <p className="font-bold md:hidden">Explore</p>
-      </div>
-      <div
+      </NavLink>
+      <NavLink
+        to="/bookmarks"
+        style={getstyles}
         className="flex gap-[1rem] justify-center cursor-pointer pl-5  py-2 w-[80%] shadow-md
        rounded-[0.5rem] hover:bg-light-primary-color md:pl-0 dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
-        onClick={() => navigate("/bookmarks")}
       >
         <BookmarksIcon />
         <p className="font-bold md:hidden">Bookmarks</p>
-      </div>
-      <div
+      </NavLink>
+      <NavLink
+        to={`/userProfile/${userInfo?.username}`}
+        style={getstyles}
         className="flex gap-[1rem] justify-center cursor-pointer py-2 w-[80%] shadow-md
        rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
-        onClick={() => navigate(`/userProfile/${userInfo?.username}`)}
       >
         <ManageAccountsIcon />
         <p className="font-bold md:hidden">Profile</p>
-      </div>
+      </NavLink>
       <div
         title="add post"
         className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-1 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center  dark:text-white-color sm:dark:border sm:dark:border-sold sm:dark:border-white-color sm:order-3"
@@ -91,7 +100,6 @@ export const SideBar = () => {
       >
         Logout
       </button>
-
       <Modal
         open={openPostModal}
         onClose={closeNewPostModal}

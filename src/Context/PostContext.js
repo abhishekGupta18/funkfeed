@@ -18,7 +18,7 @@ export const PostContextProvider = ({ children }) => {
   const [postLoading, setPostLoading] = useState(false);
   const [addPostModal, setAddPostModal] = useState(false);
   const [trending, setTrending] = useState(false);
-  const [latest, setLatest] = useState(false);
+  const [latest, setLatest] = useState(true);
   const { token } = useAuthContext();
   const [postState, postDispatch] = useReducer(postReducer, {
     allPost: [],

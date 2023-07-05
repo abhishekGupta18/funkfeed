@@ -195,7 +195,7 @@ export const PostDetails = () => {
             </ul>
           </div>
         </div>
-        <div className="bg-white p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden dark:bg-dark-primary ">
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden dark:bg-dark-primary ">
           <strong>
             <p className="dark:text-white-color">Users you might know</p>
           </strong>

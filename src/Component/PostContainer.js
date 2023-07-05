@@ -164,8 +164,8 @@ export const PostCard = ({ post }) => {
           </div>
         )}
         <div
-          title="comment dark:text-white-color"
-          className="cursor-pointer flex items-center gap-2"
+          title="comment"
+          className="cursor-pointer flex items-center gap-2 dark:text-white-color"
           onClick={() => navigate(`/post/${post._id}`)}
         >
           <ModeCommentOutlinedIcon /> Comment

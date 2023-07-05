@@ -19,7 +19,6 @@ export const CommentContextProvider = ({ children }) => {
         data: { commentData },
         headers: { authorization: token },
       });
-      console.log(data);
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data?.posts });
         toast.success("comment successfully added");

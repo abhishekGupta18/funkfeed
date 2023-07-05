@@ -30,12 +30,12 @@ export const SignUp = () => {
     }
   };
   return (
-    <div className="bg-light-primary-color p-[2rem] flex  ">
-      <div className="w-[25rem]  mx-auto px-16  rounded-[0.5rem] gap-[0.5rem]  shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:w-[20rem] md:px-4 ">
+    <div className="bg-light-primary-color p-[2rem] flex h-max ">
+      <div className="w-[25rem]  mx-auto px-16  rounded-[0.5rem] h-full  shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:w-[20rem] md:px-4 ">
         {" "}
         <form
           onSubmit={handleUserSignUp}
-          className="  flex flex-col items-center gap-4  mx-auto py-[2rem]"
+          className="  flex flex-col items-center gap-2  mx-auto py-[2rem]"
         >
           <img
             src={Logo}
@@ -120,7 +120,7 @@ export const SignUp = () => {
                     password: e.target.value,
                   });
                 }}
-                className="outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
+                className="outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] mr-4 hover:border-secondary-color"
               />
               {showPassword ? (
                 <div
@@ -131,7 +131,7 @@ export const SignUp = () => {
                 </div>
               ) : (
                 <div
-                  className="ml-[-2.5rem]"
+                  className="ml-[-3rem]"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {" "}
@@ -154,7 +154,7 @@ export const SignUp = () => {
                     confirmPassword: e.target.value,
                   });
                 }}
-                className="outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
+                className="outline-none border-solid mr-4 border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
               />
               {showConfirmPassword ? (
                 <button
@@ -165,7 +165,7 @@ export const SignUp = () => {
                 </button>
               ) : (
                 <div
-                  className="ml-[-2.5rem]"
+                  className="ml-[-3rem]"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
                   {" "}
@@ -176,7 +176,7 @@ export const SignUp = () => {
           </label>
           <button
             type="submit"
-            className="text-[black] mt-[0.5rem] border-solid border-[1px] border-[black] px-[1rem] py-[0.5rem] font-bold rounded-[0.5rem] hover:bg-primary-color hover:text-[#ffff]"
+            className="text-[black] mt-8 border-solid border-[1px] border-[black] px-[1rem] py-[0.5rem] font-bold rounded-[0.5rem] hover:bg-primary-color hover:text-[#ffff]"
           >
             Create New Account
           </button>

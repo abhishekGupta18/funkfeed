@@ -43,7 +43,7 @@ export const Login = () => {
           className="mb-[0.5rem]"
         />
 
-        <label className="flex flex-col items-start gap-[0.5rem] font-medium">
+        <label className="flex flex-col items-start gap-[0.5rem] font-medium ">
           Username{" "}
           <input
             required
@@ -58,7 +58,7 @@ export const Login = () => {
         </label>
         <label className="flex flex-col items-start gap-[0.5rem] font-medium">
           Password{" "}
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <input
               required
               type={showPassword ? "text" : "password"}
@@ -70,7 +70,7 @@ export const Login = () => {
                   password: e.target.value,
                 });
               }}
-              className=" outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
+              className=" outline-none border-solid  border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
             />
             {showPassword ? (
               <div

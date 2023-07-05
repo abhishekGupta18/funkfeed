@@ -63,7 +63,7 @@ export const SideBar = () => {
       <NavLink
         style={getstyles}
         to="/explore"
-        className="flex gap-[1rem] justify-center cursor-pointer py-2  w-[80%] shadow-md
+        className="flex gap-[1rem] justify-center cursor-pointer py-2 pl-4 w-[80%] shadow-md
        rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
       >
         <ExploreIcon />
@@ -72,7 +72,7 @@ export const SideBar = () => {
       <NavLink
         to="/bookmarks"
         style={getstyles}
-        className="flex gap-[1rem] justify-center cursor-pointer pl-5  py-2 w-[80%] shadow-md
+        className="flex gap-[1rem] justify-center cursor-pointer pl-12  py-2 w-[80%] shadow-md
        rounded-[0.5rem] hover:bg-light-primary-color md:pl-0 dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
       >
         <BookmarksIcon />
@@ -81,7 +81,7 @@ export const SideBar = () => {
       <NavLink
         to={`/userProfile/${userInfo?.username}`}
         style={getstyles}
-        className="flex gap-[1rem] justify-center cursor-pointer py-2 w-[80%] shadow-md
+        className="flex gap-[1rem] justify-center cursor-pointer py-2 pl-4 w-[80%] shadow-md
        rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
       >
         <ManageAccountsIcon />

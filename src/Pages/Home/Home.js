@@ -56,7 +56,7 @@ export const Home = () => {
             <Loader />
           </div>
         ) : (
-          <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll sm:mb-8">
+          <div className=" flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh]  sm:mb-8">
             <div className=" hidden lg:flex lg:justify-around lg:gap-8 lg:w-[90%] lg:mx-auto">
               <button
                 className="text-xl px-4 py-1 rounded-[0.5rem]  w-[50%] flex items-center justify-center gap-2 border border-solid bg-white-color border-black-color  hover:bg-primary-color hover:text-white-color  dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import {
   createContext,
   useContext,
@@ -27,7 +28,7 @@ export const PostContextProvider = ({ children }) => {
   const [openPostModal, setOpenPostModal] = useState(false);
   const openNewPostModal = () => setOpenPostModal(true);
   const closeNewPostModal = () => setOpenPostModal(false);
-
+  const navigate = useNavigate();
   const getAllPost = async () => {
     try {
       setPostLoading(true);
@@ -101,6 +102,7 @@ export const PostContextProvider = ({ children }) => {
       if (status === 201) {
         postDispatch({ type: "get_all_post", payload: data.posts });
         toast.info("Post deleted");
+        navigate("/");
       }
     } catch (e) {
       console.error(e);

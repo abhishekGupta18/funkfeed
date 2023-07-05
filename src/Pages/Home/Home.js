@@ -57,6 +57,27 @@ export const Home = () => {
           </div>
         ) : (
           <div className=" flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll sm:mb-8">
+            <div className=" hidden lg:flex lg:justify-around lg:gap-8 lg:w-[90%] lg:mx-auto">
+              <button
+                className="text-xl px-4 py-1 rounded-[0.5rem]  w-[50%] flex items-center justify-center gap-2 border border-solid bg-white-color border-black-color  hover:bg-primary-color hover:text-white-color  dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
+                onClick={() => {
+                  setLatest(true);
+                  setTrending(false);
+                }}
+              >
+                Latest <CalendarMonthOutlinedIcon />
+              </button>
+              <button
+                className="text-xl px-4 py-1 rounded-[0.5rem] w-[50%] flex items-center justify-center gap-2 border border-solid bg-white-color border-black-color  hover:bg-primary-color hover:text-white-color  dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
+                onClick={() => {
+                  setTrending(true);
+                  setLatest(false);
+                }}
+              >
+                Trending <WhatshotOutlinedIcon />
+              </button>
+            </div>
+
             {latestPosts?.length === 0 ? (
               <div className="flex flex-col gap-2 items-center">
                 <p className="text-xl font-bold dark:text-white-color">

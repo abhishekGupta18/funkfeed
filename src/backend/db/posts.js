@@ -151,7 +151,7 @@ export const posts = [
       "https://staticg.sportskeeda.com/wp-content/uploads/2016/03/516527328-1458418945-800.jpg",
     mediaAlt: "virat kohli",
     likes: {
-      likeCount: 83,
+      likeCount: 20,
       likedBy: [],
       dislikedBy: [],
     },

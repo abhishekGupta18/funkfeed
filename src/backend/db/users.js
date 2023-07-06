@@ -19,6 +19,32 @@ export const users = [
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    following: [
+      {
+        _id: "ebhtffhg6c",
+        firstName: "Jane",
+        lastName: "Doe",
+        username: "janeDoe",
+        profileImg:
+          "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554256/socialmedia/avatars/jane-doe_il3cvx.webp",
+      },
+      {
+        _id: "vivbhcss69jk",
+        firstName: "Vivek",
+        lastName: "Bhatt",
+        username: "vivek",
+        profileImg: "https://avatars.githubusercontent.com/u/93856336?v=4",
+      },
+    ],
+    followers: [
+      {
+        _id: "vivbhcss69jk",
+        firstName: "Vivek",
+        lastName: "Bhatt",
+        username: "vivek",
+        profileImg: "https://avatars.githubusercontent.com/u/93856336?v=4",
+      },
+    ],
   },
   {
     _id: "vdkdgdndg96",

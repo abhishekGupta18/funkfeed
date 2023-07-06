@@ -15,6 +15,7 @@ import { usePostContext } from "../../Context/PostContext";
 
 export const UserProfile = () => {
   const [userData, setUserData] = useState({});
+  const [editUserData, setEditUserData] = useState({});
   const [editProfileModal, setUserProfileModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [image, setImage] = useState("");
@@ -47,6 +48,7 @@ export const UserProfile = () => {
 
       if (status === 200) {
         setUserData(data?.user);
+        setEditUserData(data?.user);
         getUserPost(username);
       }
     } catch (e) {
@@ -58,13 +60,15 @@ export const UserProfile = () => {
     getUserData();
   }, [username, usersState]);
 
+  console.log(editUserData);
+
   const currentUserPost = postState?.allPost?.filter(
     (item) => item?.username === username
   );
 
   const editProfileHandler = (e) => {
     e.preventDefault();
-    editUserProfile(userData);
+    editUserProfile(editUserData);
     closeEditProfileModal();
   };
   const style = {
@@ -242,8 +246,8 @@ export const UserProfile = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      setUserData({
-                        ...userData,
+                      setEditUserData({
+                        ...editUserData,
                         profileImg: URL.createObjectURL(e.target.files[0]),
                       });
                     }}
@@ -271,10 +275,10 @@ export const UserProfile = () => {
               <input
                 className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem] dark:text-white-color dark:bg-dark-primary"
                 type="text"
-                value={userData?.firstName}
+                value={editUserData?.firstName}
                 onChange={(e) => {
-                  setUserData({
-                    ...userData,
+                  setEditUserData({
+                    ...editUserData,
                     firstName: e.target.value,
                   });
                 }}
@@ -285,10 +289,10 @@ export const UserProfile = () => {
               <input
                 className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem] dark:text-white-color dark:bg-dark-primary"
                 type="text"
-                value={userData?.lastName}
+                value={editUserData?.lastName}
                 onChange={(e) => {
-                  setUserData({
-                    ...userData,
+                  setEditUserData({
+                    ...editUserData,
                     lastName: e.target.value,
                   });
                 }}
@@ -300,10 +304,10 @@ export const UserProfile = () => {
                 className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem] dark:text-white-color dark:bg-dark-primary "
                 rows={2}
                 cols={40}
-                value={userData?.website}
+                value={editUserData?.website}
                 onChange={(e) => {
-                  setUserData({
-                    ...userData,
+                  setEditUserData({
+                    ...editUserData,
                     website: e.target.value,
                   });
                 }}
@@ -315,10 +319,10 @@ export const UserProfile = () => {
                 className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem] dark:text-white-color dark:bg-dark-primary "
                 rows={4}
                 cols={40}
-                value={userData?.bio}
+                value={editUserData?.bio}
                 onChange={(e) => {
-                  setUserData({
-                    ...userData,
+                  setEditUserData({
+                    ...editUserData,
                     bio: e.target.value,
                   });
                 }}
@@ -327,7 +331,10 @@ export const UserProfile = () => {
             <div className="flex items-center gap-8">
               <button
                 className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
-                onClick={() => closeEditProfileModal()}
+                onClick={() => {
+                  closeEditProfileModal();
+                  setEditUserData(userData);
+                }}
               >
                 Cancel
               </button>
@@ -375,7 +382,7 @@ export const UserProfile = () => {
                 className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                 onClick={() => {
                   closeAvatareModal();
-                  setUserData({ ...userData, profileImg: image });
+                  setEditUserData({ ...editUserData, profileImg: image });
                 }}
               >
                 Save

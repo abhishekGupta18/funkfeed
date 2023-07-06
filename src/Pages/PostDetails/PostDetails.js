@@ -59,7 +59,6 @@ export const PostDetails = () => {
     boxShadow: 24,
     p: 4,
   };
-  console.log(postDetails);
   return (
     <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
       <div className="fixed w-full">

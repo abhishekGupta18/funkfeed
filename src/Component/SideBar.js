@@ -64,7 +64,7 @@ export const SideBar = () => {
         style={getstyles}
         to="/explore"
         className="flex gap-[1rem] justify-center cursor-pointer py-2 pl-4 w-[80%] shadow-md
-       rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
+       rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color sm:pl-0"
       >
         <ExploreIcon />
         <p className="font-bold md:hidden">Explore</p>
@@ -82,14 +82,14 @@ export const SideBar = () => {
         to={`/userProfile/${userInfo?.username}`}
         style={getstyles}
         className="flex gap-[1rem] justify-center cursor-pointer py-2 pl-4 w-[80%] shadow-md
-       rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color"
+       rounded-[0.5rem] hover:bg-light-primary-color dark:border dark:border-white-color dark:border-solid dark:text-white-color dark:hover:text-black-color sm:pl-0"
       >
         <ManageAccountsIcon />
         <p className="font-bold md:hidden">Profile</p>
       </NavLink>
       <div
         title="add post"
-        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-1 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center  dark:text-white-color sm:dark:border sm:dark:border-sold sm:dark:border-white-color sm:order-3"
+        className=" mb-[5rem] mt-[2rem] cursor-pointer addPost sm:mb-0 sm:mt-0 sm:py-1 sm:w-[80%] sm:shadow-md rounded-[0.5rem] sm:hover:bg-light-primary-color sm:flex sm:justify-center  dark:text-white-color sm:dark:border sm:dark:border-sold sm:dark:border-white-color"
         onClick={() => openNewPostModal()}
       >
         <AddCircleOutlineIcon />

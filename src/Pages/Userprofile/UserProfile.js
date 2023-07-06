@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Modal } from "@mui/material";
@@ -148,6 +148,12 @@ export const UserProfile = () => {
             <div className=" flex flex-col gap-2 p-4 justify-center ">
               <div>
                 <p className="dark:text-white-color">{userData?.bio}</p>
+                <NavLink
+                  className="dark:text-white-color"
+                  to={userData?.website}
+                >
+                  {userData?.website}
+                </NavLink>
                 <p className="dark:text-white-color">
                   {" "}
                   joined at -{" "}
@@ -284,6 +290,21 @@ export const UserProfile = () => {
                   });
                 }}
               />
+            </div>
+            <div>
+              <p className="text-lg dark:text-white-color">Website - </p>
+              <textarea
+                className="border border-solid border-primary-color px-2 py-1 rounded-[0.5rem] dark:text-white-color dark:bg-dark-primary "
+                rows={2}
+                cols={40}
+                value={userData?.website}
+                onChange={(e) => {
+                  setUserData({
+                    ...userData,
+                    website: e.target.value,
+                  });
+                }}
+              ></textarea>
             </div>
             <div className="flex flex-col gap-4">
               <p className="text-lg dark:text-white-color">Bio - </p>

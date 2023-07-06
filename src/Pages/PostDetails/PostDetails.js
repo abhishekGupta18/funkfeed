@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Modal } from "@mui/material";
+import Loader from "../../Component/Loader";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
@@ -60,15 +61,15 @@ export const PostDetails = () => {
   };
   console.log(postDetails);
   return (
-    postDetails && (
-      <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
-        <div className="fixed w-full">
-          <Navbar />
+    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
+      <div className="fixed w-full">
+        <Navbar />
+      </div>
+      <div className="flex justify-around  pt-[6rem] ">
+        <div className="bg-white h-max rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
+          <SideBar />
         </div>
-        <div className="flex justify-around  pt-[6rem] ">
-          <div className="bg-white h-max rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
-            <SideBar />
-          </div>
+        {postDetails ? (
           <div className="  flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh] post-scroll no-scroll sm:mb-8">
             <div>
               <PostCard post={postDetails} />
@@ -196,18 +197,22 @@ export const PostDetails = () => {
               </ul>
             </div>
           </div>
-          <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden dark:bg-dark-primary ">
-            <strong>
-              <p className="dark:text-white-color">Users you might know</p>
-            </strong>
-            <ul className="flex flex-col gap-4">
-              {filteredUsers.map((users) => (
-                <SuggestedUserCard key={users?._id} user={users} />
-              ))}
-            </ul>
+        ) : (
+          <div className="w-[40px] h-[40px]">
+            <Loader />
           </div>
+        )}
+        <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-4 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] lg:hidden dark:bg-dark-primary ">
+          <strong>
+            <p className="dark:text-white-color">Users you might know</p>
+          </strong>
+          <ul className="flex flex-col gap-4">
+            {filteredUsers.map((users) => (
+              <SuggestedUserCard key={users?._id} user={users} />
+            ))}
+          </ul>
         </div>
       </div>
-    )
+    </div>
   );
 };

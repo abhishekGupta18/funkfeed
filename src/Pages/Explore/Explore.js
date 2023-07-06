@@ -29,7 +29,7 @@ export const Explore = () => {
             {postState?.allPost
               ?.filter((post) => post?.username !== userInfo?.username)
               .map((post) => (
-                <PostCard post={post} />
+                <PostCard key={post?._id} post={post} />
               ))}
           </div>
         )}
@@ -44,7 +44,7 @@ export const Explore = () => {
           ) : (
             <ul className="flex flex-col gap-4">
               {filteredUsers.map((users) => (
-                <SuggestedUserCard user={users} />
+                <SuggestedUserCard key={users?._id} user={users} />
               ))}
             </ul>
           )}

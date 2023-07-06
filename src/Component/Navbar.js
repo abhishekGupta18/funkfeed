@@ -137,6 +137,7 @@ export const Navbar = () => {
                     ?.filter((item) => item?.username !== userInfo?.username)
                     .map((user) => (
                       <li
+                        key={user?._id}
                         className="flex items-center justify-between shadow-[0_3px_10px_rgb(0,0,0,0.2)] px-2 py-1 rounded-[0.5rem] dark:border dark:border-solid border-white-color "
                         onClick={() =>
                           navigate(`/userProfile/${user?.username}`)

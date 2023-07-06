@@ -189,7 +189,9 @@ export const UserProfile = () => {
                   No posts yet!
                 </p>
               ) : (
-                currentUserPost?.map((post) => <PostCard post={post} />)
+                currentUserPost?.map((post) => (
+                  <PostCard key={post?._id} post={post} />
+                ))
               )}
             </div>
           )}
@@ -206,7 +208,7 @@ export const UserProfile = () => {
           ) : (
             <ul className="flex flex-col gap-4 justify-center">
               {filteredUsers.map((users) => (
-                <SuggestedUserCard user={users} />
+                <SuggestedUserCard key={users?._id} user={users} />
               ))}
             </ul>
           )}

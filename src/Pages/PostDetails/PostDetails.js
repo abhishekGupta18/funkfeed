@@ -33,9 +33,10 @@ export const PostDetails = () => {
         method: "get",
         url: `/api/posts/${postId}`,
       });
-      if (status === 200 || status === 201) {
+      if (status === 200) {
         setPostDetails(data?.post);
       }
+      console.log(status, data);
     } catch (e) {
       console.error(e);
     }
@@ -201,7 +202,7 @@ export const PostDetails = () => {
           </strong>
           <ul className="flex flex-col gap-4">
             {filteredUsers.map((users) => (
-              <SuggestedUserCard user={users} />
+              <SuggestedUserCard key={users?._id} user={users} />
             ))}
           </ul>
         </div>

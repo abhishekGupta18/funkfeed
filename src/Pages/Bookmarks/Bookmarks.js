@@ -35,7 +35,7 @@ export const BookMarks = () => {
             ) : (
               postState?.allPost
                 ?.filter((post) => userBookmarks?.includes(post?._id))
-                .map((post) => <PostCard post={post} />)
+                .map((post) => <PostCard key={post?._id} post={post} />)
             )}
           </div>
         )}
@@ -50,7 +50,7 @@ export const BookMarks = () => {
           ) : (
             <ul className="flex flex-col gap-4">
               {filteredUsers.map((users) => (
-                <SuggestedUserCard user={users} />
+                <SuggestedUserCard key={users?._id} user={users} />
               ))}
             </ul>
           )}

@@ -94,7 +94,9 @@ export const Home = () => {
                 <p className="dark:text-white-color">Start following users.</p>
               </div>
             ) : (
-              latestPosts?.map((post) => <PostCard post={post} />)
+              latestPosts?.map((post) => (
+                <PostCard key={post?._id} post={post} />
+              ))
             )}
           </div>
         )}
@@ -144,7 +146,7 @@ export const Home = () => {
           ) : (
             <ul className="flex flex-col gap-4  ">
               {filteredUsers?.map((user) => (
-                <SuggestedUserCard user={user} />
+                <SuggestedUserCard key={user?._id} user={user} />
               ))}
             </ul>
           )}

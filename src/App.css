@@ -20,6 +20,9 @@
   .addPost svg {
     font-size: 2rem;
   }
+  .search-icon svg {
+    padding: 0 auto;
+  }
 }
 @media (max-width: 600px) {
   .smaller-mobile {

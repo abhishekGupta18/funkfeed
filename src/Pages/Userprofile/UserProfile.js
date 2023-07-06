@@ -60,8 +60,6 @@ export const UserProfile = () => {
     getUserData();
   }, [username, usersState]);
 
-  console.log(editUserData);
-
   const currentUserPost = postState?.allPost?.filter(
     (item) => item?.username === username
   );

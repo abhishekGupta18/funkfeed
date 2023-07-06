@@ -66,7 +66,7 @@ export const Navbar = () => {
         </div>
         <div
           title="search user"
-          className="search-icon ml-[-2.5rem] sm:w-[2rem] sm:h-[2rem] sm:px-auto sm:flex sm:display-center sm:items-center sm:bg-white-color sm:rounded-[50%] dark:text-white-color dark:sm:bg-dark-primary dark:sm:text-white-color"
+          className="search-icon ml-[-2.5rem] sm:w-[2rem] sm:h-[2rem]    sm:bg-white-color sm:ml-0 sm:rounded-[50%] dark:text-white-color dark:sm:bg-dark-primary dark:sm:text-white-color"
         >
           <SearchIcon />
         </div>

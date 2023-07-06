@@ -11,6 +11,7 @@ import { Explore } from "./Pages/Explore/Explore";
 import { UserProfile } from "./Pages/Userprofile/UserProfile";
 import { BookMarks } from "./Pages/Bookmarks/Bookmarks";
 import { PostDetails } from "./Pages/PostDetails/PostDetails";
+import { PageNotFound } from "./Pages/PageNotFound/PageNotFound";
 import { RequireAuth } from "./Component/RequireAuth";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/userProfile/:username" element={<UserProfile />} />
           <Route path="/bookmarks" element={<BookMarks />} />
+          <Route path="/*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </div>

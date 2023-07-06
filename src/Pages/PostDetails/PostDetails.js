@@ -68,7 +68,7 @@ export const PostDetails = () => {
         <div className="bg-white h-max rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] ">
           <SideBar />
         </div>
-        <div className="  flex flex-col gap-4 overflow-y-auto h-[86vh] post-scroll no-scroll sm:mb-8">
+        <div className="  flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh] post-scroll no-scroll sm:mb-8">
           <div>
             <PostCard post={postDetails} />
           </div>

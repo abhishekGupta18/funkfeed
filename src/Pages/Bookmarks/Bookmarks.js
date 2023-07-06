@@ -29,7 +29,7 @@ export const BookMarks = () => {
         ) : (
           <div className="  flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh]  sm:mb-8 ">
             {userBookmarks?.length === 0 ? (
-              <p className="text-xl font-bold dark:text-white-color">
+              <p className="text-xl font-bold dark:text-white-color flex items-center justify-center w-full">
                 No Bookmarks Yet!
               </p>
             ) : (

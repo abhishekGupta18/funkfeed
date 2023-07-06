@@ -14,9 +14,9 @@ import { useUserContext } from "../../Context/userContext";
 import { usePostContext } from "../../Context/PostContext";
 
 export const UserProfile = () => {
+  const [userData, setUserData] = useState({});
   const [editProfileModal, setUserProfileModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
-  const [userData, setUserData] = useState({});
   const [image, setImage] = useState("");
   const { userLogout, userInfo } = useAuthContext();
   const {
@@ -28,6 +28,7 @@ export const UserProfile = () => {
     userLoading,
     usersState,
   } = useUserContext();
+
   const { postState, getUserPost, postLoading } = usePostContext();
   const { username } = useParams();
 

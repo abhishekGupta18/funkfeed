@@ -1,4 +1,10 @@
 # Funk Feed
+# Video 
+
+
+https://github.com/abhishekGupta18/funkfeed/assets/112747867/b42c65de-d857-4075-9306-daad2cf32ca1
+
+
 ## How to install and run locally?
 ```
 $ git clone https://github.com/abhishekGupta18/funkfeed.git

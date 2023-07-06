@@ -17,7 +17,7 @@ export const users = [
       "https://res.cloudinary.com/dmmqvo37i/image/upload/v1687168190/profile_photo_fr8mp4.jpg",
     website: "https://supersole.netlify.app/",
     bookmarks: [],
-    createdAt: formatDate(),
+    createdAt: "2022-04-06T01:06:00+05:30",
     updatedAt: formatDate(),
     following: [
       {
@@ -70,7 +70,7 @@ export const users = [
     profileImg: "https://avatars.githubusercontent.com/u/93856336?v=4",
     website: "https://vivekbhatt.netlify.app/",
     bookmarks: [],
-    createdAt: formatDate(),
+    createdAt: "2023-01-06T01:06:00+05:30",
     updatedAt: formatDate(),
   },
   {

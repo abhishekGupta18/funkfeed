@@ -82,7 +82,8 @@ export const PostDetails = () => {
                 onChange={(e) => setCommentInput(e.target.value)}
               />
               <button
-                className=" rounded-[0.5rem] font-bold px-4 py-2 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color "
+                disabled={commentInput?.length <= 0}
+                className=" rounded-[0.5rem] font-bold px-4 py-2 text-base bg-light-primary-color hover:bg-primary-color transition-all duration-300  hover:text-white-color shadow-[0_3px_10px_rgb(0,0,0,0.2)] dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color  disabled:cursor-not-allowed disabled:opacity-[0.6]"
                 onClick={() => {
                   addComment(postDetails?._id, commentInput);
                   setCommentInput("");

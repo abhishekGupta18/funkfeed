@@ -197,8 +197,12 @@ export const SideBar = () => {
                   Cancel
                 </button>
                 <button
+                  disabled={
+                    newPostDetails?.content === "" &&
+                    newPostDetails?.mediaURL === ""
+                  }
                   type="submit"
-                  className="border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white-color dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
+                  className="  disabled:cursor-not-allowed border-solid border-primary-color border px-3 py-1 rounded-[0.5rem] font-semibold hover:bg-primary-color hover:text-white-color dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
                 >
                   Post
                 </button>

@@ -61,12 +61,12 @@ export const Navbar = () => {
             title="search user"
             type="text"
             placeholder="Search User"
-            className="border border-black border-solid w-[20rem] px-4 py-1 rounded-[0.5rem] outline-none sm:hidden dark:bg-dark-primary dark:text-white-color dark:border-white-color"
+            className="border border-black border-solid w-[20rem] px-4 py-2 rounded-[0.5rem] outline-none sm:hidden dark:bg-dark-primary dark:text-white-color dark:border-white-color"
           />
         </div>
         <div
           title="search user"
-          className="search-icon ml-[-2.5rem] sm:w-[2rem] sm:h-[2rem]    sm:bg-white-color sm:ml-0 sm:rounded-[50%] dark:text-white-color dark:sm:bg-dark-primary dark:sm:text-white-color"
+          className="search-icon ml-[-2.5rem] sm:w-[2.5rem] sm:h-[2.5rem] sm:pl-2 sm:pt-1 sm:bg-white-color sm:ml-0 sm:rounded-[50%] dark:text-white-color dark:sm:bg-dark-primary dark:sm:text-white-color"
         >
           <SearchIcon />
         </div>

@@ -52,7 +52,7 @@ export const SignUp = () => {
             <input
               required
               type="text"
-              placeholder="first Name"
+              placeholder="Abhishek"
               value={userSignUpData?.firstName}
               onChange={(e) => {
                 setUserSignUpData({
@@ -68,7 +68,7 @@ export const SignUp = () => {
             <input
               required
               type="text"
-              placeholder="last Name"
+              placeholder="Gupta"
               value={userSignUpData?.lastName}
               onChange={(e) => {
                 setUserSignUpData({
@@ -84,7 +84,7 @@ export const SignUp = () => {
             <input
               required
               type="text"
-              placeholder="user name"
+              placeholder="abhishek12703"
               value={userSignUpData?.username}
               onChange={(e) => {
                 setUserSignUpData({
@@ -100,7 +100,7 @@ export const SignUp = () => {
             <input
               required
               type="email"
-              placeholder="email"
+              placeholder="abhishek@gmail.com"
               value={userSignUpData?.email}
               onChange={(e) => {
                 setUserSignUpData({ ...userSignUpData, email: e.target.value });
@@ -114,7 +114,7 @@ export const SignUp = () => {
               <input
                 required
                 type={showPassword ? "text" : "password"}
-                placeholder="password"
+                placeholder="*****"
                 value={userSignUpData?.password}
                 onChange={(e) => {
                   setUserSignUpData({
@@ -148,7 +148,7 @@ export const SignUp = () => {
               <input
                 required
                 type={showConfirmPassword ? "text" : "password"}
-                placeholder="confirm password"
+                placeholder="****"
                 value={userSignUpData?.confirmPassword}
                 onChange={(e) => {
                   setUserSignUpData({

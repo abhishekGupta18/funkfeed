@@ -43,12 +43,12 @@ export const Login = () => {
           className="mb-[0.5rem]"
         />
 
-        <label className="flex flex-col items-start gap-[0.5rem] font-medium ">
+        <label className="flex flex-col w-[230px] items-start gap-[0.5rem] font-medium ">
           Username{" "}
           <input
             required
             type="text"
-            placeholder="username"
+            placeholder="abhi"
             value={userLoginData.username}
             onChange={(e) => {
               setUserLoginData({ ...userLoginData, username: e.target.value });
@@ -56,13 +56,13 @@ export const Login = () => {
             className=" outline-none border-solid border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color "
           />
         </label>
-        <label className="flex flex-col items-start gap-[0.5rem] font-medium">
+        <label className="flex flex-col w-[230px] items-start gap-[0.5rem] font-medium">
           Password{" "}
           <div className="flex items-center mr-3 ">
             <input
               required
               type={showPassword ? "text" : "password"}
-              placeholder="password"
+              placeholder="abhi@123"
               value={userLoginData.password}
               onChange={(e) => {
                 setUserLoginData({
@@ -70,15 +70,15 @@ export const Login = () => {
                   password: e.target.value,
                 });
               }}
-              className=" outline-none border-solid   border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
+              className="  outline-none border-solid   border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
             />
             {showPassword ? (
-              <div
+              <button
                 className="ml-[-3rem] cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 <VisibilityOffIcon />
-              </div>
+              </button>
             ) : (
               <div
                 className="ml-[-3rem] cursor-pointer"

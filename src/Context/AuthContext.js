@@ -34,6 +34,7 @@ export const AuthContextProvider = ({ children }) => {
       }
     } catch (e) {
       console.error(e);
+      toast.error("Write new username");
     }
   };
 

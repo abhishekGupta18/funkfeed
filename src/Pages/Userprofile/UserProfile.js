@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Modal } from "@mui/material";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import InsertLinkOutlinedIcon from "@mui/icons-material/InsertLinkOutlined";
 
 import { Navbar } from "../../Component/Navbar";
 import { SideBar } from "../../Component/SideBar";
@@ -149,17 +151,17 @@ export const UserProfile = () => {
               )}
             </div>
             <div className=" flex flex-col gap-2 p-4 justify-center ">
-              <div>
+              <div className="flex flex-col gap-2">
                 <p className="dark:text-white-color">{userData?.bio}</p>
                 <NavLink
-                  className="dark:text-white-color"
+                  className="dark:text-white-color flex items-center gap-2"
                   to={userData?.website}
                 >
-                  {userData?.website}
+                  <InsertLinkOutlinedIcon /> {userData?.website}
                 </NavLink>
-                <p className="dark:text-white-color">
+                <p className="flex items-center gap-2 dark:text-white-color">
                   {" "}
-                  joined at -{" "}
+                  <CalendarMonthOutlinedIcon /> joined{" "}
                   {` ${new Date(userData?.createdAt)
                     .toDateString()
                     .split(" ")

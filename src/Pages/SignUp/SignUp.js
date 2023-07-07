@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useAuthContext } from "../../Context/AuthContext";
@@ -27,7 +28,7 @@ export const SignUp = () => {
     if (userSignUpData?.confirmPassword === userSignUpData?.password) {
       userSignUp(userSignUpData);
     } else {
-      alert("write correct password");
+      toast.warning("Write correct credentials");
     }
   };
   return (
@@ -125,14 +126,14 @@ export const SignUp = () => {
               />
               {showPassword ? (
                 <div
-                  className="ml-[-3rem]"
+                  className="ml-[-3rem] cursor-pointer"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   <VisibilityOffIcon />
                 </div>
               ) : (
                 <div
-                  className="ml-[-3rem]"
+                  className="ml-[-3rem] cursor-pointer"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {" "}
@@ -158,15 +159,15 @@ export const SignUp = () => {
                 className="outline-none border-solid mr-4 border-[1.5px] border-primary-color px-[1rem] py-[0.3rem] rounded-[0.5rem] hover:border-secondary-color"
               />
               {showConfirmPassword ? (
-                <button
-                  className="ml-[-3rem]"
+                <div
+                  className="ml-[-3rem] cursor-pointer"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
                   <VisibilityOffIcon />
-                </button>
+                </div>
               ) : (
                 <div
-                  className="ml-[-3rem]"
+                  className="ml-[-3rem] cursor-pointer"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
                   {" "}

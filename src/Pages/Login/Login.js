@@ -74,14 +74,14 @@ export const Login = () => {
             />
             {showPassword ? (
               <div
-                className="ml-[-3rem]"
+                className="ml-[-3rem] cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 <VisibilityOffIcon />
               </div>
             ) : (
               <div
-                className="ml-[-3rem]"
+                className="ml-[-3rem] cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 <VisibilityIcon />

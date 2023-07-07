@@ -143,56 +143,56 @@ export const PostCard = ({ post }) => {
         </p>
       </div>
       <hr />
-      <div className="flex gap-4 items-center dark:text-white-color">
+      <div className="flex gap-12 items-center  dark:text-white-color">
         {post?.likes?.likedBy?.find(
           (item) => item?.username === userInfo?.username
         ) ? (
           <div
             title="dislike post"
-            className=" flex items-center gap-2 cursor-pointer dark:text-white-color"
+            className="  cursor-pointer dark:text-white-color"
             onClick={() => dislikePost(post?._id)}
           >
-            <FavoriteOutlinedIcon /> Liked
+            <FavoriteOutlinedIcon />
           </div>
         ) : (
           <div
             title="like post"
-            className=" flex items-center gap-2 cursor-pointer"
+            className="  cursor-pointer"
             onClick={() => likePost(post?._id)}
           >
-            <FavoriteBorderOutlinedIcon /> Like
+            <FavoriteBorderOutlinedIcon />
           </div>
         )}
         <div
           title="comment"
-          className="cursor-pointer flex items-center gap-2 dark:text-white-color"
+          className="cursor-pointer  dark:text-white-color"
           onClick={() => navigate(`/post/${post._id}`)}
         >
-          <ModeCommentOutlinedIcon /> Comment
+          <ModeCommentOutlinedIcon />
         </div>
         {userInfo?.bookmarks?.some((item) => item?._id?.includes(post?._id)) ? (
           <div
             title="remove from bookmark"
-            className="cursor-pointer flex items-center gap-2"
+            className="cursor-pointer "
             onClick={() => removePostFromBookmarks(post?._id)}
           >
-            <BookmarkOutlinedIcon /> Bookmarked
+            <BookmarkOutlinedIcon />
           </div>
         ) : (
           <div
-            className="cursor-pointer flex items-center gap-2"
+            className="cursor-pointer "
             title="bookmark"
             onClick={() => addPostToBookmarks(post?._id)}
           >
-            <BookmarkBorderOutlinedIcon /> Bookmark
+            <BookmarkBorderOutlinedIcon />
           </div>
         )}
         <div
-          className="cursor-pointer flex items-center gap-2 share-icon dark:text-white-color"
+          className="cursor-pointer  dark:text-white-color"
           title="share"
           onClick={() => handleShare(post?._id)}
         >
-          <ShareIcon /> Share
+          <ShareIcon />
         </div>
       </div>
       <hr />

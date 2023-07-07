@@ -102,38 +102,34 @@ export const Home = () => {
         )}
 
         <div className="bg-white-color p-4 rounded-[0.5rem] h-fit flex flex-col gap-8 items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] xl:w-[15rem] lg:hidden dark:bg-dark-primary">
-          <div className="flex items-center justify-around gap-4 w-[80%] ">
+          <div className="flex items-center justify-center gap-4 xl:gap-2 ">
             <label
               style={{
                 background: latest ? "#dbeafe" : null,
                 color: latest ? "black" : null,
               }}
-              className=" flex items-center gap-1 border border-solid bg-white-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color  dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
+              className=" text-small flex items-center gap-1 px-4 py-2 border border-solid bg-white-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color  dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color"
               onClick={() => {
                 setLatest(true);
                 setTrending(false);
               }}
             >
-              <button className="text-xl px-4 py-1 ">Latest</button>
-              <div className="xl:hidden">
-                <CalendarMonthOutlinedIcon />
-              </div>
+              Latest
+              <CalendarMonthOutlinedIcon />
             </label>
             <label
               style={{
                 background: trending ? "#dbeafe" : null,
                 color: trending ? "black" : null,
               }}
-              className="flex items-center  gap-1 border border-solid bg-white-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color  dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color "
+              className="flex items-center text-small gap-1 px-4 py-2 border border-solid bg-white-color border-light-primary-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-primary-color hover:text-white-color  dark:bg-dark-navbar dark:text-white-color dark:border dark:border-white-color dark:border-solid dark:hover:text-black-color dark:hover:bg-light-primary-color "
               onClick={() => {
                 setTrending(true);
                 setLatest(false);
               }}
             >
-              <button className="text-xl px-4 py-1 ">Trending</button>
-              <div className="xl:hidden">
-                <WhatshotOutlinedIcon />
-              </div>
+              Trending
+              <WhatshotOutlinedIcon />
             </label>
           </div>
           <strong>

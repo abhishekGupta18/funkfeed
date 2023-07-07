@@ -56,7 +56,7 @@ export const Home = () => {
             <Loader />
           </div>
         ) : (
-          <div className=" flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh]  sm:mb-8">
+          <div className=" flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh]  sm:mb-8 sm:w-full">
             <div className=" hidden lg:flex lg:justify-around lg:gap-8 lg:w-[100%] lg:mx-auto shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-4 bg-white-color rounded-[0.5rem] dark:bg-dark-primary smaller-mobile ">
               <button
                 style={{

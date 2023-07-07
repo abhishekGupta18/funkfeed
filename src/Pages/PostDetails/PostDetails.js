@@ -69,7 +69,7 @@ export const PostDetails = () => {
           <SideBar />
         </div>
         {postDetails ? (
-          <div className="  flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh] post-scroll no-scroll sm:mb-8">
+          <div className="  flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh] post-scroll no-scroll sm:w-full sm:mb-8">
             <div>
               <PostCard post={postDetails} />
             </div>

@@ -14,7 +14,7 @@ export const BookMarks = () => {
   const userBookmarks = userInfo?.bookmarks?.map(({ _id }) => _id);
 
   return (
-    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary ">
+    <div className="bg-light-primary-color min-h-screen dark:bg-dark-secondary  ">
       <div className="fixed w-full">
         <Navbar />
       </div>
@@ -27,7 +27,7 @@ export const BookMarks = () => {
             <Loader />
           </div>
         ) : (
-          <div className="  flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh]  sm:mb-8 ">
+          <div className="  flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh] sm:w-full  sm:mb-8 ">
             {userBookmarks?.length === 0 ? (
               <p className="text-xl font-bold dark:text-white-color flex items-center justify-center w-full">
                 No Bookmarks Yet!

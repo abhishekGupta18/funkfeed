@@ -90,7 +90,7 @@ export const UserProfile = () => {
         <div className="bg-white-color h-max shadow-[0_3px_10px_rgb(0,0,0,0.2)]  rounded-[0.5rem] ">
           <SideBar />
         </div>
-        <div className="flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh]   xl:w-[35rem]  smaller-mobile sm:mb-8">
+        <div className="flex flex-col gap-4 overflow-y-auto overflow-x-hidden h-[86vh]   xl:w-[35rem]  smaller-mobile sm:mb-8 sm:w-full">
           <div className="bg-white-color rounded-[0.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-[40rem] dark:bg-dark-primary xl:w-[35rem]  smaller-mobile ">
             <div className="  flex justify-between p-4 items-center">
               <div className="flex items-center gap-4">
@@ -188,7 +188,7 @@ export const UserProfile = () => {
               <Loader />
             </div>
           ) : (
-            <div className="  flex flex-col gap-4 ">
+            <div className="  flex flex-col gap-4 sm:w-full ">
               {currentUserPost?.length === 0 ? (
                 <p className="text-xl font-bold text-center dark:text-white-color">
                   No posts yet!
